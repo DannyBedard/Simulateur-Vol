@@ -1,0 +1,17 @@
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.csprojAssemblyReference.cache
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.ViewSimulator.resources
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.csproj.GenerateResource.cache
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.AssemblyInfoInputs.cache
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.AssemblyInfo.cs
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.csproj.CoreCompileInputs.cache
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\TP2_Simulateur_Avions.exe
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\TP2_Simulateur_Avions.deps.json
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\TP2_Simulateur_Avions.runtimeconfig.json
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\TP2_Simulateur_Avions.runtimeconfig.dev.json
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\TP2_Simulateur_Avions.dll
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\TP2_Simulateur_Avions.pdb
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.dll
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.pdb
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.genruntimeconfig.cache
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\obj\Debug\netcoreapp3.1\TP2_Simulateur_Avions.Properties.Resources.resources
+C:\Users\Simon D-L\source\repos\TP2_Simulateur_Avions\TP2_Simulateur_Avions\bin\Debug\netcoreapp3.1\Ressources\world-map.bmp

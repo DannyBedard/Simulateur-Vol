@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TP2_Simulateur_Avions/1.0.0": {
+        "runtime": {
+          "TP2_Simulateur_Avions.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TP2_Simulateur_Avions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
