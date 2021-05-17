@@ -9,6 +9,7 @@ namespace TP2Editeur
     [XmlInclude(typeof(AvionPassagers))]
     [XmlInclude(typeof(AvionCiterne))]
     [XmlInclude(typeof(AvionMarchandises))]
+    [XmlInclude(typeof(AvionObservateur))]
     public class Scenario
     {
         private List<Aeroport> lstAeroports = new List<Aeroport>(); 
@@ -41,10 +42,16 @@ namespace TP2Editeur
             aeroport.ajouterAeronef(aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
         }
 
-        internal void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+        }
+
+        internal void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
+        {
+            Aeroport aeroport = Aeroports[apIndex];
+            aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse);
         }
     }
 }

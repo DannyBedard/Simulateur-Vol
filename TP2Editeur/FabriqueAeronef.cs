@@ -20,11 +20,22 @@ namespace TP2Editeur
             }
         }
 
-        internal static Aeronef fabriquerAeronef(string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        public static Aeronef fabriquerAeronef(string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
         {
             if (aeronefType == "Citerne")
             {
                 return new AvionCiterne(aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+            }
+            return null;
+        }
+
+        internal static Aeronef fabriquerAeronef(string aeronefType, string aeronefNom, int vitesse)
+        {
+            switch (aeronefType) {
+                case "Observateur":
+                    return new AvionObservateur(aeronefNom, vitesse);
+                case "Hélicoptère de secours":
+                    return new HelicoptereSecours(aeronefNom, vitesse);
             }
             return null;
         }

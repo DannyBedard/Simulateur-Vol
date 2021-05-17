@@ -228,7 +228,7 @@ namespace TP2Editeur
             this.cmbAeronefType.Items.AddRange(new object[] {
             "Passagers",
             "Marchandises",
-            "Observation",
+            "Observateur",
             "Citerne",
             "Hélicoptère de secours"});
             this.cmbAeronefType.Location = new System.Drawing.Point(218, 472);

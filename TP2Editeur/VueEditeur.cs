@@ -70,7 +70,7 @@ namespace TP2Editeur
                     txbAeronefEntretient.Enabled = true;
                     break;
                 case "Hélicoptère de secours":
-                case "Observation":
+                case "Observateur":
                     txbAeronefEmbarquement.Enabled = false;
                     txbAeronefDebarquement.Enabled = false;
                     txbCapacite.Enabled = false;
@@ -113,14 +113,20 @@ namespace TP2Editeur
 
         private void btnAjouterAeronef_Click(object sender, EventArgs e)
         {
-            if (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text,out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbCapacite.Text, out _))
+            string aeronefType = cmbAeronefType.Text;
+            int tempsEntretient = 0;
+
+            if ((aeronefType == "Passagers" || aeronefType == "Marchandises" || aeronefType == "Citerne") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbCapacite.Text, out _))) {
                 MessageBox.Show("Veuillez remplir correctement les champs");
-            else {
+                tempsEntretient = int.Parse(txbAeronefEntretient.Text);
+            }
+            else if((aeronefType == "Observateur" || aeronefType == "Hélicoptère de secours") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _)))
+                MessageBox.Show("Veuillez remplir correctement les champs");
+            else
+            {
                 int apIndex = lstAeroports.SelectedIndex;
                 string aeronefNom = txbAeronefNom.Text;
-                string aeronefType = cmbAeronefType.Text;
                 int vitesse = int.Parse(txbAeronefVitesse.Text);
-                int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
                 switch (aeronefType) {
                     case "Marchandises":
                     case "Passagers":
@@ -134,7 +140,10 @@ namespace TP2Editeur
                         int tempsLargage = int.Parse(txbAeronefDebarquement.Text);
                         controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, vitesse, tempsChargement, tempsLargage, tempsEntretient);
                         break;
-
+                    case "Hélicoptère de secours":
+                    case "Observateur":
+                        controleur.ajouterAeronef(apIndex,aeronefType, aeronefNom, vitesse);
+                        break;
                 }
 
                 mettreAJourListeAeronef(apIndex);

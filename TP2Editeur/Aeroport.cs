@@ -18,15 +18,21 @@ namespace TP2Editeur
             return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
         }
 
-        internal void ajouterAeronef(string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
+        public void ajouterAeronef(string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             Aeronef aeronef = FabriqueAeronef.fabriquerAeronef(aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
             aeronefs.Add(aeronef);
         }
 
-        internal void ajouterAeronef(string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        public void ajouterAeronef(string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
         {
             Aeronef aeronef = FabriqueAeronef.fabriquerAeronef(aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+            aeronefs.Add(aeronef);
+        }
+
+        public void ajouterAeronef(string aeronefType, string aeronefNom, int vitesse)
+        {
+            Aeronef aeronef = FabriqueAeronef.fabriquerAeronef(aeronefType, aeronefNom, vitesse);
             aeronefs.Add(aeronef);
         }
     }

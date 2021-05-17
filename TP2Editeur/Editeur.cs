@@ -79,5 +79,10 @@ namespace TP2Editeur
         {
             scenario.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
         }
+
+        public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
+        {
+            scenario.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
+        }
     }
 }
