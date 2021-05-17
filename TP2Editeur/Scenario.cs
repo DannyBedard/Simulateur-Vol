@@ -10,6 +10,7 @@ namespace TP2Editeur
     [XmlInclude(typeof(AvionCiterne))]
     [XmlInclude(typeof(AvionMarchandises))]
     [XmlInclude(typeof(AvionObservateur))]
+    [XmlInclude(typeof(HelicoptereSecours))]
     public class Scenario
     {
         private List<Aeroport> lstAeroports = new List<Aeroport>(); 
