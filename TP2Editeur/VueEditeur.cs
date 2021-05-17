@@ -53,25 +53,26 @@ namespace TP2Editeur
                 case "Citerne":
                     lblAjout.Text = "Remplissage : ";
                     lblEnlever.Text = "Largage : ";
-                    txbAeronefEmbarquement.Visible = true;
-                    txbAeronefDebarquement.Visible = true;
-                    txbCapacite.Visible = false;
+                    txbAeronefEmbarquement.Enabled = true;
+                    txbAeronefDebarquement.Enabled = true;
+                    txbAeronefVitesse.Enabled = true;
+                    txbCapacite.Enabled = false;
                     break;
                 case "Passagers" :
                 case "Marchandises":
-                    lblAjout.Text = "Embarquement";
-                    lblEnlever.Text = "Débarquement";
-                    txbAeronefEmbarquement.Visible = true;
-                    txbAeronefDebarquement.Visible = true;
-                    txbCapacite.Visible = true;
+                    lblAjout.Text = "Embarquement : ";
+                    lblEnlever.Text = "Débarquement : ";
+                    txbAeronefEmbarquement.Enabled = true;
+                    txbAeronefDebarquement.Enabled = true;
+                    txbCapacite.Enabled = true;
+                    txbAeronefVitesse.Enabled = true;
                     break;
                 case "Hélicoptère de secours":
                 case "Observation":
-                    lblAjout.Text = "";
-                    lblEnlever.Text = "";
-                    txbAeronefEmbarquement.Visible = false;
-                    txbAeronefDebarquement.Visible = false;
-                    txbCapacite.Visible = false;
+                    txbAeronefEmbarquement.Enabled = false;
+                    txbAeronefDebarquement.Enabled = false;
+                    txbCapacite.Enabled = false;
+                    txbAeronefVitesse.Enabled = true;
                     break;
             }
         }

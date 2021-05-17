@@ -239,6 +239,7 @@ namespace TP2Editeur
             // 
             // txbAeronefVitesse
             // 
+            this.txbAeronefVitesse.Enabled = false;
             this.txbAeronefVitesse.Location = new System.Drawing.Point(580, 472);
             this.txbAeronefVitesse.Name = "txbAeronefVitesse";
             this.txbAeronefVitesse.Size = new System.Drawing.Size(43, 23);
@@ -255,6 +256,7 @@ namespace TP2Editeur
             // 
             // txbAeronefEmbarquement
             // 
+            this.txbAeronefEmbarquement.Enabled = false;
             this.txbAeronefEmbarquement.Location = new System.Drawing.Point(994, 472);
             this.txbAeronefEmbarquement.Name = "txbAeronefEmbarquement";
             this.txbAeronefEmbarquement.Size = new System.Drawing.Size(43, 23);
@@ -262,15 +264,16 @@ namespace TP2Editeur
             // 
             // lblAjout
             // 
-            this.lblAjout.AutoSize = true;
             this.lblAjout.Location = new System.Drawing.Point(893, 475);
             this.lblAjout.Name = "lblAjout";
             this.lblAjout.Size = new System.Drawing.Size(95, 15);
             this.lblAjout.TabIndex = 22;
             this.lblAjout.Text = "Embarquement :";
+            this.lblAjout.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txbAeronefDebarquement
             // 
+            this.txbAeronefDebarquement.Enabled = false;
             this.txbAeronefDebarquement.Location = new System.Drawing.Point(846, 472);
             this.txbAeronefDebarquement.Name = "txbAeronefDebarquement";
             this.txbAeronefDebarquement.Size = new System.Drawing.Size(43, 23);
@@ -278,15 +281,16 @@ namespace TP2Editeur
             // 
             // lblEnlever
             // 
-            this.lblEnlever.AutoSize = true;
             this.lblEnlever.Location = new System.Drawing.Point(748, 475);
             this.lblEnlever.Name = "lblEnlever";
             this.lblEnlever.Size = new System.Drawing.Size(92, 15);
             this.lblEnlever.TabIndex = 24;
-            this.lblEnlever.Text = "Debarquement :";
+            this.lblEnlever.Text = "Débarquement :";
+            this.lblEnlever.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txbAeronefEntretient
             // 
+            this.txbAeronefEntretient.Enabled = false;
             this.txbAeronefEntretient.Location = new System.Drawing.Point(699, 472);
             this.txbAeronefEntretient.Name = "txbAeronefEntretient";
             this.txbAeronefEntretient.Size = new System.Drawing.Size(43, 23);
@@ -314,6 +318,7 @@ namespace TP2Editeur
             // 
             // txbCapacite
             // 
+            this.txbCapacite.Enabled = false;
             this.txbCapacite.Location = new System.Drawing.Point(472, 472);
             this.txbCapacite.Name = "txbCapacite";
             this.txbCapacite.Size = new System.Drawing.Size(43, 23);
