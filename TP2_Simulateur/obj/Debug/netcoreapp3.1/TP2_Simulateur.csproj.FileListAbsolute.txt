@@ -31,3 +31,20 @@ C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcorea
 C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.dll
 C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.pdb
 C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.genruntimeconfig.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.exe
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\world-map.bmp
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.deps.json
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.runtimeconfig.json
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.runtimeconfig.dev.json
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.dll
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.pdb
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.csprojAssemblyReference.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.Properties.Resources.resources
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.ViewSimulator.resources
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.csproj.GenerateResource.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.AssemblyInfoInputs.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.AssemblyInfo.cs
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.csproj.CoreCompileInputs.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.dll
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.pdb
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.genruntimeconfig.cache

@@ -224,7 +224,7 @@ namespace TP2Editeur
             // 
             // cmbAeronefType
             // 
-            this.cmbAeronefType.FormattingEnabled = true;
+            this.cmbAeronefType.FormattingEnabled = false;
             this.cmbAeronefType.Items.AddRange(new object[] {
             "Passagers",
             "Marchandises",
@@ -236,6 +236,7 @@ namespace TP2Editeur
             this.cmbAeronefType.Size = new System.Drawing.Size(121, 23);
             this.cmbAeronefType.TabIndex = 19;
             this.cmbAeronefType.SelectedIndexChanged += new System.EventHandler(this.cmbAeronefType_SelectedIndexChanged);
+            this.cmbAeronefType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // txbAeronefVitesse
             // 

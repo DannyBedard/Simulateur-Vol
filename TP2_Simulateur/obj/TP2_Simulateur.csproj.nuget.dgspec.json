@@ -1,25 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Simon D-L\\source\\repos\\TP2_Simulateur\\TP2_Simulateur\\TP2_Simulateur.csproj": {}
+    "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2_Simulateur\\TP2_Simulateur.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Simon D-L\\source\\repos\\TP2_Simulateur\\TP2_Simulateur\\TP2_Simulateur.csproj": {
+    "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2_Simulateur\\TP2_Simulateur.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Simon D-L\\source\\repos\\TP2_Simulateur\\TP2_Simulateur\\TP2_Simulateur.csproj",
+        "projectUniqueName": "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2_Simulateur\\TP2_Simulateur.csproj",
         "projectName": "TP2_Simulateur",
-        "projectPath": "C:\\Users\\Simon D-L\\source\\repos\\TP2_Simulateur\\TP2_Simulateur\\TP2_Simulateur.csproj",
-        "packagesPath": "C:\\Users\\Simon D-L\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Simon D-L\\source\\repos\\TP2_Simulateur\\TP2_Simulateur\\obj\\",
+        "projectPath": "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2_Simulateur\\TP2_Simulateur.csproj",
+        "packagesPath": "C:\\Users\\Danny\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2_Simulateur\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Simon D-L\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Danny\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -63,7 +61,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

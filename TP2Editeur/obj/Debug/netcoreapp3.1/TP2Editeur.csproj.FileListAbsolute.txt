@@ -13,3 +13,18 @@ C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP
 C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.pdb
 C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.genruntimeconfig.cache
 C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.VueEditeur.resources
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.exe
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.deps.json
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.runtimeconfig.json
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.runtimeconfig.dev.json
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.dll
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.pdb
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csprojAssemblyReference.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.VueEditeur.resources
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csproj.GenerateResource.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.AssemblyInfoInputs.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.AssemblyInfo.cs
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csproj.CoreCompileInputs.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.dll
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.pdb
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.genruntimeconfig.cache

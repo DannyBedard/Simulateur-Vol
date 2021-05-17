@@ -26,14 +26,19 @@ namespace TP2Editeur
        
         private void btnAjouterAeroport_Click(object sender, EventArgs e)
         {
-            string apName = txbAeroportNom.Text;
-            string apPosition = txbAeroportPosition.Text;
-            int minPassager = int.Parse(txbAeroportMinPassager.Text);
-            int maxPassager = int.Parse(txbAeroportMaxPassager.Text);
-            int minMarchandise = int.Parse(txbAeroportMinMarchandise.Text);
-            int maxMarchandise = int.Parse(txbAeroportMaxMarchandises.Text);
-            //TODO: Verifier les données de l'aéroport.
-            controleur.ajouterAeroport(apName, apPosition, minPassager, maxPassager, minMarchandise, maxMarchandise);
+            if (txbAeroportNom.Text == "" || !int.TryParse(txbAeroportMinPassager.Text, out _) || !int.TryParse(txbAeroportMaxPassager.Text, out _) || !int.TryParse(txbAeroportMinMarchandise.Text, out _) || !int.TryParse(txbAeroportMaxMarchandises.Text, out _)) { 
+                MessageBox.Show("Veuillez remplir correctement les champs");
+            }
+            else {
+                string apName = txbAeroportNom.Text;
+                string apPosition = txbAeroportPosition.Text;
+                int minPassager = int.Parse(txbAeroportMinPassager.Text);
+                int maxPassager = int.Parse(txbAeroportMaxPassager.Text);
+                int minMarchandise = int.Parse(txbAeroportMinMarchandise.Text);
+                int maxMarchandise = int.Parse(txbAeroportMaxMarchandises.Text);
+                //TODO: Verifier les données de l'aéroport.
+                controleur.ajouterAeroport(apName, apPosition, minPassager, maxPassager, minMarchandise, maxMarchandise);
+            }
         }
         public void mettreAJourListeAeroports(List<string> aeroports) {
             lstAeroports.Items.Clear();
@@ -83,17 +88,22 @@ namespace TP2Editeur
 
         private void btnAjouterAeronef_Click(object sender, EventArgs e)
         {
-            int apIndex = lstAeroports.SelectedIndex;
-            string aeronefNom = txbAeronefNom.Text;
-            string aeronefType = cmbAeronefType.Text;
-            int tempsEmbarquement = int.Parse(txbAeronefEmbarquement.Text);
-            int capacite = int.Parse(txbCapacite.Text);
-            int tempsDebarquement = int.Parse(txbAeronefDebarquement.Text);
-            int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
-            int vitesse = int.Parse(txbAeronefVitesse.Text);
-            // TODO: Verifier les données de l'aeronef.
-            controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
-            mettreAJourListeAeronef(apIndex);
+            if (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text,out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbCapacite.Text, out _))
+                MessageBox.Show("Veuillez remplir correctement les champs");
+            else {
+                int apIndex = lstAeroports.SelectedIndex;
+                string aeronefNom = txbAeronefNom.Text;
+                string aeronefType = cmbAeronefType.Text;
+                int tempsEmbarquement = int.Parse(txbAeronefEmbarquement.Text);
+                int capacite = int.Parse(txbCapacite.Text);
+                int tempsDebarquement = int.Parse(txbAeronefDebarquement.Text);
+                int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
+                int vitesse = int.Parse(txbAeronefVitesse.Text);
+                // TODO: Verifier les données de l'aeronef.
+                controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
+                mettreAJourListeAeronef(apIndex);
+            }
         }
+
     }
 }
