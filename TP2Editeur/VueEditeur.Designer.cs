@@ -52,9 +52,9 @@ namespace TP2Editeur
             this.txbAeronefVitesse = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txbAeronefEmbarquement = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblAjout = new System.Windows.Forms.Label();
             this.txbAeronefDebarquement = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblEnlever = new System.Windows.Forms.Label();
             this.txbAeronefEntretient = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnAjouterAeronef = new System.Windows.Forms.Button();
@@ -224,7 +224,7 @@ namespace TP2Editeur
             // 
             // cmbAeronefType
             // 
-            this.cmbAeronefType.FormattingEnabled = false;
+            this.cmbAeronefType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAeronefType.Items.AddRange(new object[] {
             "Passagers",
             "Marchandises",
@@ -236,7 +236,6 @@ namespace TP2Editeur
             this.cmbAeronefType.Size = new System.Drawing.Size(121, 23);
             this.cmbAeronefType.TabIndex = 19;
             this.cmbAeronefType.SelectedIndexChanged += new System.EventHandler(this.cmbAeronefType_SelectedIndexChanged);
-            this.cmbAeronefType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // txbAeronefVitesse
             // 
@@ -256,39 +255,39 @@ namespace TP2Editeur
             // 
             // txbAeronefEmbarquement
             // 
-            this.txbAeronefEmbarquement.Location = new System.Drawing.Point(730, 472);
+            this.txbAeronefEmbarquement.Location = new System.Drawing.Point(994, 472);
             this.txbAeronefEmbarquement.Name = "txbAeronefEmbarquement";
             this.txbAeronefEmbarquement.Size = new System.Drawing.Size(43, 23);
             this.txbAeronefEmbarquement.TabIndex = 23;
             // 
-            // label11
+            // lblAjout
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(629, 475);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 15);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Embarquement :";
+            this.lblAjout.AutoSize = true;
+            this.lblAjout.Location = new System.Drawing.Point(893, 475);
+            this.lblAjout.Name = "lblAjout";
+            this.lblAjout.Size = new System.Drawing.Size(95, 15);
+            this.lblAjout.TabIndex = 22;
+            this.lblAjout.Text = "Embarquement :";
             // 
             // txbAeronefDebarquement
             // 
-            this.txbAeronefDebarquement.Location = new System.Drawing.Point(877, 472);
+            this.txbAeronefDebarquement.Location = new System.Drawing.Point(846, 472);
             this.txbAeronefDebarquement.Name = "txbAeronefDebarquement";
             this.txbAeronefDebarquement.Size = new System.Drawing.Size(43, 23);
             this.txbAeronefDebarquement.TabIndex = 25;
             // 
-            // label12
+            // lblEnlever
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(779, 475);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(92, 15);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "Debarquement :";
+            this.lblEnlever.AutoSize = true;
+            this.lblEnlever.Location = new System.Drawing.Point(748, 475);
+            this.lblEnlever.Name = "lblEnlever";
+            this.lblEnlever.Size = new System.Drawing.Size(92, 15);
+            this.lblEnlever.TabIndex = 24;
+            this.lblEnlever.Text = "Debarquement :";
             // 
             // txbAeronefEntretient
             // 
-            this.txbAeronefEntretient.Location = new System.Drawing.Point(996, 472);
+            this.txbAeronefEntretient.Location = new System.Drawing.Point(699, 472);
             this.txbAeronefEntretient.Name = "txbAeronefEntretient";
             this.txbAeronefEntretient.Size = new System.Drawing.Size(43, 23);
             this.txbAeronefEntretient.TabIndex = 27;
@@ -296,7 +295,7 @@ namespace TP2Editeur
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(926, 475);
+            this.label13.Location = new System.Drawing.Point(629, 475);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 15);
             this.label13.TabIndex = 26;
@@ -356,9 +355,9 @@ namespace TP2Editeur
             this.Controls.Add(this.txbAeronefEntretient);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txbAeronefDebarquement);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblEnlever);
             this.Controls.Add(this.txbAeronefEmbarquement);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblAjout);
             this.Controls.Add(this.txbAeronefVitesse);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cmbAeronefType);
@@ -413,9 +412,9 @@ namespace TP2Editeur
         private System.Windows.Forms.TextBox txbAeronefVitesse;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txbAeronefEmbarquement;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblAjout;
         private System.Windows.Forms.TextBox txbAeronefDebarquement;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblEnlever;
         private System.Windows.Forms.TextBox txbAeronefEntretient;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnAjouterAeronef;

@@ -36,7 +36,6 @@ namespace TP2Editeur
                 int maxPassager = int.Parse(txbAeroportMaxPassager.Text);
                 int minMarchandise = int.Parse(txbAeroportMinMarchandise.Text);
                 int maxMarchandise = int.Parse(txbAeroportMaxMarchandises.Text);
-                //TODO: Verifier les données de l'aéroport.
                 controleur.ajouterAeroport(apName, apPosition, minPassager, maxPassager, minMarchandise, maxMarchandise);
             }
         }
@@ -50,8 +49,27 @@ namespace TP2Editeur
         {
             string type = cmbAeronefType.Text;
             switch (type) 
-            { 
-                    //TODO: Bloquer les textbox non nécéssaire selon le type choisit
+            {
+                case "Citerne":
+                    lblAjout.Text = "Remplissage";
+                    lblEnlever.Text = "Largage";
+                    txbAeronefEmbarquement.Visible = true;
+                    txbAeronefDebarquement.Visible = true;
+                    break;
+                case "Passagers" :
+                case "Marchandises":
+                    lblAjout.Text = "Embarquement";
+                    lblEnlever.Text = "Débarquement";
+                    txbAeronefEmbarquement.Visible = true;
+                    txbAeronefDebarquement.Visible = true;
+                    break;
+                case "Hélicoptère de secours":
+                case "Observation":
+                    lblAjout.Text = "";
+                    lblEnlever.Text = "";
+                    txbAeronefEmbarquement.Visible = false;
+                    txbAeronefDebarquement.Visible = false;
+                    break;
             }
         }
 
@@ -99,7 +117,6 @@ namespace TP2Editeur
                 int tempsDebarquement = int.Parse(txbAeronefDebarquement.Text);
                 int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
                 int vitesse = int.Parse(txbAeronefVitesse.Text);
-                // TODO: Verifier les données de l'aeronef.
                 controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
                 mettreAJourListeAeronef(apIndex);
             }
