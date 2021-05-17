@@ -29,19 +29,18 @@ namespace TP2_Simulateur
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewSimulator));
             this.picMap = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnScenario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.SuspendLayout();
             // 
             // picMap
             // 
             this.picMap.BackColor = System.Drawing.Color.Transparent;
-            this.picMap.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picMap.BackgroundImage")));
             this.picMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picMap.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.picMap.Location = new System.Drawing.Point(0, 43);
+            this.picMap.Location = new System.Drawing.Point(0, 162);
             this.picMap.Name = "picMap";
             this.picMap.Size = new System.Drawing.Size(1088, 666);
             this.picMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -58,11 +57,22 @@ namespace TP2_Simulateur
             this.panel1.Size = new System.Drawing.Size(1088, 0);
             this.panel1.TabIndex = 1;
             // 
+            // btnScenario
+            // 
+            this.btnScenario.Location = new System.Drawing.Point(24, 13);
+            this.btnScenario.Name = "btnScenario";
+            this.btnScenario.Size = new System.Drawing.Size(229, 23);
+            this.btnScenario.TabIndex = 2;
+            this.btnScenario.Text = "Télécharger un scénario";
+            this.btnScenario.UseVisualStyleBackColor = true;
+            this.btnScenario.Click += new System.EventHandler(this.btnScenario_Click);
+            // 
             // ViewSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 709);
+            this.ClientSize = new System.Drawing.Size(1088, 828);
+            this.Controls.Add(this.btnScenario);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.picMap);
             this.Name = "ViewSimulator";
@@ -77,6 +87,8 @@ namespace TP2_Simulateur
 
         private System.Windows.Forms.PictureBox picMap;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnScenario;
+        private System.Windows.Forms.OpenFileDialog emplacementScenarioDialog;
     }
 }
 

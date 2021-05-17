@@ -15,15 +15,16 @@ namespace TP2_Simulateur
 {
     public partial class ViewSimulator : Form
     {
+        SimulatorController controleur;
         private Bitmap map;
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> planePoints = new List<PointF>();
         private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
         private Bitmap bmpFront;
         private Bitmap FrontImage { get { return bmpFront;  } set { picMap.Image = value; bmpFront = value; } }
-        public ViewSimulator()
+        public ViewSimulator(SimulatorController controleur)
         {
-            
+            this.controleur = controleur;
             InitializeComponent();
         }
 
@@ -100,5 +101,11 @@ namespace TP2_Simulateur
             });
         }
 
+        private void btnScenario_Click(object sender, EventArgs e)
+        {
+            emplacementScenarioDialog = new OpenFileDialog();
+            emplacementScenarioDialog.ShowDialog();
+            controleur.TelechargerScenario(emplacementScenarioDialog.FileName);
+        }
     }
 }

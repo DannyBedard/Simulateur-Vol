@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using TP2_Simulateur.Models;
 
 namespace TP2_Simulateur
@@ -26,13 +28,15 @@ namespace TP2_Simulateur
             controller.showMainMenu();
         }
 
-
-        public ViewSimulator view = new ViewSimulator();
+        public XmlSerializer xs;
+        public ViewSimulator view;
+        Scenario scenario;
         private List<Airport> airports = new List<Airport>();
         private Thread timerThread;
         private Stopwatch timer = new Stopwatch();
         private bool running = false;
         public void showMainMenu() {
+            view = new ViewSimulator(this);
             Bitmap map = new Bitmap("Ressources/world-map.bmp");
             init(); // Ajoute des aéroports
             view.loadMap(map); // Charge la map sur la vue
@@ -72,12 +76,21 @@ namespace TP2_Simulateur
             }
         }
         private void init() {
+            xs = new XmlSerializer(typeof(Scenario));
             Airport yul = new Airport("YUL", "45° 27' N, 73° 44' W"); // Aéroport Pierre-Elliot-Trudeau (Montréal)
             Airport bod = new Airport("BOD", "44° 49' N, 0° 42' W"); // Aéroport de Bordeaux (France)
 
             airports.Add(yul);
             airports.Add(bod);
             running = true;
+        }
+
+        public void TelechargerScenario(string fichier)
+        {
+            using (StreamReader rd = new StreamReader(fichier))
+            {
+                scenario = xs.Deserialize(rd) as Scenario;
+            }
         }
 
     }
