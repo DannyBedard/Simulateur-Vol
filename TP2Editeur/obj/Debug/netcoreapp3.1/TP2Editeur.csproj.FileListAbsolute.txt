@@ -1,0 +1,15 @@
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.exe
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.deps.json
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.runtimeconfig.json
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.runtimeconfig.dev.json
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.dll
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.pdb
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csprojAssemblyReference.cache
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csproj.GenerateResource.cache
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.AssemblyInfoInputs.cache
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.AssemblyInfo.cs
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csproj.CoreCompileInputs.cache
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.dll
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.pdb
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.genruntimeconfig.cache
+C:\Users\Simon D-L\source\repos\TP2Editeur\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.VueEditeur.resources

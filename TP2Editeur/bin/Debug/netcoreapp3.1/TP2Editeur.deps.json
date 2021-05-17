@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TP2Editeur/1.0.0": {
+        "runtime": {
+          "TP2Editeur.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TP2Editeur/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
