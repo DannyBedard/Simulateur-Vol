@@ -57,6 +57,7 @@ namespace TP2Editeur
                     txbAeronefDebarquement.Enabled = true;
                     txbAeronefVitesse.Enabled = true;
                     txbCapacite.Enabled = false;
+                    txbAeronefEntretient.Enabled = true;
                     break;
                 case "Passagers" :
                 case "Marchandises":
@@ -66,6 +67,7 @@ namespace TP2Editeur
                     txbAeronefDebarquement.Enabled = true;
                     txbCapacite.Enabled = true;
                     txbAeronefVitesse.Enabled = true;
+                    txbAeronefEntretient.Enabled = true;
                     break;
                 case "Hélicoptère de secours":
                 case "Observation":
@@ -73,6 +75,7 @@ namespace TP2Editeur
                     txbAeronefDebarquement.Enabled = false;
                     txbCapacite.Enabled = false;
                     txbAeronefVitesse.Enabled = true;
+                    txbAeronefEntretient.Enabled = false;
                     break;
             }
         }
@@ -129,8 +132,6 @@ namespace TP2Editeur
                     case "Citerne":
                         int tempsChargement = int.Parse(txbAeronefEmbarquement.Text);
                         int tempsLargage = int.Parse(txbAeronefDebarquement.Text);
-                        
-                        
                         controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, vitesse, tempsChargement, tempsLargage, tempsEntretient);
                         break;
 

@@ -14,7 +14,7 @@ namespace TP2Editeur
                 case "Passagers":
                     return new AvionPassagers(aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
                 case "Marchandises":
-                    // return new AvionMarchandises();
+                    return new AvionMarchandises(aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
                 default:
                     return null;
             }
