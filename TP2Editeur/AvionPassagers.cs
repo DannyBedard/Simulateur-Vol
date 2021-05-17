@@ -12,7 +12,7 @@ namespace TP2Editeur
         {
             base.Nom = aeronefNom;
             base.Vitesse = vitesse;
-            base.Capacite = capacite;
+            base.Capacite = capacite; 
             TempsEmbarquement = tempsEmbarquement;
             TempsDebarquement = tempsDebarquement;
             TempsEntretient = tempsEntretient;
