@@ -8,23 +8,26 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Danny\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Simon D-L\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2Editeur\\TP2Editeur.csproj",
+      "projectUniqueName": "C:\\Users\\Simon D-L\\Source\\Repos\\DannyBedard\\Simulateur-Vol\\TP2Editeur\\TP2Editeur.csproj",
       "projectName": "TP2Editeur",
-      "projectPath": "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2Editeur\\TP2Editeur.csproj",
-      "packagesPath": "C:\\Users\\Danny\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Danny\\source\\repos\\Simulateur-Vol\\TP2Editeur\\obj\\",
+      "projectPath": "C:\\Users\\Simon D-L\\Source\\Repos\\DannyBedard\\Simulateur-Vol\\TP2Editeur\\TP2Editeur.csproj",
+      "packagesPath": "C:\\Users\\Simon D-L\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Simon D-L\\Source\\Repos\\DannyBedard\\Simulateur-Vol\\TP2Editeur\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Danny\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Simon D-L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -68,7 +71,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

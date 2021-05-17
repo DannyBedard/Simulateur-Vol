@@ -4,8 +4,11 @@ using System.Text;
 
 namespace TP2Editeur
 {
-    class AvionMarchandises
+    public class AvionMarchandises : AeronefConteneur
     {
-
+        public override string ToString()
+        {
+            throw new NotImplementedException();  
+        }
     }
 }

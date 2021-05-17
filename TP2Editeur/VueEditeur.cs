@@ -51,10 +51,11 @@ namespace TP2Editeur
             switch (type) 
             {
                 case "Citerne":
-                    lblAjout.Text = "Remplissage";
-                    lblEnlever.Text = "Largage";
+                    lblAjout.Text = "Remplissage : ";
+                    lblEnlever.Text = "Largage : ";
                     txbAeronefEmbarquement.Visible = true;
                     txbAeronefDebarquement.Visible = true;
+                    txbCapacite.Visible = false;
                     break;
                 case "Passagers" :
                 case "Marchandises":
@@ -62,6 +63,7 @@ namespace TP2Editeur
                     lblEnlever.Text = "Débarquement";
                     txbAeronefEmbarquement.Visible = true;
                     txbAeronefDebarquement.Visible = true;
+                    txbCapacite.Visible = true;
                     break;
                 case "Hélicoptère de secours":
                 case "Observation":
@@ -69,6 +71,7 @@ namespace TP2Editeur
                     lblEnlever.Text = "";
                     txbAeronefEmbarquement.Visible = false;
                     txbAeronefDebarquement.Visible = false;
+                    txbCapacite.Visible = false;
                     break;
             }
         }
@@ -112,12 +115,26 @@ namespace TP2Editeur
                 int apIndex = lstAeroports.SelectedIndex;
                 string aeronefNom = txbAeronefNom.Text;
                 string aeronefType = cmbAeronefType.Text;
-                int tempsEmbarquement = int.Parse(txbAeronefEmbarquement.Text);
-                int capacite = int.Parse(txbCapacite.Text);
-                int tempsDebarquement = int.Parse(txbAeronefDebarquement.Text);
-                int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
                 int vitesse = int.Parse(txbAeronefVitesse.Text);
-                controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
+                int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
+                switch (aeronefType) {
+                    case "Marchandises":
+                    case "Passagers":
+                        int tempsEmbarquement = int.Parse(txbAeronefEmbarquement.Text);
+                        int capacite = int.Parse(txbCapacite.Text);
+                        int tempsDebarquement = int.Parse(txbAeronefDebarquement.Text);
+                        controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
+                        break;
+                    case "Citerne":
+                        int tempsChargement = int.Parse(txbAeronefEmbarquement.Text);
+                        int tempsLargage = int.Parse(txbAeronefDebarquement.Text);
+                        
+                        
+                        controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+                        break;
+
+                }
+
                 mettreAJourListeAeronef(apIndex);
             }
         }

@@ -74,5 +74,10 @@ namespace TP2Editeur
             string chemin = vue.choisirEmplacement();
             scenario.serialize(chemin);
         }
+
+        public void ajouterAeronef(int apIndex, string aeronefNom, string aeronefType, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        {
+            scenario.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+        }
     }
 }

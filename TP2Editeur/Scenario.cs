@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 namespace TP2Editeur
 {
     [XmlInclude(typeof(AvionPassagers))]
+    [XmlInclude(typeof(AvionCiterne))]
     public class Scenario
     {
         private List<Aeroport> lstAeroports = new List<Aeroport>(); 
@@ -37,6 +38,12 @@ namespace TP2Editeur
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
+        }
+
+        internal void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        {
+            Aeroport aeroport = Aeroports[apIndex];
+            aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
         }
     }
 }

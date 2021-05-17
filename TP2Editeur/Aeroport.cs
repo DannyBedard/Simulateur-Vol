@@ -23,5 +23,11 @@ namespace TP2Editeur
             Aeronef aeronef = FabriqueAeronef.fabriquerAeronef(aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
             aeronefs.Add(aeronef);
         }
+
+        internal void ajouterAeronef(string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        {
+            Aeronef aeronef = FabriqueAeronef.fabriquerAeronef(aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+            aeronefs.Add(aeronef);
+        }
     }
 }
