@@ -106,6 +106,7 @@ namespace TP2_Simulateur
             emplacementScenarioDialog = new OpenFileDialog();
             emplacementScenarioDialog.ShowDialog();
             controleur.TelechargerScenario(emplacementScenarioDialog.FileName);
+            btnScenario.Text = controleur.scenario.ListAeroport[0].Nom;
         }
     }
 }

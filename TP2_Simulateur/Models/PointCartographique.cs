@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace TP2_Simulateur.Models
 {
-    class PointCartographique
+    public class PointCartographique
     {
         private float latitude;
         private float longitude;
@@ -17,6 +17,10 @@ namespace TP2_Simulateur.Models
 
             latitude = coordVersFloat(latitudeString);
             longitude = coordVersFloat(longitudeString);
+        }
+        public PointCartographique()
+        {
+
         }
         private float coordVersFloat(string coord) {
             float resultat = 0;

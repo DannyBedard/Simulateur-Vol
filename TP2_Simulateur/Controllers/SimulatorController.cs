@@ -30,8 +30,8 @@ namespace TP2_Simulateur
 
         public XmlSerializer xs;
         public ViewSimulator view;
-        Scenario scenario;
-        private List<Airport> airports = new List<Airport>();
+        public Scenario scenario;
+        private List<Aeroport> airports = new List<Aeroport>();
         private Thread timerThread;
         private Stopwatch timer = new Stopwatch();
         private bool running = false;
@@ -43,7 +43,7 @@ namespace TP2_Simulateur
 
             start = (s, e) => {
                 // On envoit la liste des points des aéroports quand la fenêtre s'ouvre
-                foreach (Airport ap in airports)
+                foreach (Aeroport ap in airports)
                 {
                     PointF position = ap.Position.Transposer(view.getImageSize());
                     view.addAirportToView(position);
@@ -76,9 +76,8 @@ namespace TP2_Simulateur
             }
         }
         private void init() {
-            xs = new XmlSerializer(typeof(Scenario));
-            Airport yul = new Airport("YUL", "45° 27' N, 73° 44' W"); // Aéroport Pierre-Elliot-Trudeau (Montréal)
-            Airport bod = new Airport("BOD", "44° 49' N, 0° 42' W"); // Aéroport de Bordeaux (France)
+            Aeroport yul = new Aeroport("YUL", "45° 27' N, 73° 44' W"); // Aéroport Pierre-Elliot-Trudeau (Montréal)
+            Aeroport bod = new Aeroport("BOD", "44° 49' N, 0° 42' W"); // Aéroport de Bordeaux (France)
 
             airports.Add(yul);
             airports.Add(bod);
@@ -87,10 +86,12 @@ namespace TP2_Simulateur
 
         public void TelechargerScenario(string fichier)
         {
+            xs = new XmlSerializer(typeof(Scenario));
             using (StreamReader rd = new StreamReader(fichier))
             {
-                scenario = xs.Deserialize(rd) as Scenario;
+                scenario = (Scenario)xs.Deserialize(rd);
             }
+
         }
 
     }
