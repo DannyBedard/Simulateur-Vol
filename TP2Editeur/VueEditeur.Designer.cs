@@ -29,7 +29,6 @@ namespace TP2Editeur
         /// </summary>
         private void InitializeComponent()
         {
-            this.txbAeroportPosition = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAjouterAeroport = new System.Windows.Forms.Button();
@@ -62,14 +61,9 @@ namespace TP2Editeur
             this.label14 = new System.Windows.Forms.Label();
             this.btnGenererScenario = new System.Windows.Forms.Button();
             this.emplacementScenarioDialog = new System.Windows.Forms.SaveFileDialog();
+            this.btnPosition = new System.Windows.Forms.Button();
+            this.txbAeroportPosition = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txbAeroportPosition
-            // 
-            this.txbAeroportPosition.Location = new System.Drawing.Point(234, 214);
-            this.txbAeroportPosition.Name = "txbAeroportPosition";
-            this.txbAeroportPosition.Size = new System.Drawing.Size(100, 23);
-            this.txbAeroportPosition.TabIndex = 0;
             // 
             // label1
             // 
@@ -127,7 +121,7 @@ namespace TP2Editeur
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(340, 218);
+            this.label4.Location = new System.Drawing.Point(428, 217);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 7;
@@ -135,14 +129,14 @@ namespace TP2Editeur
             // 
             // txbAeroportMinPassager
             // 
-            this.txbAeroportMinPassager.Location = new System.Drawing.Point(428, 214);
+            this.txbAeroportMinPassager.Location = new System.Drawing.Point(516, 213);
             this.txbAeroportMinPassager.Name = "txbAeroportMinPassager";
             this.txbAeroportMinPassager.Size = new System.Drawing.Size(38, 23);
             this.txbAeroportMinPassager.TabIndex = 8;
             // 
             // txbAeroportMaxPassager
             // 
-            this.txbAeroportMaxPassager.Location = new System.Drawing.Point(560, 213);
+            this.txbAeroportMaxPassager.Location = new System.Drawing.Point(648, 212);
             this.txbAeroportMaxPassager.Name = "txbAeroportMaxPassager";
             this.txbAeroportMaxPassager.Size = new System.Drawing.Size(38, 23);
             this.txbAeroportMaxPassager.TabIndex = 10;
@@ -150,7 +144,7 @@ namespace TP2Editeur
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(472, 217);
+            this.label5.Location = new System.Drawing.Point(560, 216);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 15);
             this.label5.TabIndex = 9;
@@ -158,7 +152,7 @@ namespace TP2Editeur
             // 
             // txbAeroportMinMarchandise
             // 
-            this.txbAeroportMinMarchandise.Location = new System.Drawing.Point(714, 214);
+            this.txbAeroportMinMarchandise.Location = new System.Drawing.Point(802, 213);
             this.txbAeroportMinMarchandise.Name = "txbAeroportMinMarchandise";
             this.txbAeroportMinMarchandise.Size = new System.Drawing.Size(38, 23);
             this.txbAeroportMinMarchandise.TabIndex = 12;
@@ -166,7 +160,7 @@ namespace TP2Editeur
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(604, 218);
+            this.label6.Location = new System.Drawing.Point(692, 217);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 15);
             this.label6.TabIndex = 11;
@@ -174,7 +168,7 @@ namespace TP2Editeur
             // 
             // txbAeroportMaxMarchandises
             // 
-            this.txbAeroportMaxMarchandises.Location = new System.Drawing.Point(870, 215);
+            this.txbAeroportMaxMarchandises.Location = new System.Drawing.Point(958, 214);
             this.txbAeroportMaxMarchandises.Name = "txbAeroportMaxMarchandises";
             this.txbAeroportMaxMarchandises.Size = new System.Drawing.Size(38, 23);
             this.txbAeroportMaxMarchandises.TabIndex = 13;
@@ -182,7 +176,7 @@ namespace TP2Editeur
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(758, 218);
+            this.label7.Location = new System.Drawing.Point(846, 217);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 15);
             this.label7.TabIndex = 14;
@@ -348,11 +342,31 @@ namespace TP2Editeur
             this.emplacementScenarioDialog.Filter = "XML-File | *.xml";
             this.emplacementScenarioDialog.Title = "Générer le scénario";
             // 
+            // btnPosition
+            // 
+            this.btnPosition.Location = new System.Drawing.Point(337, 212);
+            this.btnPosition.Name = "btnPosition";
+            this.btnPosition.Size = new System.Drawing.Size(84, 23);
+            this.btnPosition.TabIndex = 32;
+            this.btnPosition.Text = "Sélectionner";
+            this.btnPosition.UseVisualStyleBackColor = true;
+            this.btnPosition.Click += new System.EventHandler(this.btnPosition_Click);
+            // 
+            // txbAeroportPosition
+            // 
+            this.txbAeroportPosition.Enabled = false;
+            this.txbAeroportPosition.Location = new System.Drawing.Point(231, 213);
+            this.txbAeroportPosition.Name = "txbAeroportPosition";
+            this.txbAeroportPosition.Size = new System.Drawing.Size(100, 23);
+            this.txbAeroportPosition.TabIndex = 33;
+            // 
             // VueEditeur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 598);
+            this.Controls.Add(this.txbAeroportPosition);
+            this.Controls.Add(this.btnPosition);
             this.Controls.Add(this.btnGenererScenario);
             this.Controls.Add(this.txbCapacite);
             this.Controls.Add(this.label14);
@@ -384,7 +398,6 @@ namespace TP2Editeur
             this.Controls.Add(this.btnAjouterAeroport);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txbAeroportPosition);
             this.Name = "VueEditeur";
             this.Text = "Editeur de scénario";
             this.ResumeLayout(false);
@@ -393,8 +406,6 @@ namespace TP2Editeur
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txbAeroportPosition;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAjouterAeroport;
@@ -427,6 +438,9 @@ namespace TP2Editeur
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnGenererScenario;
         private System.Windows.Forms.SaveFileDialog emplacementScenarioDialog;
+        private System.Windows.Forms.Button btnPosition;
+        private System.Windows.Forms.TextBox txb;
+        private System.Windows.Forms.TextBox txbAeroportPosition;
     }
 }
 

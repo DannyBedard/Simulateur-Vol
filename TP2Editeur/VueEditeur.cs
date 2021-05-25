@@ -150,5 +150,12 @@ namespace TP2Editeur
             }
         }
 
+        private void btnPosition_Click(object sender, EventArgs e)
+        {
+            PositionCarte carte = new PositionCarte();
+
+            carte.Show();
+            txbAeroportPosition.Text = "hello";
+        }
     }
 }
