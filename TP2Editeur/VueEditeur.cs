@@ -155,7 +155,6 @@ namespace TP2Editeur
             PositionCarte carte = new PositionCarte();
 
             carte.Show();
-            txbAeroportPosition.Text = "hello";
         }
     }
 }

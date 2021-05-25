@@ -14,5 +14,16 @@ namespace TP2Editeur
         {
             InitializeComponent();
         }
+
+        private void PositionCarte_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void PositionCarte_MouseClick(object sender, MouseEventArgs e)
+        {
+            string place = " X : " + e.X.ToString() + " Y : " + e.Y.ToString();
+            MessageBox.Show(place);
+            this.Close();
+        }
     }
 }

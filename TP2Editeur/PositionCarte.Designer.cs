@@ -40,6 +40,8 @@ namespace TP2Editeur
             this.ClientSize = new System.Drawing.Size(1283, 922);
             this.Name = "PositionCarte";
             this.Text = "PositionCarte";
+            this.Click += new System.EventHandler(this.PositionCarte_Click);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PositionCarte_MouseClick);
             this.ResumeLayout(false);
 
         }
