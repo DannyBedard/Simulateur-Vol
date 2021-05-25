@@ -38,21 +38,8 @@ namespace TP2_Simulateur
         public void showMainMenu() {
             view = new ViewSimulator(this);
             Bitmap map = new Bitmap("Ressources/world-map.bmp");
-            init(); // Ajoute des aéroports
             view.loadMap(map); // Charge la map sur la vue
-
-            start = (s, e) => {
-                // On envoit la liste des points des aéroports quand la fenêtre s'ouvre
-                foreach (Aeroport ap in airports)
-                {
-                    PointF position = ap.Position.Transposer(view.getImageSize());
-                    view.addAirportToView(position);
-                }
-                timerThread = new Thread(new ThreadStart(updateSimView));
-                timerThread.Start();
-                Application.Idle -= start;
-            };
-            Application.Idle += start;
+            view.Show();
             Application.Run(view);
         }
         private EventHandler start;
@@ -72,16 +59,20 @@ namespace TP2_Simulateur
                 {
                     Thread.Sleep((int)(33 - delta));
                 }
+                foreach (PointF point in scenario.avoirPointsAeroport())
+                {
+                    view.dessinerAeroport(point);
+                }
                 view.updateSim();
             }
         }
         private void init() {
-            Aeroport yul = new Aeroport("YUL", "45° 27' N, 73° 44' W"); // Aéroport Pierre-Elliot-Trudeau (Montréal)
-            Aeroport bod = new Aeroport("BOD", "44° 49' N, 0° 42' W"); // Aéroport de Bordeaux (France)
-
-            airports.Add(yul);
-            airports.Add(bod);
+            scenario.TailleImage = view.getImageSize();
+            
             running = true;
+            timerThread = new Thread(new ThreadStart(updateSimView));
+            timerThread.Start();
+
         }
 
         public void TelechargerScenario(string fichier)
@@ -90,6 +81,7 @@ namespace TP2_Simulateur
             using (StreamReader rd = new StreamReader(fichier))
             {
                 scenario = (Scenario)xs.Deserialize(rd);
+                init();
             }
 
         }

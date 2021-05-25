@@ -16,22 +16,25 @@ namespace TP2_Simulateur
     public partial class ViewSimulator : Form
     {
         SimulatorController controleur;
-        private Bitmap map;
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> planePoints = new List<PointF>();
         private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
-        private Bitmap bmpFront;
-        private Bitmap FrontImage { get { return bmpFront;  } set { picMap.Image = value; bmpFront = value; } }
+        private Bitmap image;
+        private SizeF tailleImage;
+        private bool isUpdating = false;
+        private bool isDrawing = false;
         public ViewSimulator(SimulatorController controleur)
         {
             this.controleur = controleur;
             InitializeComponent();
+            
         }
 
         internal void loadMap(Bitmap p_map)
         {
-            map = p_map;
-            picMap.BackgroundImage = map;
+            picMap.BackgroundImage = p_map;
+            tailleImage = picMap.BackgroundImage.Size;
+            image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
         }
 
         private void picMap_Click(object sender, EventArgs e)
@@ -43,14 +46,7 @@ namespace TP2_Simulateur
 
         }
         private void drawAirports(Bitmap bmap) {
-            Graphics g = Graphics.FromImage(bmap);
-            Pen pAirport = new Pen(Color.Red, 10);
-            foreach (PointF pos in airportPoints)
-            {
-                g.DrawEllipse(pAirport, new Rectangle(Point.Round(pos), new Size(2, 2))); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
-            }
-            pAirport.Dispose();
-            g.Dispose();
+
         }
         private void drawTrajectories(Bitmap bmap)
         {
@@ -59,47 +55,40 @@ namespace TP2_Simulateur
 
         internal void updateSim()
         {
-            Image backImage = getBackImage();
-            Bitmap bmap = new Bitmap(backImage.Width, backImage.Height);
-            drawAirports(bmap);
-            //drawPlanes();
-            //drawTrajectories(bmap);
-            //draw...
-            if (FrontImage == null || bmap != FrontImage)
+            if (isDrawing)
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    if (FrontImage != null)
-                    {
-                        FrontImage.Dispose();
-                    }
-                    FrontImage = bmap;
-                });
+                return;
             }
+            lock (image)
+            {
+                isUpdating = true;
+                picMap.Image = image;
+                image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
+                isUpdating = false;
+            }
+
         }
 
-        internal void addTrajectory(PointF firstPoint, PointF secondPoint)
+        internal void dessinerAeroport(PointF point)
         {
-            trajectoriesPoints.Add(new PointF[] { firstPoint, secondPoint });
+            if (isUpdating)
+            {
+                return;
+            }
+            isDrawing = true;
+            Graphics g = Graphics.FromImage(image);
+            Pen pAirport = new Pen(Color.Red, 10);
+            g.DrawEllipse(pAirport, new Rectangle(Point.Round(point), new Size(2, 2))); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
+            pAirport.Dispose();
+            g.Dispose();
+            isDrawing = false;
         }
 
-        public void addAirportToView(PointF position)
-        {
-            airportPoints.Add(position);
-        }
 
         public SizeF getImageSize() {
-            Image backImage = getBackImage();
+            return tailleImage;
+        }
 
-            return backImage.Size;
-            
-        }
-        private Image getBackImage() {
-            return (Image)this.Invoke((Func<Image>)delegate
-            {
-                return (Image)picMap.BackgroundImage.Clone();
-            });
-        }
 
         private void btnScenario_Click(object sender, EventArgs e)
         {

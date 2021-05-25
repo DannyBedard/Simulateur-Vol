@@ -13,15 +13,25 @@ namespace TP2_Simulateur.Models
         public int MinPassagersHeure;
         public int MaxMarchandisesHeure;
         public int MinMarchandisesHeure;
-        public PointCartographique Position { get; set; }
+        public string Position {
+            get 
+            {
+                return PositionCarto.toString();
+            } 
+            set 
+            {
+                PositionCarto = new PointCartographique(value);
+            } 
+        }
+        public PointCartographique PositionCarto { get; set; }
         public Aeroport() { }
         public Aeroport(string nom, string position) {
-            Position = new PointCartographique(position);
+            PositionCarto = new PointCartographique(position);
             Nom = nom;
         }
         public Aeroport(string nom, PointCartographique position)
         {
-            Position = position;
+            PositionCarto = position;
             Nom= nom;
         }
     }

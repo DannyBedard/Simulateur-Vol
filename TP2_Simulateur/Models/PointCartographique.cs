@@ -11,7 +11,7 @@ namespace TP2_Simulateur.Models
         private float latitude;
         private float longitude;
         public PointCartographique(string coord) {
-            MatchCollection match = Regex.Matches(coord, @"\d+° \d+' (N|O|E|W)");
+            MatchCollection match = Regex.Matches(coord, @"\d+° \d+' (N|S|E|W)");
             string latitudeString = match[0].Value;
             string longitudeString = match[1].Value;
 

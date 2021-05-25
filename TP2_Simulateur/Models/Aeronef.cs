@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TP2_Simulateur.Models
+namespace TP2_Simulateur
 {
-    public class Aeronef
+    public abstract class Aeronef
     {
-        public string Nom;
-        public int Capacite;
-        public int Vitesse;
-        public int TempsEmbarquement;
-        public int TempsDebarquement;
-        public int tempsEntretient;
+        public string Nom { get; set; }
+        public int Vitesse { get; set; }
+        public override abstract string ToString();
     }
 }
