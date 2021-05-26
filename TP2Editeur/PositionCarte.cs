@@ -10,8 +10,10 @@ namespace TP2Editeur
 {
     public partial class PositionCarte : Form
     {
-        public PositionCarte()
+        VueEditeur controleur;
+        public PositionCarte(VueEditeur controleur)
         {
+            this.controleur = controleur;
             InitializeComponent();
         }
 
@@ -23,7 +25,8 @@ namespace TP2Editeur
         {
             string place = " X : " + e.X.ToString() + " Y : " + e.Y.ToString();
             MessageBox.Show(place);
-            this.Close();
+            controleur.Position = place;
+            //this.Close();
         }
     }
 }

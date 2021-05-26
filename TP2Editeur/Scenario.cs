@@ -13,8 +13,10 @@ namespace TP2Editeur
     [XmlInclude(typeof(HelicoptereSecours))]
     public class Scenario
     {
-        private List<Aeroport> lstAeroports = new List<Aeroport>(); 
+        private List<Aeroport> lstAeroports = new List<Aeroport>();
+        private PositionCartographique position;
         public List<Aeroport> Aeroports { get { return lstAeroports; } set {lstAeroports = value; } }
+        public PositionCartographique Position { get { return position; } set { position = value; } }
         public void ajouterAeroport(Aeroport aeroport) {
             Aeroports.Add(aeroport);
         }
@@ -53,6 +55,11 @@ namespace TP2Editeur
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse);
+        }
+
+        public void ajoutPositionCartographique(int positionX, int positionY)
+        {
+            position = new PositionCartographique(positionX, positionY);
         }
     }
 }

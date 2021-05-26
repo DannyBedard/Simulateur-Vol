@@ -18,15 +18,16 @@ namespace TP2Editeur
     {
         private Scenario scenario = new Scenario();
         private Editeur controleur;
+        private string position;
         public VueEditeur(Editeur editeur)
         {
             controleur = editeur;
             InitializeComponent();
         }
-       
+
         private void btnAjouterAeroport_Click(object sender, EventArgs e)
         {
-            if (txbAeroportNom.Text == "" || !int.TryParse(txbAeroportMinPassager.Text, out _) || !int.TryParse(txbAeroportMaxPassager.Text, out _) || !int.TryParse(txbAeroportMinMarchandise.Text, out _) || !int.TryParse(txbAeroportMaxMarchandises.Text, out _)) { 
+            if (txbAeroportNom.Text == "" || !int.TryParse(txbAeroportMinPassager.Text, out _) || !int.TryParse(txbAeroportMaxPassager.Text, out _) || !int.TryParse(txbAeroportMinMarchandise.Text, out _) || !int.TryParse(txbAeroportMaxMarchandises.Text, out _)) {
                 MessageBox.Show("Veuillez remplir correctement les champs");
             }
             else {
@@ -48,7 +49,7 @@ namespace TP2Editeur
         private void cmbAeronefType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string type = cmbAeronefType.Text;
-            switch (type) 
+            switch (type)
             {
                 case "Citerne":
                     lblAjout.Text = "Remplissage : ";
@@ -59,7 +60,7 @@ namespace TP2Editeur
                     txbCapacite.Enabled = false;
                     txbAeronefEntretient.Enabled = true;
                     break;
-                case "Passagers" :
+                case "Passagers":
                 case "Marchandises":
                     lblAjout.Text = "Embarquement : ";
                     lblEnlever.Text = "Débarquement : ";
@@ -120,7 +121,7 @@ namespace TP2Editeur
                 MessageBox.Show("Veuillez remplir correctement les champs");
                 tempsEntretient = int.Parse(txbAeronefEntretient.Text);
             }
-            else if((aeronefType == "Observateur" || aeronefType == "Hélicoptère de secours") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _)))
+            else if ((aeronefType == "Observateur" || aeronefType == "Hélicoptère de secours") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _)))
                 MessageBox.Show("Veuillez remplir correctement les champs");
             else
             {
@@ -142,7 +143,7 @@ namespace TP2Editeur
                         break;
                     case "Hélicoptère de secours":
                     case "Observateur":
-                        controleur.ajouterAeronef(apIndex,aeronefType, aeronefNom, vitesse);
+                        controleur.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
                         break;
                 }
 
@@ -152,9 +153,15 @@ namespace TP2Editeur
 
         private void btnPosition_Click(object sender, EventArgs e)
         {
-            PositionCarte carte = new PositionCarte();
-
+            PositionCarte carte = new PositionCarte(this);
+            txbAeroportPosition.Text = position;
             carte.Show();
         }
+
+        public string Position {
+            get { return position; }
+            set { position = value; }
+        }
+
     }
 }

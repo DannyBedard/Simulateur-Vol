@@ -37,7 +37,7 @@ namespace TP2Editeur
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1283, 922);
+            this.ClientSize = new System.Drawing.Size(1302, 653);
             this.Name = "PositionCarte";
             this.Text = "PositionCarte";
             this.Click += new System.EventHandler(this.PositionCarte_Click);
