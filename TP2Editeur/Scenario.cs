@@ -17,10 +17,10 @@ namespace TP2Editeur
         private PositionCartographique position;
         public List<Aeroport> Aeroports { get { return lstAeroports; } set {lstAeroports = value; } }
         public PositionCartographique Position { get { return position; } set { position = value; } }
-        public void ajouterAeroport(Aeroport aeroport) {
+        public void AjouterAeroport(Aeroport aeroport) {
             Aeroports.Add(aeroport);
         }
-        public void serialize(string chemin) {
+        public void Serialize(string chemin) {
             XmlSerializer serializer = new XmlSerializer(typeof(Scenario));
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Encoding = Encoding.Unicode;
@@ -39,27 +39,28 @@ namespace TP2Editeur
         /// <param name="tempsEntretient">Temps d'entretient</param>
         /// <param name="vitesse">Vitesse</param>
         /// <param name="capacite">Capacité</param>
-        public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
+        public void AjouterAeronef(int apIndex, string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
         }
 
-        public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        public void AjouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
         }
 
-        internal void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
+        internal void AjouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse);
         }
 
-        public void ajoutPositionCartographique(int positionX, int positionY)
+        public string AjoutPositionCartographique(int positionX, int positionY)
         {
-            position = new PositionCartographique(positionX, positionY);
+            PositionCartographique position = new PositionCartographique(positionX, positionY);
+            return position.ToString();
         }
     }
 }

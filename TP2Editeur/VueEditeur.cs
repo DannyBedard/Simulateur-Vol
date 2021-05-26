@@ -22,7 +22,13 @@ namespace TP2Editeur
         public VueEditeur(Editeur editeur)
         {
             controleur = editeur;
+            position = "Aucune";
             InitializeComponent();
+        }
+        public string Position
+        {
+            get { return position; }
+            set { position = value; }
         }
 
         private void btnAjouterAeroport_Click(object sender, EventArgs e)
@@ -158,9 +164,10 @@ namespace TP2Editeur
             carte.Show();
         }
 
-        public string Position {
-            get { return position; }
-            set { position = value; }
+        public void PositionCartographique(int positionX, int positionY)
+        {
+            Position = scenario.AjoutPositionCartographique(positionX, positionY);
+            txbAeroportPosition.Text = Position;
         }
 
     }

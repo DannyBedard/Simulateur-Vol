@@ -41,7 +41,7 @@ namespace TP2Editeur
                 MinMarchandisesHeure = minMarchandise,
                 MinPassagersHeure = minPassager,
             };
-            scenario.ajouterAeroport(nouveauAeroport);
+            scenario.AjouterAeroport(nouveauAeroport);
             List<Aeroport> aeroports = scenario.Aeroports;
             List<string> stringAeroports = new List<string>();
             foreach (Aeroport aeroport in aeroports) {
@@ -66,23 +66,23 @@ namespace TP2Editeur
 
         public void ajouterAeronef(int apIndex, string aeronefNom, string aeronefType, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
-            scenario.ajouterAeronef(apIndex, aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
+            scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
         }
 
         public void genererScenario()
         {
             string chemin = vue.choisirEmplacement();
-            scenario.serialize(chemin);
+            scenario.Serialize(chemin);
         }
 
         public void ajouterAeronef(int apIndex, string aeronefNom, string aeronefType, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
         {
-            scenario.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+            scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
         }
 
         public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
         {
-            scenario.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
+            scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
         }
     }
 }
