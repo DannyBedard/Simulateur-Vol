@@ -18,17 +18,15 @@ namespace TP2Editeur
     {
         private Scenario scenario = new Scenario();
         private Editeur controleur;
-        private string position;
         public VueEditeur(Editeur editeur)
         {
             controleur = editeur;
-            position = "Aucune";
             InitializeComponent();
         }
-        public string Position
+
+        public void mettrePosition(string position)
         {
-            get { return position; }
-            set { position = value; }
+            txbAeroportPosition.Text = position;
         }
 
         private void btnAjouterAeroport_Click(object sender, EventArgs e)
@@ -159,15 +157,7 @@ namespace TP2Editeur
 
         private void btnPosition_Click(object sender, EventArgs e)
         {
-            PositionCarte carte = new PositionCarte(this);
-            txbAeroportPosition.Text = position;
-            carte.Show();
-        }
-
-        public void PositionCartographique(int positionX, int positionY)
-        {
-            Position = scenario.AjoutPositionCartographique(positionX, positionY);
-            txbAeroportPosition.Text = Position;
+            controleur.afficherCarte();
         }
 
     }

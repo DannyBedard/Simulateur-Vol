@@ -1,7 +1,7 @@
 ﻿
 namespace TP2Editeur
 {
-    partial class PositionCarte
+    partial class VueMap
     {
         /// <summary>
         /// Required designer variable.
@@ -29,22 +29,38 @@ namespace TP2Editeur
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PositionCarte));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VueMap));
+            this.picMap = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.SuspendLayout();
             // 
-            // PositionCarte
+            // picMap
+            // 
+            this.picMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
+            this.picMap.Location = new System.Drawing.Point(0, 0);
+            this.picMap.Name = "picMap";
+            this.picMap.Size = new System.Drawing.Size(1302, 653);
+            this.picMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMap.TabIndex = 0;
+            this.picMap.TabStop = false;
+            this.picMap.Click += new System.EventHandler(this.picMap_Click);
+            // 
+            // VueMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1302, 653);
-            this.Name = "PositionCarte";
+            this.Controls.Add(this.picMap);
+            this.Name = "VueMap";
             this.Text = "PositionCarte";
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PositionCarte_MouseClick);
+            ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox picMap;
     }
 }

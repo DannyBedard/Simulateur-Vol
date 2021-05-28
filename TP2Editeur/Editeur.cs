@@ -20,14 +20,23 @@ namespace TP2Editeur
             Editeur editeur = new Editeur();
             editeur.afficherVue();
         }
+
+        public void afficherPositionChoisit(int x, int y)
+        {
+            string position = PositionCartographique.stringFromPixel(x,y,vueMap.avoirTailleCarte());
+            vueEditeur.mettrePosition(position);
+        }
+
         private Scenario scenario = new Scenario();
-        private VueEditeur vue;
+        private VueEditeur vueEditeur;
+        private VueMap vueMap;
         public Editeur() {
-             vue = new VueEditeur(this);
+            vueEditeur = new VueEditeur(this);
+            
         }
         public void afficherVue()
         {
-            Application.Run(vue);
+            Application.Run(vueEditeur);
         }
 
         public void ajouterAeroport(string apName, string apPosition, int minPassager, int maxPassager, int minMarchandise, int maxMarchandise)
@@ -47,7 +56,7 @@ namespace TP2Editeur
             foreach (Aeroport aeroport in aeroports) {
                 stringAeroports.Add(aeroport.ToString());
             }
-            vue.mettreAJourListeAeroports(stringAeroports);
+            vueEditeur.mettreAJourListeAeroports(stringAeroports);
         }
 
         public List<string> avoirAeronefsDeAeroport(int selectedIndex)
@@ -71,7 +80,7 @@ namespace TP2Editeur
 
         public void genererScenario()
         {
-            string chemin = vue.choisirEmplacement();
+            string chemin = vueEditeur.choisirEmplacement();
             scenario.Serialize(chemin);
         }
 
@@ -83,6 +92,12 @@ namespace TP2Editeur
         public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
         {
             scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
+        }
+
+        public void afficherCarte()
+        {
+            vueMap = new VueMap(this);
+            vueMap.Show();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace TP2_Simulateur
         private bool running = false;
         public void showMainMenu() {
             view = new ViewSimulator(this);
-            Bitmap map = new Bitmap("Ressources/world-map.bmp");
+            Bitmap map = new Bitmap("Ressources/carte.jpg");
             view.loadMap(map); // Charge la map sur la vue
             view.Show();
             Application.Run(view);
@@ -48,7 +48,10 @@ namespace TP2_Simulateur
             timer.Start();
             long now = timer.ElapsedMilliseconds;
             long lastFrame = timer.ElapsedMilliseconds;
-            
+            foreach (PointF point in scenario.avoirPointsAeroport())
+            {
+                view.dessinerAeroport(point);
+            }
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;
@@ -58,10 +61,6 @@ namespace TP2_Simulateur
                 if (delta < 33)
                 {
                     Thread.Sleep((int)(33 - delta));
-                }
-                foreach (PointF point in scenario.avoirPointsAeroport())
-                {
-                    view.dessinerAeroport(point);
                 }
                 view.updateSim();
             }

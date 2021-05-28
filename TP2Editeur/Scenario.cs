@@ -16,11 +16,12 @@ namespace TP2Editeur
         private List<Aeroport> lstAeroports = new List<Aeroport>();
         private PositionCartographique position;
         public List<Aeroport> Aeroports { get { return lstAeroports; } set {lstAeroports = value; } }
-        public PositionCartographique Position { get { return position; } set { position = value; } }
         public void AjouterAeroport(Aeroport aeroport) {
             Aeroports.Add(aeroport);
         }
         public void Serialize(string chemin) {
+            if (chemin == "")
+                return;
             XmlSerializer serializer = new XmlSerializer(typeof(Scenario));
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Encoding = Encoding.Unicode;
@@ -55,12 +56,6 @@ namespace TP2Editeur
         {
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse);
-        }
-
-        public string AjoutPositionCartographique(int positionX, int positionY)
-        {
-            PositionCartographique position = new PositionCartographique(positionX, positionY);
-            return position.ToString();
         }
     }
 }

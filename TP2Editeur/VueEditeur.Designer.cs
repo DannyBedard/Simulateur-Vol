@@ -354,9 +354,9 @@ namespace TP2Editeur
             // 
             // txbAeroportPosition
             // 
-            this.txbAeroportPosition.Enabled = false;
             this.txbAeroportPosition.Location = new System.Drawing.Point(231, 213);
             this.txbAeroportPosition.Name = "txbAeroportPosition";
+            this.txbAeroportPosition.ReadOnly = true;
             this.txbAeroportPosition.Size = new System.Drawing.Size(100, 23);
             this.txbAeroportPosition.TabIndex = 33;
             // 
