@@ -26,35 +26,30 @@ namespace TP2_Simulateur
             Application.SetCompatibleTextRenderingDefault(false);
 
             SimulatorController controller = new SimulatorController();
-            controller.showMainMenu();
+            controller.ShowMainMenu();
         }
 
         public XmlSerializer xs;
         public ViewSimulator view;
         public Scenario scenario;
         private List<Aeroport> airports = new List<Aeroport>();
-        private Thread timerThread;
+        private Thread simulatorThread;
         private Stopwatch timer = new Stopwatch();
         private Horloge horloge;
 
-        private bool running = false;
-        public void showMainMenu() {
+        private static bool running = false;
+        public void ShowMainMenu() {
             view = new ViewSimulator(this);
             Bitmap map = new Bitmap("Ressources/carte.jpg");
-            view.loadMap(map); // Charge la map sur la vue
+            view.LoadMap(map); // Charge la map sur la vue
             view.Show();
             Application.Run(view);
         }
-        private EventHandler start;
         
-        private void updateSimView() {
+        private void UpdateSimView() {
             timer.Start();
             long now = timer.ElapsedMilliseconds;
             long lastFrame = timer.ElapsedMilliseconds;
-            foreach (PointF point in scenario.avoirPointsAeroport())
-            {
-                view.dessinerAeroport(point);
-            }
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;
@@ -65,22 +60,41 @@ namespace TP2_Simulateur
                 {
                     Thread.Sleep((int)(33 - delta));
                 }
-                view.updateSim();
+                if (running)
+                {
+                    view.UpdateSim();
+                }
+                
             }
+            timer.Stop();
         }
-        private void mettreAJourTemps(string temps)
+        private void MettreAJourTemps(string temps)
         {
-            view.afficherTemps(temps);
+            view.AfficherTemps(temps);
         }
-        private void init() {
-            scenario.TailleImage = view.getImageSize();
-            horloge = new Horloge();
-            horloge.TempsModifier += mettreAJourTemps;
-            view.afficherTemps("00:00:00");
-            running = true;
-            timerThread = new Thread(new ThreadStart(updateSimView));
-            timerThread.Start();
+        private void GenererClient() 
+        {
+            // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
+            // TODO : appeler le scénario afin qu'il génère des clients. (Doit coder une fabrique de client avant)
+        }
+        private void Init() {
+            scenario.TailleImage = view.GetImageSize();
             
+            horloge = new Horloge();
+            horloge.TempsModifier += MettreAJourTemps;
+            horloge.ChangementHeure += GenererClient;
+
+            view.AfficherTemps("00:00:00");
+
+            foreach (PointF point in scenario.AvoirPointsAeroport())
+            {
+                view.AjouterPointAeroport(point);
+            }
+
+            running = true;
+            simulatorThread = new Thread(new ThreadStart(UpdateSimView));
+            simulatorThread.Start();
+            horloge.Start();
         }
 
         public bool TelechargerScenario(string fichier)
@@ -92,12 +106,14 @@ namespace TP2_Simulateur
                 try
                 {
                     scenario = (Scenario)xs.Deserialize(rd);
+                    List<string> aeroportsNom = scenario.AvoirToutAeroportsNom(); 
+                    view.ChargerAeroports(aeroportsNom);
                     valide = true;
                 }
                 catch { }
 
                 if (valide)
-                    init();
+                    Init();
 
                 return valide;
 
@@ -105,7 +121,7 @@ namespace TP2_Simulateur
 
         }
 
-        internal void modifierVitesseTemps(double vitesse)
+        public void ModifierVitesseTemps(double vitesse)
         {
             horloge.Vitesse = vitesse;
         }

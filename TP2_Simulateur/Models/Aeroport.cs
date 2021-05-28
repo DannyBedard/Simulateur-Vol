@@ -16,7 +16,7 @@ namespace TP2_Simulateur.Models
         public string Position {
             get 
             {
-                return PositionCarto.toString();
+                return PositionCarto.ToString();
             } 
             set 
             {
@@ -33,6 +33,10 @@ namespace TP2_Simulateur.Models
         {
             PositionCarto = position;
             Nom= nom;
+        }
+        override public string ToString()
+        {
+            return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
         }
     }
 }

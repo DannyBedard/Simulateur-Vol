@@ -35,8 +35,8 @@ namespace TP2_Simulateur
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnScenario = new System.Windows.Forms.Button();
             this.sliderVitesse = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lstAeroports = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderVitesse)).BeginInit();
             this.SuspendLayout();
@@ -46,9 +46,9 @@ namespace TP2_Simulateur
             this.picMap.BackColor = System.Drawing.Color.Transparent;
             this.picMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picMap.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.picMap.Location = new System.Drawing.Point(0, 109);
+            this.picMap.Location = new System.Drawing.Point(0, 143);
             this.picMap.Name = "picMap";
-            this.picMap.Size = new System.Drawing.Size(1075, 719);
+            this.picMap.Size = new System.Drawing.Size(1075, 685);
             this.picMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picMap.TabIndex = 0;
             this.picMap.TabStop = false;
@@ -85,13 +85,6 @@ namespace TP2_Simulateur
             this.sliderVitesse.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.sliderVitesse.ValueChanged += new System.EventHandler(this.sliderVitesse_ValueChanged);
             // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 0;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -102,19 +95,30 @@ namespace TP2_Simulateur
             this.label2.TabIndex = 4;
             this.label2.Text = "Vitesse : ";
             // 
+            // lstAeroports
+            // 
+            this.lstAeroports.FormattingEnabled = true;
+            this.lstAeroports.ItemHeight = 15;
+            this.lstAeroports.Location = new System.Drawing.Point(12, 26);
+            this.lstAeroports.Name = "lstAeroports";
+            this.lstAeroports.Size = new System.Drawing.Size(264, 94);
+            this.lstAeroports.TabIndex = 5;
+            this.lstAeroports.Visible = false;
+            // 
             // ViewSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1075, 828);
+            this.Controls.Add(this.lstAeroports);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.sliderVitesse);
             this.Controls.Add(this.btnScenario);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.picMap);
             this.Name = "ViewSimulator";
             this.Text = "Simulateur";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewSimulator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderVitesse)).EndInit();
             this.ResumeLayout(false);
@@ -128,8 +132,8 @@ namespace TP2_Simulateur
         private System.Windows.Forms.Button btnScenario;
         private System.Windows.Forms.OpenFileDialog emplacementScenarioDialog;
         private TrackBar sliderVitesse;
-        private Label label1;
         private Label label2;
+        private ListBox lstAeroports;
     }
 }
 

@@ -14,14 +14,13 @@ namespace TP2_Simulateur.Models
     public class Scenario
     {
         public List<Aeroport> Aeroports;
-        List<Client> listeClient;
         public SizeF TailleImage { get; set; }
         public List<Aeroport> ListAeroport
         {
             get { return Aeroports; } 
         }
  
-        public List<PointF> avoirPointsAeroport()
+        public List<PointF> AvoirPointsAeroport()
         {
             List<PointF> points = new List<PointF>();
             foreach (Aeroport ap in Aeroports) 
@@ -29,6 +28,16 @@ namespace TP2_Simulateur.Models
                 points.Add(ap.PositionCarto.Transposer(TailleImage));
             }
             return points;
+        }
+
+        public List<string> AvoirToutAeroportsNom()
+        {
+            List<string> aeroportsNom = new List<string>();
+            foreach (Aeroport ap in Aeroports)
+            {
+                aeroportsNom.Add(ap.Nom);
+            }
+            return aeroportsNom;
         }
     }
 }

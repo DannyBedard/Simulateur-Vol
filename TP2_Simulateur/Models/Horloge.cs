@@ -9,6 +9,8 @@ namespace TP2_Simulateur.Models
     {
         public delegate void TempsModifierEventHandler(string temps);
         public event TempsModifierEventHandler TempsModifier;
+        public delegate void ChangementHeureEventHandler();
+        public event ChangementHeureEventHandler ChangementHeure;
 
         private Timer timer = new Timer();
         private int seconde = 0;
@@ -55,9 +57,9 @@ namespace TP2_Simulateur.Models
             set
             {
                 heure = value;
+                ChangementHeure.Invoke();
             }
         }
-        private SimulatorController controleur;
         private double vitesse = 1.0;
         public double Vitesse 
         {
@@ -73,17 +75,23 @@ namespace TP2_Simulateur.Models
         }
         public Horloge() {
             timer.Interval = 1000;
-            timer.Elapsed += mettreAJourTemps;
-            timer.Start();
+            timer.Elapsed += MettreAJourTemps;
         }
         private string TempsString() 
         {
             return Heure.ToString("00") + ":" + Minute.ToString("00") + ":" + Seconde.ToString("00");
         }
-        private void mettreAJourTemps(object sender, ElapsedEventArgs e)
+        private void MettreAJourTemps(object sender, ElapsedEventArgs e)
         {
             Seconde += tickSeconde;
             TempsModifier.Invoke(TempsString());
+        }
+        public void Start() 
+        {
+            timer.Start();
+        }
+        public void Stop() {
+        
         }
     }
 }

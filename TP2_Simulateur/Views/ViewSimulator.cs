@@ -32,7 +32,7 @@ namespace TP2_Simulateur
 
         }
 
-        internal void loadMap(Bitmap p_map)
+        internal void LoadMap(Bitmap p_map)
         {
 
             picMap.BackgroundImage = p_map;
@@ -40,7 +40,7 @@ namespace TP2_Simulateur
             image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
 
         }
-        public void afficherTemps(string p_temps) {
+        public void AfficherTemps(string p_temps) {
             temps = p_temps;
         }
         private void picMap_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace TP2_Simulateur
             // TODO: Traduire x,y en lat,long
 
         }
-        private void drawAirports() {
+        private void DrawAirports() {
                 Graphics g = Graphics.FromImage(image);
                 Pen pAirport = new Pen(Color.Red, 10);
                 foreach (PointF point in airportPoints)
@@ -63,25 +63,7 @@ namespace TP2_Simulateur
                 g.Dispose();
             
         }
-        private void drawTrajectories(Bitmap bmap)
-        {
-        
-        }
-
-        public void updateSim()
-        {
-
-            drawAirports();
-            dessinerTemps();
-            Invoke((MethodInvoker)delegate () {
-                picMap.Image = image;
-                image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
-            });
-            
-
-        }
-
-        private void dessinerTemps()
+        private void DessinerTemps()
         {
             RectangleF rectf = new RectangleF(image.Width - 600, image.Height - 100, 535, 90); //rectf for My Text
             Graphics g = Graphics.FromImage(image);
@@ -95,14 +77,46 @@ namespace TP2_Simulateur
             g.Dispose();
             sf.Dispose();
         }
+        private void DrawTrajectories(Bitmap bmap)
+        {
+        
+        }
 
-        public void dessinerAeroport(PointF point)
+        public void UpdateSim()
+        {
+            DrawAirports();
+            DessinerTemps();
+            try
+            {
+                Invoke((MethodInvoker)delegate ()
+                {
+                    picMap.Image = image;
+                    image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
+                });
+            }
+            catch { }
+
+            
+
+        }
+        
+
+
+        internal void ChargerAeroports(List<string> aeroportsInfo)
+        {
+            foreach (string apString in aeroportsInfo)
+            {
+                lstAeroports.Items.Add(apString);
+            }
+        }
+
+        public void AjouterPointAeroport(PointF point)
         {
             airportPoints.Add(point);
         }
 
 
-        public SizeF getImageSize() {
+        public SizeF GetImageSize() {
             return tailleImage; 
             
         }
@@ -114,10 +128,12 @@ namespace TP2_Simulateur
             emplacementScenarioDialog.ShowDialog();
             bool valide = controleur.TelechargerScenario(emplacementScenarioDialog.FileName);
             if (valide)
+            {
                 btnScenario.Dispose();
+                lstAeroports.Visible = true;
+            }
             else
                 MessageBox.Show("Le fichier est invalide.", "Erreur chargement du fichier", MessageBoxButtons.OK);
-
         }
 
         private void sliderVitesse_ValueChanged(object sender, EventArgs e)
@@ -125,7 +141,12 @@ namespace TP2_Simulateur
             double valeur = sliderVitesse.Value + 1;
 
             double vitesse = valeur < 0 ? 1 / -(valeur-1) : valeur + 1;
-            controleur.modifierVitesseTemps(vitesse);
+            controleur.ModifierVitesseTemps(vitesse);
+        }
+
+        private void ViewSimulator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }

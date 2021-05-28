@@ -15,14 +15,14 @@ namespace TP2_Simulateur.Models
             string latitudeString = match[0].Value;
             string longitudeString = match[1].Value;
 
-            latitude = coordVersFloat(latitudeString);
-            longitude = coordVersFloat(longitudeString);
+            latitude = CoordVersFloat(latitudeString);
+            longitude = CoordVersFloat(longitudeString);
         }
         public PointCartographique()
         {
 
         }
-        private float coordVersFloat(string coord) {
+        private float CoordVersFloat(string coord) {
             float resultat = 0;
             MatchCollection coordParts = Regex.Matches(coord, @"\d+");
             int degree = int.Parse(coordParts[0].Value);
@@ -33,20 +33,8 @@ namespace TP2_Simulateur.Models
                 resultat = resultat * -1;
             return resultat;
         }
-        private double bound(double val, double min, double max)
-        {
-            double res;
-            res = Math.Max(val, min);
-            res = Math.Min(res, max);
-            return res;
-        }
-        private double degreesToRadians(double deg)
-        {
-            return deg * (Math.PI / 180);
-        }
-        public string toString() {
-            // TODO : transformer la latitude et longitude en string degree/minute
-            return null;
+       override public string ToString() {
+            return PointCartographique.StringFromLatLong(latitude, longitude);
         }
         public PointF Transposer(SizeF tailleImage) {
            // double mapWidth = tailleImage.Width; // largeur
@@ -68,6 +56,30 @@ namespace TP2_Simulateur.Models
             //double siny = bound(Math.Sin(degreesToRadians(latitude)), -0.9999, 0.9999);
             //double y = centerY + 0.65 * Math.Log((1 + siny) / (1 - siny)) * -scaleMapY;
             return new PointF(x, y);
+        }
+        public static string StringFromLatLong(float lat, float lng)
+        {
+            string[] latParts = lat.ToString().Split(',');
+            string[] lngParts = lng.ToString().Split(',');
+
+            int latDegree = int.Parse(latParts[0]);
+            int latMinute = (int)(char.GetNumericValue(latParts[0][0]) * 6);
+            int lngDegree = int.Parse(lngParts[0]);
+            int lngMinute = (int)(char.GetNumericValue(lngParts[0][0]) * 6);
+
+            lngDegree = lngDegree < 0 ? lngDegree * -1 : lngDegree;
+            lngMinute = lngMinute < 0 ? lngMinute * -1 : lngMinute;
+            latMinute = latMinute < 0 ? latMinute * -1 : latMinute;
+            latDegree = latDegree < 0 ? latDegree * -1 : latDegree;
+
+            char directionLat = lat > 0 ? 'N' : 'S';
+            char directionLng = lng > 0 ? 'E' : 'O';
+
+            string strLat = latDegree.ToString() + "° " + latMinute.ToString() + "' " + directionLat;
+            string strLng = lngDegree.ToString() + "° " + lngMinute.ToString() + "' " + directionLng;
+            string coord = strLat + ", " + strLng;
+
+            return coord;
         }
     }
 }
