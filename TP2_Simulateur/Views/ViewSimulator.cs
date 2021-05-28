@@ -112,8 +112,20 @@ namespace TP2_Simulateur
         {
             emplacementScenarioDialog = new OpenFileDialog();
             emplacementScenarioDialog.ShowDialog();
-            controleur.TelechargerScenario(emplacementScenarioDialog.FileName);
-            btnScenario.Text = controleur.scenario.ListAeroport[0].Nom;
+            bool valide = controleur.TelechargerScenario(emplacementScenarioDialog.FileName);
+            if (valide)
+                btnScenario.Dispose();
+            else
+                MessageBox.Show("Le fichier est invalide.", "Erreur chargement du fichier", MessageBoxButtons.OK);
+
+        }
+
+        private void sliderVitesse_ValueChanged(object sender, EventArgs e)
+        {
+            double valeur = sliderVitesse.Value + 1;
+
+            double vitesse = valeur < 0 ? 1 / -(valeur-1) : valeur + 1;
+            controleur.modifierVitesseTemps(vitesse);
         }
     }
 }

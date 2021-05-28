@@ -55,7 +55,6 @@ namespace TP2_Simulateur
             {
                 view.dessinerAeroport(point);
             }
-            horloge.Vitesse = 2; // Test pour doubler la vitesse de l'horloge
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;
@@ -84,17 +83,32 @@ namespace TP2_Simulateur
             
         }
 
-        public void TelechargerScenario(string fichier)
+        public bool TelechargerScenario(string fichier)
         {
             xs = new XmlSerializer(typeof(Scenario));
+            bool valide = false;
             using (StreamReader rd = new StreamReader(fichier))
             {
-                scenario = (Scenario)xs.Deserialize(rd);
-                init();
+                try
+                {
+                    scenario = (Scenario)xs.Deserialize(rd);
+                    valide = true;
+                }
+                catch { }
+
+                if (valide)
+                    init();
+
+                return valide;
+
             }
 
         }
 
+        internal void modifierVitesseTemps(double vitesse)
+        {
+            horloge.Vitesse = vitesse;
+        }
     }
 
 
