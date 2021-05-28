@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using TP2_Simulateur.Models;
 
@@ -21,24 +22,27 @@ namespace TP2_Simulateur
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> planePoints = new List<PointF>();
         private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
+        private string temps = "00:00:00";
         private Bitmap image;
         private SizeF tailleImage;
         public ViewSimulator(SimulatorController controleur)
         {
             this.controleur = controleur;
             InitializeComponent();
-            
+
         }
 
         internal void loadMap(Bitmap p_map)
         {
 
-                picMap.BackgroundImage = p_map;
-                tailleImage = picMap.BackgroundImage.Size;
-                image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
+            picMap.BackgroundImage = p_map;
+            tailleImage = picMap.BackgroundImage.Size;
+            image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
 
         }
-
+        public void afficherTemps(string p_temps) {
+            temps = p_temps;
+        }
         private void picMap_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
@@ -67,12 +71,29 @@ namespace TP2_Simulateur
         public void updateSim()
         {
 
-                drawAirports();
-                Invoke((MethodInvoker)delegate () {
-                    picMap.Image = image;
-                });
+            drawAirports();
+            dessinerTemps();
+            Invoke((MethodInvoker)delegate () {
+                picMap.Image = image;
+                image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
+            });
             
 
+        }
+
+        private void dessinerTemps()
+        {
+            RectangleF rectf = new RectangleF(image.Width - 600, image.Height - 100, 535, 90); //rectf for My Text
+            Graphics g = Graphics.FromImage(image);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            StringFormat sf = new StringFormat();
+            sf.Alignment = StringAlignment.Center;
+            sf.LineAlignment = StringAlignment.Center;
+            g.DrawString(temps, new System.Drawing.Font("Tahoma", 32, FontStyle.Bold), Brushes.Red, rectf, sf);
+            g.Dispose();
+            sf.Dispose();
         }
 
         public void dessinerAeroport(PointF point)

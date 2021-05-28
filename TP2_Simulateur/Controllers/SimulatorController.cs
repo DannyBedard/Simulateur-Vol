@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using TP2_Simulateur.Models;
@@ -34,6 +35,8 @@ namespace TP2_Simulateur
         private List<Aeroport> airports = new List<Aeroport>();
         private Thread timerThread;
         private Stopwatch timer = new Stopwatch();
+        private Horloge horloge;
+
         private bool running = false;
         public void showMainMenu() {
             view = new ViewSimulator(this);
@@ -52,6 +55,7 @@ namespace TP2_Simulateur
             {
                 view.dessinerAeroport(point);
             }
+            horloge.Vitesse = 2; // Test pour doubler la vitesse de l'horloge
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;
@@ -65,13 +69,19 @@ namespace TP2_Simulateur
                 view.updateSim();
             }
         }
+        private void mettreAJourTemps(string temps)
+        {
+            view.afficherTemps(temps);
+        }
         private void init() {
             scenario.TailleImage = view.getImageSize();
-            
+            horloge = new Horloge();
+            horloge.TempsModifier += mettreAJourTemps;
+            view.afficherTemps("00:00:00");
             running = true;
             timerThread = new Thread(new ThreadStart(updateSimView));
             timerThread.Start();
-
+            
         }
 
         public void TelechargerScenario(string fichier)
