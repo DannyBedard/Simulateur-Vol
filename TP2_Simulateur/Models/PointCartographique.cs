@@ -8,6 +8,8 @@ namespace TP2_Simulateur.Models
 {
     public class PointCartographique
     {
+        private static readonly Random random = new Random();
+        private static readonly object locker = new object();
         private float latitude;
         private float longitude;
         public PointCartographique(string coord) {
@@ -17,6 +19,10 @@ namespace TP2_Simulateur.Models
 
             latitude = CoordVersFloat(latitudeString);
             longitude = CoordVersFloat(longitudeString);
+        }
+        public PointCartographique(float lat, float lng) {
+            latitude = lat;
+            longitude = lng;
         }
         public PointCartographique()
         {
@@ -56,6 +62,16 @@ namespace TP2_Simulateur.Models
             //double siny = bound(Math.Sin(degreesToRadians(latitude)), -0.9999, 0.9999);
             //double y = centerY + 0.65 * Math.Log((1 + siny) / (1 - siny)) * -scaleMapY;
             return new PointF(x, y);
+        }
+        public static PointCartographique Random() {
+            lock (locker) 
+            {
+                float lat = (float)random.NextDouble() * (90 - -90) + -90;
+                float lng = (float)random.NextDouble() * (180 - -180) + -180;
+                return new PointCartographique(lat, lng);
+            }
+
+            
         }
         public static string StringFromLatLong(float lat, float lng)
         {

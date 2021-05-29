@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -22,6 +23,9 @@ namespace TP2_Simulateur
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> planePoints = new List<PointF>();
         private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
+        private List<PointF> secoursPoints = new List<PointF>();
+        private List<PointF> incendiePoints = new List<PointF>();
+        private List<PointF> observateurPoints = new List<PointF>();
         private string temps = "00:00:00";
         private Bitmap image;
         private SizeF tailleImage;
@@ -30,7 +34,6 @@ namespace TP2_Simulateur
         {
             this.controleur = controleur;
             InitializeComponent();
-
         }
 
         internal void LoadMap(Bitmap p_map)
@@ -39,7 +42,6 @@ namespace TP2_Simulateur
             picMap.BackgroundImage = p_map;
             tailleImage = picMap.BackgroundImage.Size;
             image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
-
         }
         public void AfficherTemps(string p_temps) {
             temps = p_temps;
@@ -50,7 +52,6 @@ namespace TP2_Simulateur
             int x = mouse.X;
             int y = mouse.Y;
             // TODO: Traduire x,y en lat,long
-
         }
         private void DessinerAeroports() {
                 Graphics g = Graphics.FromImage(image);
@@ -60,9 +61,8 @@ namespace TP2_Simulateur
                     g.DrawEllipse(pAirport, new Rectangle(Point.Round(point), new Size(2, 2))); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
                 }
 
-                pAirport.Dispose();
-                g.Dispose();
-            
+            pAirport.Dispose();
+            g.Dispose();
         }
         private void DessinerTemps()
         {
@@ -78,27 +78,88 @@ namespace TP2_Simulateur
             g.Dispose();
             sf.Dispose();
         }
+
+        private void DessinerIncendies()
+        {
+            Graphics g = Graphics.FromImage(image);
+            Image feuImg = new Bitmap("Ressources/incendie.png");
+            ImageAttributes wrapMode = new ImageAttributes();
+            lock (lockObject) 
+            {
+                foreach (PointF point in incendiePoints)
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    g.DrawImage(feuImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, feuImg.Width, feuImg.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            feuImg.Dispose();
+            wrapMode.Dispose();
+            g.Dispose();
+        }
+        private void DessinerSecours() 
+        {
+            Graphics g = Graphics.FromImage(image);
+            Image secoursImg = new Bitmap("Ressources/secours.png");
+            ImageAttributes wrapMode = new ImageAttributes();
+            lock(lockObject)
+            {
+                foreach (PointF point in secoursPoints)
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    g.DrawImage(secoursImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, secoursImg.Width, secoursImg.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            secoursImg.Dispose();
+            wrapMode.Dispose();
+            g.Dispose();
+        }
         private void DrawTrajectories(Bitmap bmap)
         {
         
         }
 
+
         public void UpdateSim(double vitesse)
         {
-            DessinerAeroports();
             DessinerTemps();
+            DessinerAeroports();
+            DessinerIncendies();
+            DessinerSecours();
+            DessinerObservateurs();
             try
             {
                 Invoke((MethodInvoker)delegate ()
                 {
+                    if (picMap.Image != null)
+                    {
+                        picMap.Image.Dispose();
+                    }
                     picMap.Image = image;
                     image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
                 });
             }
             catch { }
+        }
 
-            
+        private void DessinerObservateurs()
+        {
+            Graphics g = Graphics.FromImage(image);
+            Image observateurImg = new Bitmap("Ressources/observateurs.png");
+            ImageAttributes wrapMode = new ImageAttributes();
+            lock (lockObject)
+            {
+                foreach (PointF point in observateurPoints)
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    g.DrawImage(observateurImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, observateurImg.Width, observateurImg.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
 
+            observateurImg.Dispose();
+            wrapMode.Dispose();
+            g.Dispose();
         }
 
         internal void ChargerAeroportsNom(List<string> aeroportsNom)
@@ -107,7 +168,6 @@ namespace TP2_Simulateur
             {
                 lstAeroports.Items.Add(apString);
             }
-            trajetTest = new Trajectoire(airportPoints[0], airportPoints[1]);
         }
 
         //private void DessinerLigne(PointF depart, PointF actuel)
@@ -124,13 +184,32 @@ namespace TP2_Simulateur
         {
             airportPoints.Add(point);
         }
-
+        public void AjouterPointSecours(PointF point)
+        {
+            lock (lockObject) 
+            {
+                secoursPoints.Add(point);
+            }
+        }
+        public void AjouterPointIncendie(PointF point)
+        {
+            lock (lockObject) 
+            {
+                incendiePoints.Add(point);
+            }
+        }
+        public void AjouterPointObservateur(PointF point)
+        {
+            lock (lockObject) 
+            {
+                observateurPoints.Add(point);
+            }
+        }
 
         public SizeF GetImageSize() {
             return tailleImage; 
             
         }
-
 
         private void btnScenario_Click(object sender, EventArgs e)
         {
@@ -157,6 +236,18 @@ namespace TP2_Simulateur
         private void ViewSimulator_FormClosing(object sender, FormClosingEventArgs e)
         {
             
+        }
+        public void DrawClient()
+        {
+            Graphics g = Graphics.FromImage(image);
+            Pen crayon = new Pen(Color.Purple, 20);
+            foreach (PointF point in secoursPoints)
+            {
+                g.DrawEllipse(crayon, new Rectangle(Point.Round(point), new Size(2, 2))); 
+            }
+
+            crayon.Dispose();
+            g.Dispose();
         }
     }
 }

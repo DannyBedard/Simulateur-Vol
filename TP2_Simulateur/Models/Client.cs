@@ -4,7 +4,14 @@ using System.Text;
 
 namespace TP2_Simulateur.Models
 {
-    class Client
+    public abstract class Client
     {
+        private PointCartographique position;
+        protected int allerRetour;
+        public PointCartographique Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
     }
 }
