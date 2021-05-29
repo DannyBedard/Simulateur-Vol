@@ -29,7 +29,7 @@ namespace TP2_Simulateur.Models
             }
             float deltaY = destination.Y - depart.Y;
             float deltaX = destination.X - depart.X;
-            t += 0.005f * (float)vitesse;
+            t += 0.005f * (float)vitesse;// 0.005f sera la vitesse d l'aeronef
             float x = (1 - t) * (actuel.X) + t * (destination.X);
             float y = (1 - t) * (actuel.Y) + t * (destination.Y);
 

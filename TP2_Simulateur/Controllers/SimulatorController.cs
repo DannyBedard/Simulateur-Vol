@@ -42,7 +42,6 @@ namespace TP2_Simulateur
             view = new ViewSimulator(this);
             Bitmap map = new Bitmap("Ressources/carte.jpg");
             view.LoadMap(map); // Charge la map sur la vue
-            view.Show();
             Application.Run(view);
         }
         
@@ -50,6 +49,7 @@ namespace TP2_Simulateur
             timer.Start();
             long now = timer.ElapsedMilliseconds;
             long lastFrame = timer.ElapsedMilliseconds;
+            GenererClient();
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;
@@ -72,10 +72,22 @@ namespace TP2_Simulateur
         {
             view.AfficherTemps(temps);
         }
+        // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
         private void GenererClient() 
         {
-            // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
-            // TODO : appeler le scénario afin qu'il génère des clients. (Doit coder une fabrique de client avant)
+            scenario.GenererClient();
+            foreach (PointF point in scenario.AvoirPointsIncendies())
+            {
+                view.AjouterPointIncendie(point);
+            }
+            foreach (PointF point in scenario.AvoirPointsSecours())
+            {
+                view.AjouterPointSecours(point);
+            }
+            foreach (PointF point in scenario.AvoirPointsObservateur())
+            {
+                view.AjouterPointObservateur(point);
+            }
         }
         private void Init() {
             scenario.TailleImage = view.GetImageSize();
@@ -95,10 +107,10 @@ namespace TP2_Simulateur
             view.ChargerAeroportsNom(aeroportsNom);
             running = true;
             simulatorThread = new Thread(new ThreadStart(UpdateSimView));
+            simulatorThread.IsBackground = true;
             simulatorThread.Start();
             horloge.Start();
         }
-
         public bool TelechargerScenario(string fichier)
         {
             xs = new XmlSerializer(typeof(Scenario));
@@ -116,9 +128,7 @@ namespace TP2_Simulateur
                     Init();
 
                 return valide;
-
             }
-
         }
 
         public void ModifierVitesseTemps(double vitesse)

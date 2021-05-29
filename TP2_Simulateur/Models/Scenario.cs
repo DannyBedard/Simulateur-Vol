@@ -13,6 +13,11 @@ namespace TP2_Simulateur.Models
     [XmlInclude(typeof(HelicoptereSecours))]
     public class Scenario
     {
+        //List<Client> clients = new List<Client>();
+        List<Client> incendies = new List<Client>();
+        List<Client> observateurs = new List<Client>();
+        List<Client> secours = new List<Client>();
+
         public List<Aeroport> Aeroports;
         public List<Aeronef> aeronefsEnVol = new List<Aeronef>();
         public SizeF TailleImage { get; set; }
@@ -30,14 +35,7 @@ namespace TP2_Simulateur.Models
             }
             return points;
         }
-        //public List<PointF[]> AvoirPointsTrajectoireAeronef() 
-        //{
-        //    List<PointF[]> pointsTrajectoires = new List<PointF[]>();
-        //    foreach (Aeronef aeronef in aeronefsEnVol)
-        //    {
-                
-        //    }
-        //}
+
         public List<string> AvoirToutAeroportsNom()
         {
             List<string> aeroportsNom = new List<string>();
@@ -46,6 +44,45 @@ namespace TP2_Simulateur.Models
                 aeroportsNom.Add(ap.Nom);
             }
             return aeroportsNom;
+        }
+        public List<PointF> AvoirPointsIncendies()
+        {
+            List<PointF> points = new List<PointF>();
+            foreach (Client client in incendies)
+            {
+                //TODO Regler erreur d'initialisation de la position
+                points.Add(client.Position.Transposer(TailleImage));
+            }
+            return points;
+        }
+        public void GenererClient()
+        {
+            FabriqueClient.GenererIncendies(incendies);
+            FabriqueClient.GenererObservation(observateurs);
+            FabriqueClient.GenererSecours(secours);
+            FabriqueClient.GenererClientAeroport(Aeroports);
+        }
+
+        internal IEnumerable<PointF> AvoirPointsSecours()
+        {
+            List<PointF> points = new List<PointF>();
+            foreach (Client client in secours)
+            {
+                //TODO Regler erreur d'initialisation de la position
+                points.Add(client.Position.Transposer(TailleImage));
+            }
+            return points;
+        }
+
+        internal IEnumerable<PointF> AvoirPointsObservateur()
+        {
+            List<PointF> points = new List<PointF>();
+            foreach (Client client in observateurs)
+            {
+                //TODO Regler erreur d'initialisation de la position
+                points.Add(client.Position.Transposer(TailleImage));
+            }
+            return points;
         }
     }
 }

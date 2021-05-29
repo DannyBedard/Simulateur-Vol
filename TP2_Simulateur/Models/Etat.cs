@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP2_Simulateur.Models
 {
-    class Etat
+    abstract class Etat
     {
     }
 }

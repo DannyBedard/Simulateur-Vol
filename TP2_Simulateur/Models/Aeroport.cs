@@ -9,10 +9,13 @@ namespace TP2_Simulateur.Models
     { 
         public string Nom { get; set; }
         public List<Aeronef> Aeronefs;
+        public List<Passager> passagerEnAttente;
+        public List<Marchandise> marchandiseEnAttente;
         public int MaxPassagersHeure;
         public int MinPassagersHeure;
         public int MaxMarchandisesHeure;
         public int MinMarchandisesHeure;
+
         public string Position {
             get 
             {
@@ -37,6 +40,10 @@ namespace TP2_Simulateur.Models
         override public string ToString()
         {
             return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
+        }
+        public void mettreAJour() 
+        {
+            
         }
     }
 }

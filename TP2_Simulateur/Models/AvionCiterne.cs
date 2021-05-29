@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TP2_Simulateur
+namespace TP2_Simulateur.Models
 {
     public class AvionCiterne : Aeronef
     {
