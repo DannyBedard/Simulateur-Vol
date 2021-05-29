@@ -72,10 +72,16 @@ namespace TP2_Simulateur
         {
             view.AfficherTemps(temps);
         }
+        // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
         private void GenererClient() 
         {
-            // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
-            // TODO : appeler le scénario afin qu'il génère des clients. (Doit coder une fabrique de client avant)
+            scenario.GenererClient();
+
+            foreach (PointF point in scenario.AvoirPointsClient())
+            {
+                view.AjouterPointSecours(point);
+            }
+            view.DrawClient();
         }
         private void Init() {
             scenario.TailleImage = view.GetImageSize();
@@ -116,9 +122,7 @@ namespace TP2_Simulateur
                     Init();
 
                 return valide;
-
             }
-
         }
 
         public void ModifierVitesseTemps(double vitesse)

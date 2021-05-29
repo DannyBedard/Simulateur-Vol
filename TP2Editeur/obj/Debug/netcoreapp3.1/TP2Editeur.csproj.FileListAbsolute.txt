@@ -43,7 +43,6 @@ C:\Users\Simon D-L\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.
 C:\Users\Simon D-L\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.dll
 C:\Users\Simon D-L\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.pdb
 C:\Users\Simon D-L\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.genruntimeconfig.cache
-C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.PositionCarte.resources
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.Properties.Resources.resources
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.exe
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\bin\Debug\netcoreapp3.1\TP2Editeur.deps.json
@@ -61,3 +60,4 @@ C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.dll
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.pdb
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.genruntimeconfig.cache
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.VueMap.resources

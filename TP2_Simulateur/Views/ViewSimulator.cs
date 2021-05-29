@@ -22,6 +22,9 @@ namespace TP2_Simulateur
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> planePoints = new List<PointF>();
         private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
+        private List<PointF> secoursPoints = new List<PointF>();
+        private List<PointF> incendiePoints = new List<PointF>();
+        private List<PointF> observateurPoints = new List<PointF>();
         private string temps = "00:00:00";
         private Bitmap image;
         private SizeF tailleImage;
@@ -29,7 +32,6 @@ namespace TP2_Simulateur
         {
             this.controleur = controleur;
             InitializeComponent();
-
         }
 
         internal void LoadMap(Bitmap p_map)
@@ -38,7 +40,6 @@ namespace TP2_Simulateur
             picMap.BackgroundImage = p_map;
             tailleImage = picMap.BackgroundImage.Size;
             image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
-
         }
         public void AfficherTemps(string p_temps) {
             temps = p_temps;
@@ -49,19 +50,17 @@ namespace TP2_Simulateur
             int x = mouse.X;
             int y = mouse.Y;
             // TODO: Traduire x,y en lat,long
-
         }
         private void DrawAirports() {
-                Graphics g = Graphics.FromImage(image);
-                Pen pAirport = new Pen(Color.Red, 10);
-                foreach (PointF point in airportPoints)
-                {
-                    g.DrawEllipse(pAirport, new Rectangle(Point.Round(point), new Size(2, 2))); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
-                }
+            Graphics g = Graphics.FromImage(image);
+            Pen pAirport = new Pen(Color.Red, 10);
+            foreach (PointF point in airportPoints)
+            {
+                g.DrawEllipse(pAirport, new Rectangle(Point.Round(point), new Size(2, 2))); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
+            }
 
-                pAirport.Dispose();
-                g.Dispose();
-            
+            pAirport.Dispose();
+            g.Dispose();
         }
         private void DessinerTemps()
         {
@@ -85,6 +84,7 @@ namespace TP2_Simulateur
         public void UpdateSim()
         {
             DrawAirports();
+            DrawClient();
             DessinerTemps();
             try
             {
@@ -95,12 +95,7 @@ namespace TP2_Simulateur
                 });
             }
             catch { }
-
-            
-
         }
-        
-
 
         internal void ChargerAeroports(List<string> aeroportsInfo)
         {
@@ -114,13 +109,23 @@ namespace TP2_Simulateur
         {
             airportPoints.Add(point);
         }
-
+        public void AjouterPointSecours(PointF point)
+        {
+            secoursPoints.Add(point);
+        }
+        public void AjouterPointIncendie(PointF point)
+        {
+            incendiePoints.Add(point);
+        }
+        public void AjouterPointObservateur(PointF point)
+        {
+            observateurPoints.Add(point);
+        }
 
         public SizeF GetImageSize() {
             return tailleImage; 
             
         }
-
 
         private void btnScenario_Click(object sender, EventArgs e)
         {
@@ -147,6 +152,18 @@ namespace TP2_Simulateur
         private void ViewSimulator_FormClosing(object sender, FormClosingEventArgs e)
         {
             
+        }
+        public void DrawClient()
+        {
+            Graphics g = Graphics.FromImage(image);
+            Pen crayon = new Pen(Color.Purple, 20);
+            foreach (PointF point in secoursPoints)
+            {
+                g.DrawEllipse(crayon, new Rectangle(Point.Round(point), new Size(2, 2))); 
+            }
+
+            crayon.Dispose();
+            g.Dispose();
         }
     }
 }
