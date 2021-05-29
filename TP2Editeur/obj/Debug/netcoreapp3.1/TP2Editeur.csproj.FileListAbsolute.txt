@@ -61,3 +61,4 @@ C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.dll
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.pdb
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.genruntimeconfig.cache
+C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2Editeur\obj\Debug\netcoreapp3.1\TP2Editeur.csprojAssemblyReference.cache

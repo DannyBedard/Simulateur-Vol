@@ -9,5 +9,6 @@ namespace TP2_Simulateur
         public string Nom { get; set; }
         public int Vitesse { get; set; }
         public override abstract string ToString();
+
     }
 }

@@ -62,7 +62,7 @@ namespace TP2_Simulateur
                 }
                 if (running)
                 {
-                    view.UpdateSim();
+                    view.UpdateSim(horloge.Vitesse);
                 }
                 
             }
@@ -86,11 +86,13 @@ namespace TP2_Simulateur
 
             view.AfficherTemps("00:00:00");
 
+
             foreach (PointF point in scenario.AvoirPointsAeroport())
             {
                 view.AjouterPointAeroport(point);
             }
-
+            List<string> aeroportsNom = scenario.AvoirToutAeroportsNom();
+            view.ChargerAeroportsNom(aeroportsNom);
             running = true;
             simulatorThread = new Thread(new ThreadStart(UpdateSimView));
             simulatorThread.Start();
@@ -106,8 +108,6 @@ namespace TP2_Simulateur
                 try
                 {
                     scenario = (Scenario)xs.Deserialize(rd);
-                    List<string> aeroportsNom = scenario.AvoirToutAeroportsNom(); 
-                    view.ChargerAeroports(aeroportsNom);
                     valide = true;
                 }
                 catch { }

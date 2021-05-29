@@ -14,6 +14,7 @@ namespace TP2_Simulateur.Models
     public class Scenario
     {
         public List<Aeroport> Aeroports;
+        public List<Aeronef> aeronefsEnVol = new List<Aeronef>();
         public SizeF TailleImage { get; set; }
         public List<Aeroport> ListAeroport
         {
@@ -29,7 +30,14 @@ namespace TP2_Simulateur.Models
             }
             return points;
         }
-
+        //public List<PointF[]> AvoirPointsTrajectoireAeronef() 
+        //{
+        //    List<PointF[]> pointsTrajectoires = new List<PointF[]>();
+        //    foreach (Aeronef aeronef in aeronefsEnVol)
+        //    {
+                
+        //    }
+        //}
         public List<string> AvoirToutAeroportsNom()
         {
             List<string> aeroportsNom = new List<string>();

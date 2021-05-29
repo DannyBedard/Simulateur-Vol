@@ -25,6 +25,7 @@ namespace TP2_Simulateur
         private string temps = "00:00:00";
         private Bitmap image;
         private SizeF tailleImage;
+        private Trajectoire trajetTest;
         public ViewSimulator(SimulatorController controleur)
         {
             this.controleur = controleur;
@@ -51,7 +52,7 @@ namespace TP2_Simulateur
             // TODO: Traduire x,y en lat,long
 
         }
-        private void DrawAirports() {
+        private void DessinerAeroports() {
                 Graphics g = Graphics.FromImage(image);
                 Pen pAirport = new Pen(Color.Red, 10);
                 foreach (PointF point in airportPoints)
@@ -82,9 +83,9 @@ namespace TP2_Simulateur
         
         }
 
-        public void UpdateSim()
+        public void UpdateSim(double vitesse)
         {
-            DrawAirports();
+            DessinerAeroports();
             DessinerTemps();
             try
             {
@@ -99,16 +100,25 @@ namespace TP2_Simulateur
             
 
         }
-        
 
-
-        internal void ChargerAeroports(List<string> aeroportsInfo)
+        internal void ChargerAeroportsNom(List<string> aeroportsNom)
         {
-            foreach (string apString in aeroportsInfo)
+            foreach (string apString in aeroportsNom)
             {
                 lstAeroports.Items.Add(apString);
             }
+            trajetTest = new Trajectoire(airportPoints[0], airportPoints[1]);
         }
+
+        //private void DessinerLigne(PointF depart, PointF actuel)
+        //{
+        //    Graphics g = Graphics.FromImage(image);
+        //    Pen pLigne = new Pen(Color.Red, 5);
+
+        //    g.DrawLine(pLigne, depart, actuel); ;
+        //    g.Dispose();
+        //    pLigne.Dispose();
+        //}
 
         public void AjouterPointAeroport(PointF point)
         {
