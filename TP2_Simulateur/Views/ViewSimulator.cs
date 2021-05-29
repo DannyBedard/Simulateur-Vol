@@ -18,7 +18,7 @@ namespace TP2_Simulateur
     public partial class ViewSimulator : Form
     {
         private static readonly object lockObject = new object();
-        SimulatorController controleur;
+        COTAI controleur;
         
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> planePoints = new List<PointF>();
@@ -30,7 +30,7 @@ namespace TP2_Simulateur
         private Bitmap image;
         private SizeF tailleImage;
         private Trajectoire trajetTest;
-        public ViewSimulator(SimulatorController controleur)
+        public ViewSimulator(COTAI controleur)
         {
             this.controleur = controleur;
             InitializeComponent();
@@ -66,7 +66,7 @@ namespace TP2_Simulateur
         }
         private void DessinerTemps()
         {
-            RectangleF rectf = new RectangleF(image.Width - 600, image.Height - 100, 535, 90); //rectf for My Text
+            RectangleF rectf = new RectangleF(image.Width - 600, image.Height - 100, 535, 90);
             Graphics g = Graphics.FromImage(image);
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
