@@ -10,12 +10,13 @@ namespace TP2_Simulateur.Models
         private static readonly object locker = new object();
         public static void GenererClientAeroport(List<Aeroport> aeroports)
         {
+
             int quantite;
             foreach (Aeroport ap in aeroports)
             {
                 //Passager
                 quantite = random.Next(ap.MinPassagersHeure, ap.MaxPassagersHeure);
-                for(int i=0; i<quantite; i++)
+                for (int i = 0; i < quantite; i++)
                 {
                     Passager client = new Passager(aeroports[random.Next(0, aeroports.Count)]);
                     ap.passagerEnAttente.Add(client);
@@ -34,11 +35,11 @@ namespace TP2_Simulateur.Models
         {
             Client client;
             int quantite;
-            lock (locker) 
+            lock (locker)
             {
                 quantite = random.Next(1, 3);
             }
-            
+
             for (int i = 0; i < quantite; i++)
             {
                 client = new Incendie(PointCartographique.Random());
@@ -46,7 +47,7 @@ namespace TP2_Simulateur.Models
             }
         }
 
-        public static void GenererObservation(List<Client> observateurs)
+        public static void GenererObservateurs(List<Client> observateurs)
         {
             Client client;
             client = new Observateur(PointCartographique.Random());
@@ -57,11 +58,11 @@ namespace TP2_Simulateur.Models
         {
             Client client;
             int quantite;
-            lock (locker) 
+            lock (locker)
             {
                 quantite = random.Next(1, 2);
             }
-            
+
             for (int i = 0; i < quantite; i++)
             {
                 client = new Secours(PointCartographique.Random());

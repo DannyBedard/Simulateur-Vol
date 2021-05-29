@@ -35,16 +35,6 @@ namespace TP2_Simulateur.Models
             }
             return points;
         }
-
-        public List<string> AvoirToutAeroportsNom()
-        {
-            List<string> aeroportsNom = new List<string>();
-            foreach (Aeroport ap in Aeroports)
-            {
-                aeroportsNom.Add(ap.Nom);
-            }
-            return aeroportsNom;
-        }
         public List<PointF> AvoirPointsIncendies()
         {
             List<PointF> points = new List<PointF>();
@@ -54,13 +44,6 @@ namespace TP2_Simulateur.Models
                 points.Add(client.Position.Transposer(TailleImage));
             }
             return points;
-        }
-        public void GenererClient()
-        {
-            FabriqueClient.GenererIncendies(incendies);
-            FabriqueClient.GenererObservation(observateurs);
-            FabriqueClient.GenererSecours(secours);
-            FabriqueClient.GenererClientAeroport(Aeroports);
         }
 
         internal IEnumerable<PointF> AvoirPointsSecours()
@@ -83,6 +66,24 @@ namespace TP2_Simulateur.Models
                 points.Add(client.Position.Transposer(TailleImage));
             }
             return points;
+        }
+
+        internal List<string> AvoirToutAeroportsNom()
+        {
+            List<string> points = new List<string>();
+            foreach (Aeroport ap in Aeroports)
+            {
+                points.Add(ap.Nom);
+            }
+            return points;
+        }
+
+        internal void GenererClient()
+        {
+            FabriqueClient.GenererIncendies(incendies);
+            FabriqueClient.GenererSecours(secours);
+            FabriqueClient.GenererObservateurs(observateurs);
+            FabriqueClient.GenererClientAeroport(Aeroports);
         }
     }
 }
