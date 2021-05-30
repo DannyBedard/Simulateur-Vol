@@ -120,6 +120,7 @@ namespace TP2_Simulateur
                 try
                 {
                     scenario = (Scenario)xs.Deserialize(rd);
+                    scenario.Init();
                     valide = true;
                 }
                 catch { }

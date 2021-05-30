@@ -13,7 +13,6 @@ namespace TP2_Simulateur.Models
     [XmlInclude(typeof(HelicoptereSecours))]
     public class Scenario
     {
-        //List<Client> clients = new List<Client>();
         List<Client> incendies = new List<Client>();
         List<Client> observateurs = new List<Client>();
         List<Client> secours = new List<Client>();
@@ -23,13 +22,15 @@ namespace TP2_Simulateur.Models
         public SizeF TailleImage { get; set; }
         public List<Aeroport> ListAeroport
         {
-            get { return Aeroports; } 
+            get { return Aeroports; }
         }
- 
+        public Scenario() 
+        {
+        }
         public List<PointF> AvoirPointsAeroport()
         {
             List<PointF> points = new List<PointF>();
-            foreach (Aeroport ap in Aeroports) 
+            foreach (Aeroport ap in Aeroports)
             {
                 points.Add(ap.PositionCarto.Transposer(TailleImage));
             }
@@ -40,35 +41,32 @@ namespace TP2_Simulateur.Models
             List<PointF> points = new List<PointF>();
             foreach (Client client in incendies)
             {
-                //TODO Regler erreur d'initialisation de la position
                 points.Add(client.Position.Transposer(TailleImage));
             }
             return points;
         }
 
-        internal IEnumerable<PointF> AvoirPointsSecours()
+        public IEnumerable<PointF> AvoirPointsSecours()
         {
             List<PointF> points = new List<PointF>();
             foreach (Client client in secours)
             {
-                //TODO Regler erreur d'initialisation de la position
                 points.Add(client.Position.Transposer(TailleImage));
             }
             return points;
         }
 
-        internal IEnumerable<PointF> AvoirPointsObservateur()
+        public IEnumerable<PointF> AvoirPointsObservateur()
         {
             List<PointF> points = new List<PointF>();
             foreach (Client client in observateurs)
             {
-                //TODO Regler erreur d'initialisation de la position
                 points.Add(client.Position.Transposer(TailleImage));
             }
             return points;
         }
 
-        internal List<string> AvoirToutAeroportsNom()
+        public List<string> AvoirToutAeroportsNom()
         {
             List<string> points = new List<string>();
             foreach (Aeroport ap in Aeroports)
@@ -78,12 +76,63 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
-        internal void GenererClient()
+        public void GenererClient()
         {
             FabriqueClient.GenererIncendies(incendies);
             FabriqueClient.GenererSecours(secours);
             FabriqueClient.GenererObservateurs(observateurs);
             FabriqueClient.GenererClientAeroport(Aeroports);
+
+            GererEvenement();
+
+        }
+        public void GereAeronefArrive() 
+        {
+            //Gerer les aeronefs qui sont arrivés
+        }
+        public void GererDecollage(Aeronef aeronef, Aeroport depart) 
+        {
+            Trajectoire trajectoire = new Trajectoire(depart.PositionCarto.Transposer(TailleImage), aeronef.Destination.Transposer(TailleImage)); // Trouver dans quel classe mettre cette trajectoire.
+            aeronefsEnVol.Add(aeronef);
+            //
+        }
+        public void GererEvenement()
+        {
+            foreach (Incendie incendie in incendies)
+            {
+
+                if (incendie.BesoinAvion)
+                {
+                    Aeroport aeroportProche = null;
+                    float distanceAeroport = 0;
+                    foreach (Aeroport aeroportActuel in Aeroports)
+                    {
+                        if (aeroportActuel.CiterneDisponible())
+                        {
+                            float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, incendie.Position);
+                            if (distanceActuel > distanceAeroport)
+                            {
+                                aeroportProche = aeroportActuel;
+                                distanceAeroport = distanceActuel;
+                            }
+                        }
+                    }
+                    if (aeroportProche != null)
+                    {
+                        aeroportProche.AffecterIncendie(incendie);
+
+                    }
+                }
+            }
+            //Secours, observation
+        }
+
+        public void Init()
+        {
+            foreach (Aeroport aeroport in Aeroports)
+            {
+                aeroport.DecollageEnCours += GererDecollage;
+            }
         }
     }
 }

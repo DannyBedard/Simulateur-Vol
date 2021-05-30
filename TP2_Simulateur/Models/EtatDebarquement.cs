@@ -4,9 +4,8 @@ using System.Text;
 
 namespace TP2_Simulateur.Models
 {
-    abstract class Etat
+    class EtatDebarquement
     {
 
-        int temps;
     }
 }

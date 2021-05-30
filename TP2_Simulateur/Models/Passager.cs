@@ -10,12 +10,16 @@ namespace TP2_Simulateur.Models
         public Passager(Aeroport destination)
         {
             this.destination = destination;
+            
         }
-        public Passager(){}
-
+        public Passager() { }
         public Aeroport Destination
         {
             get { return destination; }
+        }
+        public override string ToString()
+        {
+            return "";
         }
     }
 }

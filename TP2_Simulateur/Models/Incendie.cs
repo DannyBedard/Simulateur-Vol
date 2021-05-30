@@ -4,9 +4,10 @@ using System.Text;
 
 namespace TP2_Simulateur.Models
 {
-    class Incendie : Client
+    public class Incendie : Client
     {
         int envergure;
+        public bool BesoinAvion { get; set; }
         public Incendie(PointCartographique point)
         {
             Random random = new Random();

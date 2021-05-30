@@ -97,5 +97,19 @@ namespace TP2_Simulateur.Models
 
             return coord;
         }
+        private static float VersRadian(float valeur) 
+        {
+            return (float)(valeur / (180 / Math.PI));
+        }
+        public static float DistanceEntre(PointCartographique p1, PointCartographique p2)
+        {
+            float lat1 = PointCartographique.VersRadian(p1.latitude);
+            float lng1 = PointCartographique.VersRadian(p1.longitude);
+            float lat2 = PointCartographique.VersRadian(p2.latitude);
+            float lng2 = PointCartographique.VersRadian(p2.longitude);
+
+            float distanceKm = (float)(1.609344 * (3963.0 * Math.Acos(Math.Sin(lat1) * Math.Sin(lat2) + Math.Cos(lat1) * Math.Cos(lat2) * Math.Cos(lng2 - lng1))));
+            return distanceKm;
+        }
     }
 }

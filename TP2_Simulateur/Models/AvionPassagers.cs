@@ -7,7 +7,7 @@ namespace TP2_Simulateur.Models
     public class AvionPassagers : AeronefConteneur
     {
 
-
+        Client client;
         public AvionPassagers() { }
         public AvionPassagers(string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
@@ -19,6 +19,7 @@ namespace TP2_Simulateur.Models
             base.TempsDebarquement = tempsDebarquement;
             
         }
+
 
         public override string ToString()
         {
