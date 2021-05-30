@@ -10,6 +10,13 @@ namespace TP2_Simulateur.Models
         public AvionObservateur(string nom, int vitesse) {
             base.Nom = nom;
             base.Vitesse = vitesse;
+            etatActuel = 0;
+            CycleEtat = new List<Etat>()
+            {
+                new EtatDisponnible(),
+                new EtatVolObservation(),
+                new EtatMaintenance()
+            };
         }
         public override string ToString()
         {

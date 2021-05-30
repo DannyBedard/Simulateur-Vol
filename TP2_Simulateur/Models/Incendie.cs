@@ -7,13 +7,23 @@ namespace TP2_Simulateur.Models
     public class Incendie : Client
     {
         int envergure;
-        public bool BesoinAvion { get; set; }
+        bool besoinAvion;
         public Incendie(PointCartographique point)
         {
             Random random = new Random();
             envergure = random.Next(1, 5); // envergure
+            besoinAvion = true;
             base.Position = point;
             BesoinAvion = true;
+        }
+        public int Envergure
+        {
+            get { return envergure; }
+        }
+        public bool BesoinAvion
+        {
+            get { return besoinAvion; }
+            set { besoinAvion = value; }
         }
     }
 }

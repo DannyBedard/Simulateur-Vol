@@ -21,7 +21,7 @@ namespace TP2_Simulateur
         COTAI controleur;
         
         private List<PointF> airportPoints = new List<PointF>();
-        private List<PointF> planePoints = new List<PointF>();
+        private List<PointF> AeronefPoints = new List<PointF>();
         private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
         private List<PointF> secoursPoints = new List<PointF>();
         private List<PointF> incendiePoints = new List<PointF>();
@@ -53,6 +53,24 @@ namespace TP2_Simulateur
             int y = mouse.Y;
             // TODO: Traduire x,y en lat,long
         }
+        public void DessinerAvion()
+        {
+            Graphics g = Graphics.FromImage(image);
+            Image avionImg = new Bitmap("Ressources/avion.png");
+            ImageAttributes wrapMode = new ImageAttributes();
+            lock (lockObject)
+            {
+                foreach (PointF point in AeronefPoints)
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    g.DrawImage(avionImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, avionImg.Width, avionImg.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            avionImg.Dispose();
+            wrapMode.Dispose();
+            g.Dispose();
+        }
         private void DessinerAeroports() {
             Graphics g = Graphics.FromImage(image);
             Image aeroportImg = new Bitmap("Ressources/aeroport.png");
@@ -62,9 +80,8 @@ namespace TP2_Simulateur
                 foreach (PointF point in airportPoints)
                 {
                     wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(aeroportImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, aeroportImg.Width, aeroportImg.Height, GraphicsUnit.Pixel, wrapMode); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
+                    g.DrawImage(aeroportImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, aeroportImg.Width, aeroportImg.Height, GraphicsUnit.Pixel, wrapMode);
                 }
-
             }
 
             aeroportImg.Dispose();
@@ -128,7 +145,6 @@ namespace TP2_Simulateur
         
         }
 
-
         public void UpdateSim(double vitesse)
         {
             DessinerTemps();
@@ -136,6 +152,7 @@ namespace TP2_Simulateur
             DessinerIncendies();
             DessinerSecours();
             DessinerObservateurs();
+            DessinerAvion();
             try
             {
                 Invoke((MethodInvoker)delegate ()
@@ -214,9 +231,16 @@ namespace TP2_Simulateur
             }
         }
 
+        public void AjouterPointAeronef(PointF point)
+        {
+            lock (lockObject)
+            {
+                AeronefPoints.Add(point);
+            }
+        }
+
         public SizeF GetImageSize() {
             return tailleImage; 
-            
         }
 
         private void btnScenario_Click(object sender, EventArgs e)

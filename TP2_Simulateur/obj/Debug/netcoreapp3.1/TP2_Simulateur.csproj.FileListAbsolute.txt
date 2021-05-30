@@ -87,4 +87,4 @@ C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\observateurs.png
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\secours.png
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\aeroport.png
-C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\aeroport2.png
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\avion.png

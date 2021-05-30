@@ -7,11 +7,19 @@ namespace TP2_Simulateur.Models
 {
     abstract class EtatVol : Etat
     {
-        private PointCartographique depart;
-        private PointCartographique destination;
+        protected PointCartographique depart;
+        protected PointCartographique destination;
+        protected PointCartographique positionActuel;
+
+        public PointF PositionActuel
+        {
+            get { return new PointF(1000, 1000); }
+        }
         private float LongeurTrajet() 
         {
             return PointCartographique.DistanceEntre(depart, destination);
         }
+
+
     }
 }

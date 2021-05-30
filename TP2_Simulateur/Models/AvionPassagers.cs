@@ -17,7 +17,15 @@ namespace TP2_Simulateur.Models
             base.TempsEntretient = tempsEntretient;
             base.TempsEmbarquement = tempsEmbarquement;
             base.TempsDebarquement = tempsDebarquement;
-            
+            etatActuel = 0;
+            CycleEtat = new List<Etat>()
+            {
+                new EtatDisponnible(),
+                new EtatEmbarquement(),
+                new EtatVolPassager(),
+                new EtatDebarquement(),
+                new EtatMaintenance()
+            };
         }
 
 

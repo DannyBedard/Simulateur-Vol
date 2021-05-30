@@ -30,14 +30,20 @@ namespace TP2_Simulateur.Models
             TempsChargement = tempsChargement;
             TempsLargage = tempsLargage;
             TempsEntretient = tempsEntretient;
+            etatActuel = 0;
+            CycleEtat = new List<Etat>()
+            {
+                new EtatEmbarquement(),
+                new EtatDisponnible(),
+                new EtatVolSecours(),
+                new EtatDebarquement(),
+                new EtatVolSecours()
+            };
         }
-
-
 
         public override string ToString()
         {
             return Nom + " (Citerne),  Vitesse : " + Vitesse + ", Temps chargement : " + TempsChargement + ", Temps largage : " + TempsLargage + ", Temps entretient : " + TempsEntretient;
-
         }
 
     }
