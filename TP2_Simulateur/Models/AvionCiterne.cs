@@ -30,7 +30,7 @@ namespace TP2_Simulateur.Models
             TempsChargement = tempsChargement;
             TempsLargage = tempsLargage;
             TempsEntretient = tempsEntretient;
-            etatActuel = 1;
+            etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
                 new EtatEmbarquement(),
@@ -45,6 +45,9 @@ namespace TP2_Simulateur.Models
         {
             return Nom + " (Citerne),  Vitesse : " + Vitesse + ", Temps chargement : " + TempsChargement + ", Temps largage : " + TempsLargage + ", Temps entretient : " + TempsEntretient;
         }
-
+        public bool BonAvion(Client p_client)
+        {
+            return p_client.GetType() == client.GetType();
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace TP2_Simulateur.Models
 {
     class Observateur : Client
     {
-
+        public Observateur() { }
         public Observateur(PointCartographique point)
         {
             base.Position = point;

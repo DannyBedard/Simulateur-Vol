@@ -6,7 +6,7 @@ namespace TP2_Simulateur.Models
 {
     class Secours : Client
     {
-
+        public Secours() { }
         public Secours(PointCartographique point)
         {
             base.Position = point;

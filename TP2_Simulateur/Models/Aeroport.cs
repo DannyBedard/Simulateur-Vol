@@ -45,11 +45,11 @@ namespace TP2_Simulateur.Models
         {
             return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
         }
-        public bool CiterneDisponible() 
+        public bool AvionDisponible(Client client) 
         {
             foreach (Aeronef aeronef in Aeronefs)
             {
-                if (aeronef is AvionCiterne) // Brise le polymorphisme
+                if (aeronef.BonAvion(client))
                 {
                     return true;
                 }
@@ -85,26 +85,39 @@ namespace TP2_Simulateur.Models
             //EmbarquementPassager();
         }
 
-        public void AffecterIncendie(Incendie incendie, SizeF tailleImage)
+        public void AffecterIncendie(Client client)
+        {
+            Aeronef aeronefChoisit = null;
+            foreach (Aeronef aeronef in Aeronefs)
+            {
+                if (aeronef.BonAvion(client)) 
+                {
+                    aeronef.Destination = client.Position;
+                    aeronefChoisit = aeronef;
+                    
+                    break;
+                }
+            }
+            if (aeronefChoisit != null)
+            {
+                DecollageEnCours.Invoke(aeronefChoisit, this);
+            }
+        }
+        internal void RetirerAeronef(Aeronef aeronef)
+        {
+            Aeronefs.Remove(aeronef);
+        }
+
+        public bool CiterneDisponible()
         {
             foreach (Aeronef aeronef in Aeronefs)
             {
-                if (aeronef is AvionCiterne) // Brise le polymorphisme trouver un autre moyen si possible
+                if (aeronef is AvionCiterne)
                 {
-                    AvionCiterne avion = (AvionCiterne)aeronef; 
-                    avion.Destination = incendie.Position;
-                    if (avion.EstRemplit())
-                    {
-                        DecollageEnCours.Invoke(avion, this);
-                        break;
-                    }
+                    return true;
                 }
             }
-        }
-
-        public void RetirerAeronef(Aeronef aeronef)
-        {
-            Aeronefs.Remove(aeronef);
+            return false;
         }
 
         internal List<string> AvoirClientInfo()

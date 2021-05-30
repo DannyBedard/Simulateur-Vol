@@ -16,6 +16,7 @@ namespace TP2_Simulateur.Models
             base.Position = point;
             BesoinAvion = true;
         }
+        public Incendie() { }
         public int Envergure
         {
             get { return envergure; }

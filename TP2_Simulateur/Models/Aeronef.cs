@@ -12,6 +12,7 @@ namespace TP2_Simulateur.Models
         string nom;
         int vitesse;
         protected int etatActuel;
+        protected Client client = new Passager();
         PointCartographique destination;
         PointCartographique position;
         List<Etat> cycleEtat;
@@ -39,8 +40,12 @@ namespace TP2_Simulateur.Models
         public PointCartographique Destination { get { return destination; } set { destination = value; } }
         public override abstract string ToString();
 
-        public virtual void Action(){}
-        public void setEtatActuel()
+        public void Action()
+        {
+            //cycleEtat[etatActuel].Action();
+            SetEtatActuel();
+        }
+        private void SetEtatActuel()
         {
             etatActuel++;
             if (etatActuel > cycleEtat.Count)
@@ -49,11 +54,12 @@ namespace TP2_Simulateur.Models
 
         public void DefinirTrajectoire(Trajectoire trajectoire)
         {
-            //cycleEtat[EtatActuel].DefinirTrajectoire(trajectoire);
+            //TODO
         }
-        public PointF AvoirProchainPoint(double vitesseTemps) 
+
+        internal bool BonAvion(Client p_client)
         {
-            return cycleEtat[EtatActuel].AvoirProchainPoint(vitesseTemps, Vitesse);
+            return p_client.GetType() == client.GetType();
         }
     }
 }

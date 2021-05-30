@@ -10,6 +10,7 @@ namespace TP2_Simulateur.Models
         public AvionObservateur(string nom, int vitesse) {
             base.Nom = nom;
             base.Vitesse = vitesse;
+            client = new Observateur();
             etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
@@ -22,6 +23,15 @@ namespace TP2_Simulateur.Models
         {
             return Nom + " (Observateur),  Vitesse : " + Vitesse;
 
+        }
+        public bool BonAvion(Client p_client)
+        {
+            return p_client.GetType() == client.GetType();
+            //if (this is AvionCiterne && p_client is Incendie) 
+            //{
+            //    return true;
+            //}
+            //faire meme chose pour les autres.
         }
     }
 }

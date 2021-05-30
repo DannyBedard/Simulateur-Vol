@@ -13,11 +13,7 @@ namespace TP2_Simulateur.Models
         //{
             
         //}
-        public override void DefinirTrajectoire(Trajectoire p_trajet)
-        {
-            trajet = p_trajet;
-        }
-        public override PointF AvoirProchainPoint(double vitesseTemps, double vitesseAeronef)
+        public PointF AvoirProchainPoint(double vitesseTemps, double vitesseAeronef)
         {
             return trajet.NextPoint(vitesseTemps, vitesseAeronef);
         }
