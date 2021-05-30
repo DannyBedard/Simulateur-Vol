@@ -124,10 +124,13 @@ namespace TP2Editeur
         {
             string aeronefType = cmbAeronefType.Text;
 
-            if ((aeronefType == "Passagers" || aeronefType == "Marchandises" || aeronefType == "Citerne") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbCapacite.Text, out _))) {
+            if ((aeronefType == "Passagers" || aeronefType == "Marchandises") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbCapacite.Text, out _)))
+            {
                 MessageBox.Show("Veuillez remplir correctement les champs");
             }
             else if ((aeronefType == "Observateur" || aeronefType == "Hélicoptère de secours") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _)))
+                MessageBox.Show("Veuillez remplir correctement les champs");
+            else if ((aeronefType == "Citerne") && txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _))
                 MessageBox.Show("Veuillez remplir correctement les champs");
             else
             {
@@ -135,7 +138,8 @@ namespace TP2Editeur
                 string aeronefNom = txbAeronefNom.Text;
                 int vitesse = int.Parse(txbAeronefVitesse.Text);
                 int tempsEntretient = int.Parse(txbAeronefEntretient.Text);
-                switch (aeronefType) {
+                switch (aeronefType)
+                {
                     case "Marchandises":
                     case "Passagers":
                         int tempsEmbarquement = int.Parse(txbAeronefEmbarquement.Text);
