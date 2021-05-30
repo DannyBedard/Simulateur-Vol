@@ -109,31 +109,37 @@ namespace TP2_Simulateur.Models
         public void GererEvenement()
         {
             foreach (Incendie incendie in incendies)
-            {
-                if (incendie.BesoinAvion)
-                {
-                    Aeroport aeroportProche = null;
-                    float distanceAeroport = 0;
-                    foreach (Aeroport aeroportActuel in Aeroports)
-                    {
-                        if (aeroportActuel.CiterneDisponible())
-                        {
-                            float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, incendie.Position);
-                            if (distanceActuel > distanceAeroport)
-                            {
-                                aeroportProche = aeroportActuel;
-                                distanceAeroport = distanceActuel;
-                            }
-                        }
-                    }
-                    if (aeroportProche != null)
-                    {
-                        aeroportProche.AffecterIncendie(incendie);
+                GererAeroportProche(incendie);
 
+            foreach (Secours secours in secours)
+                GererAeroportProche(secours);
+
+            foreach (Observateur observateur in observateurs)
+                GererAeroportProche(observateur);
+
+            
+        }
+
+        private void GererAeroportProche(Client client)
+        {
+            Aeroport aeroportProche = null;
+            float distanceAeroport = 0;
+            foreach (Aeroport aeroportActuel in Aeroports)
+            {
+                if (aeroportActuel.AvionDisponible(client))
+                {
+                    float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, client.Position);
+                    if (distanceActuel > distanceAeroport)
+                    {
+                        aeroportProche = aeroportActuel;
+                        distanceAeroport = distanceActuel;
                     }
                 }
             }
-            //Secours, observation
+            if (aeroportProche != null)
+            {
+                aeroportProche.AffecterClient(client);
+            }
         }
 
         public void Init()

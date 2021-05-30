@@ -45,11 +45,11 @@ namespace TP2_Simulateur.Models
         {
             return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
         }
-        public bool CiterneDisponible() 
+        public bool AvionDisponible(Client client) 
         {
             foreach (Aeronef aeronef in Aeronefs)
             {
-                if (aeronef is AvionCiterne) // Brise le polymorphisme
+                if (aeronef.BonAvion(client))
                 {
                     return true;
                 }
@@ -85,18 +85,19 @@ namespace TP2_Simulateur.Models
             //EmbarquementPassager();
         }
 
-        public void AffecterIncendie(Incendie incendie)
+        public void AffecterClient(Client client)
         {
             foreach (Aeronef aeronef in Aeronefs)
             {
-                if (aeronef is AvionCiterne) // Brise le polymorphisme trouver un autre moyen si possible
+                if (aeronef.BonAvion(client)) 
                 {
-                    AvionCiterne avion = (AvionCiterne)aeronef; 
-                    avion.Destination = incendie.Position;
+                    DecollageEnCours.Invoke(aeronef, this);
+                    /*AvionCiterne avion = (AvionCiterne)aeronef; 
+                    avion.Destination = client.Position;
                     if (avion.EstRemplit())
                     {
                         DecollageEnCours.Invoke(avion, this);
-                    }
+                    }*/
                 }
             }
         }

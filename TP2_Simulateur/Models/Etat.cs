@@ -12,6 +12,6 @@ namespace TP2_Simulateur.Models
 
         public PointF PositionActuel { get { return point; } }
 
-        public virtual void Action(Aeronef aeronef){}
+        public virtual void Action(){}
     }
 }

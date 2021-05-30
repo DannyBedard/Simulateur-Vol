@@ -17,6 +17,7 @@ namespace TP2_Simulateur.Models
             base.TempsEntretient = tempsEntretient;
             base.TempsEmbarquement = tempsEmbarquement;
             base.TempsDebarquement = tempsDebarquement;
+            client = new Passager();
             etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
@@ -28,10 +29,13 @@ namespace TP2_Simulateur.Models
             };
         }
 
-
         public override string ToString()
         {
             return Nom + " (Passagers), Capacité : " + Capacite + ", Vitesse : " + Vitesse + ", Temps embarquement : " + TempsEmbarquement + ", Temps debarquement : " + TempsDebarquement + ", Temps entretient : " + TempsEntretient;
+        }
+        public bool BonAvion(Client p_client)
+        {
+            return p_client.GetType() == client.GetType();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace TP2_Simulateur.Models
         {
             base.Nom = nom;
             base.Vitesse = vitesse;
+            client = new Secours();
             etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
@@ -23,6 +24,10 @@ namespace TP2_Simulateur.Models
         {
             return Nom + " (Hélicoptère de secours),  Vitesse : " + Vitesse;
 
+        }
+        public bool BonAvion(Client p_client)
+        {
+            return p_client.GetType() == client.GetType();
         }
     }
 }
