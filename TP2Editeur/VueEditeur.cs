@@ -198,7 +198,7 @@ namespace TP2Editeur
                     txbAeronefEmbarquement.Text = elementAeronef[6].Split(" ")[4];
                     break;
                 case "Citerne":
-                    txbAeronefVitesse.Text = elementAeronef[2].Split(" ")[3];
+                    txbAeronefVitesse.Text = elementAeronef[2].Split(" ")[4];
                     txbAeronefEntretient.Text = elementAeronef[3].Split(" ")[4];
                     txbAeronefDebarquement.Text = elementAeronef[4].Split(" ")[4];
                     txbAeronefEmbarquement.Text = elementAeronef[5].Split(" ")[4];

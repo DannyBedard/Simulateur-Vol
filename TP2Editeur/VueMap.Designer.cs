@@ -29,7 +29,6 @@ namespace TP2Editeur
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VueMap));
             this.picMap = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             this.SuspendLayout();
@@ -37,7 +36,6 @@ namespace TP2Editeur
             // picMap
             // 
             this.picMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picMap.Image = ((System.Drawing.Image)(resources.GetObject("picMap.Image")));
             this.picMap.Location = new System.Drawing.Point(0, 0);
             this.picMap.Name = "picMap";
             this.picMap.Size = new System.Drawing.Size(1302, 653);
