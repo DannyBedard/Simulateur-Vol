@@ -96,11 +96,20 @@ namespace TP2_Simulateur.Models
             aeronefsEnVol.Add(aeronef);
             //
         }
+        public IEnumerable<PointF> AvoirPointsAeronef()
+        {
+            List<PointF> points = new List<PointF>();
+            foreach (Aeronef aeronef in aeronefsEnVol)
+            {
+                aeronef.Action();
+                points.Add(aeronef.Position.Transposer(TailleImage));
+            }
+            return points;
+        }
         public void GererEvenement()
         {
             foreach (Incendie incendie in incendies)
             {
-
                 if (incendie.BesoinAvion)
                 {
                     Aeroport aeroportProche = null;

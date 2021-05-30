@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TP2_Simulateur.Models
 {
-    class EtatDebarquement
+    class EtatDebarquement : Etat
     {
 
     }

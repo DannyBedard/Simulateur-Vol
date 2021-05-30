@@ -63,7 +63,6 @@ namespace TP2_Simulateur
                 {
                     view.UpdateSim(horloge.Vitesse);
                 }
-                
             }
             timer.Stop();
         }
@@ -71,6 +70,15 @@ namespace TP2_Simulateur
         {
             view.AfficherTemps(temps);
         }
+
+        private void MettreAJourAeronef()
+        {
+            foreach(PointF point in scenario.AvoirPointsAeronef())
+            {
+                view.AjouterPointAeronef(point);
+            }
+        }
+
         // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
         private void GenererClient() 
         {
