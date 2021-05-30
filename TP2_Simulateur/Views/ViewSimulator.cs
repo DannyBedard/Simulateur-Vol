@@ -54,15 +54,23 @@ namespace TP2_Simulateur
             // TODO: Traduire x,y en lat,long
         }
         private void DessinerAeroports() {
-                Graphics g = Graphics.FromImage(image);
-                Pen pAirport = new Pen(Color.Red, 10);
+            Graphics g = Graphics.FromImage(image);
+            Image aeroportImg = new Bitmap("Ressources/aeroport.png");
+            ImageAttributes wrapMode = new ImageAttributes();
+            lock (lockObject)
+            {
                 foreach (PointF point in airportPoints)
                 {
-                    g.DrawEllipse(pAirport, new Rectangle(Point.Round(point), new Size(2, 2))); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    g.DrawImage(aeroportImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, aeroportImg.Width, aeroportImg.Height, GraphicsUnit.Pixel, wrapMode); // On est obligé de transformer le PointF en Point car on dessine un cercle et non une image. Quand on va avoir choisit une image pour les aéroports on va utiliser un PointF
                 }
 
-            pAirport.Dispose();
+            }
+
+            aeroportImg.Dispose();
+            wrapMode.Dispose();
             g.Dispose();
+
         }
         private void DessinerTemps()
         {
