@@ -46,6 +46,7 @@ namespace TP2_Simulateur
         }
         
         private void UpdateSimView() {
+
             timer.Start();
             long now = timer.ElapsedMilliseconds;
             long lastFrame = timer.ElapsedMilliseconds;
@@ -62,6 +63,9 @@ namespace TP2_Simulateur
                 }
                 if (running)
                 {
+                    scenario.MettreAJour(horloge.Vitesse);
+                    List<PointF[]> pointTrajets = scenario.AvoirPointsAeronefEnVol();
+                    view.AjouterPointsTrajectoire(pointTrajets);
                     view.UpdateSim(horloge.Vitesse);
                 }
             }
@@ -69,15 +73,18 @@ namespace TP2_Simulateur
         }
         private void MettreAJourTemps(string temps)
         {
+            
+            
+            
             view.AfficherTemps(temps);
         }
 
         private void MettreAJourAeronef()
         {
-            foreach(PointF point in scenario.AvoirPointsAeronef())
-            {
-                view.AjouterPointAeronef(point);
-            }
+            //foreach(PointF[] point in scenario.AvoirPointsAeronefEnvol())
+            //{
+                
+            //}
         }
 
         // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)

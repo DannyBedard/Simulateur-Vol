@@ -12,6 +12,28 @@ namespace TP2_Simulateur.Models
         private static readonly object locker = new object();
         private float latitude;
         private float longitude;
+        public float Latitude 
+        {
+            get 
+            {
+                return latitude; 
+            }
+            set
+            {
+                latitude = value;
+            }
+        }
+        public float Longitude
+        {
+            get
+            {
+                return longitude;
+            }
+            set
+            {
+                longitude = value;
+            }
+        }
         public PointCartographique(string coord) {
             MatchCollection match = Regex.Matches(coord, @"\d+° \d+' (N|S|E|O)");
             string latitudeString = match[0].Value;

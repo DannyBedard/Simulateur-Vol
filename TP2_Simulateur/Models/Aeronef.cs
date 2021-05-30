@@ -13,9 +13,11 @@ namespace TP2_Simulateur.Models
         int vitesse;
         protected int etatActuel;
         protected Client client = new Passager();
+        private bool estDisponnible = false;
         PointCartographique destination;
         PointCartographique position;
         List<Etat> cycleEtat;
+        Trajectoire trajet = null;
 
         public List<Etat> CycleEtat
         {
@@ -38,6 +40,7 @@ namespace TP2_Simulateur.Models
             set { position = value; }
         }
         public PointCartographique Destination { get { return destination; } set { destination = value; } }
+
         public override abstract string ToString();
 
         public void Action()
@@ -54,12 +57,38 @@ namespace TP2_Simulateur.Models
 
         public void DefinirTrajectoire(Trajectoire trajectoire)
         {
-            //TODO
+            trajet = trajectoire;
+        }
+        public Trajectoire AvoirTrajectoire() 
+        {
+            return trajet;
+        }
+        public bool BonAvion(Client p_client) 
+        {
+            return client.GetType() == p_client.GetType();
         }
 
-        internal bool BonAvion(Client p_client)
+        public bool EstDisponnible()
         {
-            return p_client.GetType() == client.GetType();
+            if (cycleEtat[etatActuel] is EtatDisponnible)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Avancer(double vitesseHorloge)
+        {
+            position = trajet.NextPoint(vitesseHorloge, Vitesse);
+        }
+
+        internal bool EstEnVol()
+        {
+            if (cycleEtat[etatActuel] is EtatVol)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

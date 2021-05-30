@@ -10,12 +10,12 @@ namespace TP2_Simulateur.Models
         public delegate void ArriverEventHandler();
         public event ArriverEventHandler TempsModifier;
 
-        private PointF depart;
-        private PointF destination;
-        private PointF actuel;
-        public PointF Depart { get { return depart; } }
-        public PointF Destination { get { return destination; } }
-        public PointF Actuel { get { return actuel; } }
+        private PointCartographique depart;
+        private PointCartographique destination;
+        private PointCartographique actuel;
+        public PointCartographique Depart { get { return depart; } }
+        public PointCartographique Destination { get { return destination; } }
+        public PointCartographique Actuel { get { return actuel; } }
         private float t = 0F;
         public bool EstArrive 
         {
@@ -26,26 +26,26 @@ namespace TP2_Simulateur.Models
                 return false;
             }
         }
-        public Trajectoire(PointF p_depart, PointF p_destination) 
+        public Trajectoire(PointCartographique p_depart, PointCartographique p_destination) 
         {
             actuel = depart = p_depart;
             destination = p_destination;
         }
 
 
-        public PointF NextPoint(double vitesseTemps, double vitesseAeronef) 
+        public PointCartographique NextPoint(double vitesseTemps, double vitesseAeronef) 
         {
             if (t >= 1)
             {
                 return destination;
             }
-            float deltaY = destination.Y - depart.Y;
-            float deltaX = destination.X - depart.X;
+            float deltaY = destination.Latitude - depart.Latitude;
+            float deltaX = destination.Longitude - depart.Longitude;
             t += (float)(vitesseAeronef/100) * (float)vitesseTemps;
-            float x = (1 - t) * (actuel.X) + t * (destination.X);
-            float y = (1 - t) * (actuel.Y) + t * (destination.Y);
+            float x = (1 - t) * (actuel.Longitude) + t * (destination.Longitude);
+            float y = (1 - t) * (actuel.Latitude) + t * (destination.Latitude);
 
-            return new PointF(x,y);
+            return new PointCartographique(y,x);
         }
     }
 }

@@ -24,14 +24,6 @@ namespace TP2_Simulateur.Models
             return Nom + " (Observateur),  Vitesse : " + Vitesse;
 
         }
-        public bool BonAvion(Client p_client)
-        {
-            return p_client.GetType() == client.GetType();
-            //if (this is AvionCiterne && p_client is Incendie) 
-            //{
-            //    return true;
-            //}
-            //faire meme chose pour les autres.
-        }
+
     }
 }

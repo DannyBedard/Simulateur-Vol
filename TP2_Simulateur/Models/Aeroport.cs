@@ -49,7 +49,7 @@ namespace TP2_Simulateur.Models
         {
             foreach (Aeronef aeronef in Aeronefs)
             {
-                if (aeronef.BonAvion(client))
+                if (aeronef.BonAvion(client) && aeronef.EstDisponnible())
                 {
                     return true;
                 }
@@ -100,6 +100,7 @@ namespace TP2_Simulateur.Models
             }
             if (aeronefChoisit != null)
             {
+                aeronefChoisit.Position = this.PositionCarto;
                 DecollageEnCours.Invoke(aeronefChoisit, this);
             }
         }
@@ -108,17 +109,6 @@ namespace TP2_Simulateur.Models
             Aeronefs.Remove(aeronef);
         }
 
-        public bool CiterneDisponible()
-        {
-            foreach (Aeronef aeronef in Aeronefs)
-            {
-                if (aeronef is AvionCiterne)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
         internal List<string> AvoirClientInfo()
         {

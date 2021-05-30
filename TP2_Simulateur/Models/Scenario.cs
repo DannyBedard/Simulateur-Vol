@@ -76,6 +76,37 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
+        internal List<PointF[]> AvoirPointsAeronefEnVol()
+        {
+            List<PointF[]> pointsTrajet = new List<PointF[]>();
+            foreach (Aeronef aeronef in aeronefsEnVol)
+            {
+                
+                if (aeronef.EstEnVol())
+                {
+                    PointF[] points = new PointF[2];
+                    Trajectoire trajet = aeronef.AvoirTrajectoire();
+                    points[0] = trajet.Depart.Transposer(TailleImage);
+                    points[1] = aeronef.Position.Transposer(TailleImage);
+                    pointsTrajet.Add(points);
+                }
+            }
+            return pointsTrajet;
+        }
+
+        public void MettreAJour(double vitesseHorloge)
+        {
+            foreach (Aeronef aeronef in aeronefsEnVol)
+            {
+                if (aeronef.EstEnVol())
+                {
+                    aeronef.Avancer(vitesseHorloge);
+                }
+                else
+                    aeronef.Action();
+            }
+        }
+
         public void GenererClient()
         {
             FabriqueClient.GenererIncendies(incendies);
@@ -94,10 +125,11 @@ namespace TP2_Simulateur.Models
         {
             aeronefsEnVol.Add(aeronef);
             depart.RetirerAeronef(aeronef);
-            Trajectoire trajectoire = new Trajectoire(depart.PositionCarto.Transposer(TailleImage), aeronef.Destination.Transposer(TailleImage)); // Trouver dans quel classe mettre cette trajectoire.
+            Trajectoire trajectoire = new Trajectoire(depart.PositionCarto, aeronef.Destination); // Trouver dans quel classe mettre cette trajectoire.
+            
             aeronef.DefinirTrajectoire(trajectoire);
         }
-        public IEnumerable<PointF> AvoirPointsAeronef()
+        public List<PointF> AvoirPointsAeronef()
         {
             List<PointF> points = new List<PointF>();
             foreach (Aeronef aeronef in aeronefsEnVol)
@@ -117,7 +149,7 @@ namespace TP2_Simulateur.Models
                     float distanceAeroport = 0;
                     foreach (Aeroport aeroportActuel in Aeroports)
                     {
-                        if (aeroportActuel.CiterneDisponible())
+                        if (aeroportActuel.AvionDisponible(incendie))
                         {
                             float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, incendie.Position);
                             if (distanceActuel > distanceAeroport)

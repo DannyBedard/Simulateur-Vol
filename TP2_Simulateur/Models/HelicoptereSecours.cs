@@ -25,9 +25,5 @@ namespace TP2_Simulateur.Models
             return Nom + " (Hélicoptère de secours),  Vitesse : " + Vitesse;
 
         }
-        public bool BonAvion(Client p_client)
-        {
-            return p_client.GetType() == client.GetType();
-        }
     }
 }

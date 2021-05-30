@@ -22,14 +22,13 @@ namespace TP2_Simulateur
         
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> AeronefPoints = new List<PointF>();
-        private List<PointF[]> trajectoriesPoints = new List<PointF[]>();
+        private List<PointF[]> trajectoires = new List<PointF[]>();
         private List<PointF> secoursPoints = new List<PointF>();
         private List<PointF> incendiePoints = new List<PointF>();
         private List<PointF> observateurPoints = new List<PointF>();
         private string temps = "00:00:00";
         private Bitmap image;
         private SizeF tailleImage;
-        private Trajectoire trajetTest;
         public ViewSimulator(COTAI controleur)
         {
             this.controleur = controleur;
@@ -71,6 +70,21 @@ namespace TP2_Simulateur
             wrapMode.Dispose();
             g.Dispose();
         }
+
+        private void DessinerTrajectoires()
+        {
+            Graphics g = Graphics.FromImage(image);
+            Pen pLigne = new Pen(Color.Red, 5);
+            foreach (PointF[] points in trajectoires)
+            {
+                g.DrawLine(pLigne, points[0], points[1]);
+            }
+              
+            g.Dispose();
+            pLigne.Dispose();
+            trajectoires.Clear();
+        }
+
         private void DessinerAeroports() {
             Graphics g = Graphics.FromImage(image);
             Image aeroportImg = new Bitmap("Ressources/aeroport.png");
@@ -152,6 +166,7 @@ namespace TP2_Simulateur
             DessinerIncendies();
             DessinerSecours();
             DessinerObservateurs();
+            DessinerTrajectoires();
             DessinerAvion();
             try
             {
@@ -204,7 +219,10 @@ namespace TP2_Simulateur
         //    g.Dispose();
         //    pLigne.Dispose();
         //}
-
+        public void AjouterPointsTrajectoire(List<PointF[]> pointsTrajectoire) 
+        {
+            trajectoires = pointsTrajectoire;
+        }
         public void AjouterPointAeroport(PointF point)
         {
             airportPoints.Add(point);

@@ -13,7 +13,7 @@ namespace TP2_Simulateur.Models
         //{
             
         //}
-        public PointF AvoirProchainPoint(double vitesseTemps, double vitesseAeronef)
+        public PointCartographique AvoirProchainPoint(double vitesseTemps, double vitesseAeronef)
         {
             return trajet.NextPoint(vitesseTemps, vitesseAeronef);
         }

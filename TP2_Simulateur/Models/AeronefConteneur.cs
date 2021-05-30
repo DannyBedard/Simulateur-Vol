@@ -11,6 +11,5 @@ namespace TP2_Simulateur.Models
         public int TempsEmbarquement { get; set; }
         public int TempsDebarquement { get; set; }
         public override abstract string ToString();
-
     }
 }

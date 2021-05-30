@@ -22,15 +22,10 @@ namespace TP2_Simulateur.Models
         {
             // Trouver un moyen de remplir l'avion selon son temps de chargement
         }
-        public AvionCiterne() { }
-        public AvionCiterne(string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        public AvionCiterne() 
         {
-            base.Nom = aeronefNom;
-            base.Vitesse = vitesse;
-            TempsChargement = tempsChargement;
-            TempsLargage = tempsLargage;
-            TempsEntretient = tempsEntretient;
-            etatActuel = 0;
+            client = new Incendie();
+            etatActuel = 1;
             CycleEtat = new List<Etat>()
             {
                 new EtatEmbarquement(),
@@ -44,10 +39,6 @@ namespace TP2_Simulateur.Models
         public override string ToString()
         {
             return Nom + " (Citerne),  Vitesse : " + Vitesse + ", Temps chargement : " + TempsChargement + ", Temps largage : " + TempsLargage + ", Temps entretient : " + TempsEntretient;
-        }
-        public bool BonAvion(Client p_client)
-        {
-            return p_client.GetType() == client.GetType();
         }
     }
 }
