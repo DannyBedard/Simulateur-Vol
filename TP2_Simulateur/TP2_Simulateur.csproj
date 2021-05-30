@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Ressources\aeroport.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Ressources\carte.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

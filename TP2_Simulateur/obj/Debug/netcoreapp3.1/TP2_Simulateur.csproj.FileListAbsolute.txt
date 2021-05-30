@@ -32,7 +32,6 @@ C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcorea
 C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.pdb
 C:\Users\Simon D-L\source\repos\TP2_Simulateur\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.genruntimeconfig.cache
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.exe
-C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\world-map.bmp
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.deps.json
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.runtimeconfig.json
 C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\TP2_Simulateur.runtimeconfig.dev.json
@@ -83,3 +82,9 @@ C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2_Simulateur\obj\De
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.pdb
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2_Simulateur\obj\Debug\netcoreapp3.1\TP2_Simulateur.genruntimeconfig.cache
 C:\Users\Simon D-L\source\repos\DannyBedard\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\carte.jpg
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\carte.jpg
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\incendie.png
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\observateurs.png
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\secours.png
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\aeroport.png
+C:\Users\Danny\source\repos\Simulateur-Vol\TP2_Simulateur\bin\Debug\netcoreapp3.1\Ressources\aeroport2.png
