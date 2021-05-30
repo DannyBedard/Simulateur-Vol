@@ -49,6 +49,7 @@ namespace TP2_Simulateur
             timer.Start();
             long now = timer.ElapsedMilliseconds;
             long lastFrame = timer.ElapsedMilliseconds;
+            GenererClient();
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;

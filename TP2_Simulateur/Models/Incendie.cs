@@ -13,6 +13,7 @@ namespace TP2_Simulateur.Models
             Random random = new Random();
             envergure = random.Next(1, 5); // envergure
             base.Position = point;
+            BesoinAvion = true;
         }
     }
 }

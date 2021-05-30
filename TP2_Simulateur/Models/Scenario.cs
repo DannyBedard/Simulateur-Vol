@@ -104,13 +104,15 @@ namespace TP2_Simulateur.Models
                 if (incendie.BesoinAvion)
                 {
                     Aeroport aeroportProche = null;
-                    float distanceAeroport = 0;
+                    float distanceAeroport = -1F;
                     foreach (Aeroport aeroportActuel in Aeroports)
                     {
                         if (aeroportActuel.CiterneDisponible())
                         {
                             float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, incendie.Position);
-                            if (distanceActuel > distanceAeroport)
+                            if (distanceAeroport == -1F)
+                                distanceAeroport = distanceActuel;
+                            else if (distanceActuel < distanceAeroport)
                             {
                                 aeroportProche = aeroportActuel;
                                 distanceAeroport = distanceActuel;
