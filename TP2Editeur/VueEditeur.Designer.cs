@@ -63,6 +63,10 @@ namespace TP2Editeur
             this.emplacementScenarioDialog = new System.Windows.Forms.SaveFileDialog();
             this.btnPosition = new System.Windows.Forms.Button();
             this.txbAeroportPosition = new System.Windows.Forms.TextBox();
+            this.btnModifierAeroport = new System.Windows.Forms.Button();
+            this.btnSupprimerAeroport = new System.Windows.Forms.Button();
+            this.btnModifierAeronef = new System.Windows.Forms.Button();
+            this.btnSupprimerAeronef = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -86,9 +90,9 @@ namespace TP2Editeur
             // 
             this.btnAjouterAeroport.Location = new System.Drawing.Point(24, 252);
             this.btnAjouterAeroport.Name = "btnAjouterAeroport";
-            this.btnAjouterAeroport.Size = new System.Drawing.Size(1013, 24);
+            this.btnAjouterAeroport.Size = new System.Drawing.Size(330, 24);
             this.btnAjouterAeroport.TabIndex = 3;
-            this.btnAjouterAeroport.Text = "Ajouter un aéroport";
+            this.btnAjouterAeroport.Text = "Ajouter l\'aéroport";
             this.btnAjouterAeroport.UseVisualStyleBackColor = true;
             this.btnAjouterAeroport.Click += new System.EventHandler(this.btnAjouterAeroport_Click);
             // 
@@ -190,6 +194,7 @@ namespace TP2Editeur
             this.lstAeronefs.Name = "lstAeronefs";
             this.lstAeronefs.Size = new System.Drawing.Size(1015, 154);
             this.lstAeronefs.TabIndex = 15;
+            this.lstAeronefs.SelectedIndexChanged += new System.EventHandler(this.lstAeronefs_SelectedIndexChanged);
             // 
             // txbAeronefNom
             // 
@@ -304,9 +309,9 @@ namespace TP2Editeur
             this.btnAjouterAeronef.Enabled = false;
             this.btnAjouterAeronef.Location = new System.Drawing.Point(24, 501);
             this.btnAjouterAeronef.Name = "btnAjouterAeronef";
-            this.btnAjouterAeronef.Size = new System.Drawing.Size(1013, 24);
+            this.btnAjouterAeronef.Size = new System.Drawing.Size(330, 24);
             this.btnAjouterAeronef.TabIndex = 28;
-            this.btnAjouterAeronef.Text = "Ajouter un aeronef";
+            this.btnAjouterAeronef.Text = "Ajouter l\'aéronef";
             this.btnAjouterAeronef.UseVisualStyleBackColor = true;
             this.btnAjouterAeronef.Click += new System.EventHandler(this.btnAjouterAeronef_Click);
             // 
@@ -360,11 +365,59 @@ namespace TP2Editeur
             this.txbAeroportPosition.Size = new System.Drawing.Size(100, 23);
             this.txbAeroportPosition.TabIndex = 33;
             // 
+            // btnModifierAeroport
+            // 
+            this.btnModifierAeroport.Enabled = false;
+            this.btnModifierAeroport.Location = new System.Drawing.Point(360, 252);
+            this.btnModifierAeroport.Name = "btnModifierAeroport";
+            this.btnModifierAeroport.Size = new System.Drawing.Size(330, 24);
+            this.btnModifierAeroport.TabIndex = 34;
+            this.btnModifierAeroport.Text = "Modifier l\'aéroport";
+            this.btnModifierAeroport.UseVisualStyleBackColor = true;
+            this.btnModifierAeroport.Click += new System.EventHandler(this.btnModifierAeroport_Click);
+            // 
+            // btnSupprimerAeroport
+            // 
+            this.btnSupprimerAeroport.Enabled = false;
+            this.btnSupprimerAeroport.Location = new System.Drawing.Point(696, 252);
+            this.btnSupprimerAeroport.Name = "btnSupprimerAeroport";
+            this.btnSupprimerAeroport.Size = new System.Drawing.Size(326, 24);
+            this.btnSupprimerAeroport.TabIndex = 35;
+            this.btnSupprimerAeroport.Text = "Supprimer l\'aéroport";
+            this.btnSupprimerAeroport.UseVisualStyleBackColor = true;
+            this.btnSupprimerAeroport.Click += new System.EventHandler(this.btnSupprimerAeroport_Click);
+            // 
+            // btnModifierAeronef
+            // 
+            this.btnModifierAeronef.Enabled = false;
+            this.btnModifierAeronef.Location = new System.Drawing.Point(360, 501);
+            this.btnModifierAeronef.Name = "btnModifierAeronef";
+            this.btnModifierAeronef.Size = new System.Drawing.Size(326, 24);
+            this.btnModifierAeronef.TabIndex = 36;
+            this.btnModifierAeronef.Text = "Modifier l\'aéronef";
+            this.btnModifierAeronef.UseVisualStyleBackColor = true;
+            this.btnModifierAeronef.Click += new System.EventHandler(this.btnModifierAeronef_Click);
+            // 
+            // btnSupprimerAeronef
+            // 
+            this.btnSupprimerAeronef.Enabled = false;
+            this.btnSupprimerAeronef.Location = new System.Drawing.Point(696, 501);
+            this.btnSupprimerAeronef.Name = "btnSupprimerAeronef";
+            this.btnSupprimerAeronef.Size = new System.Drawing.Size(326, 24);
+            this.btnSupprimerAeronef.TabIndex = 37;
+            this.btnSupprimerAeronef.Text = "Supprimer l\'aéronef";
+            this.btnSupprimerAeronef.UseVisualStyleBackColor = true;
+            this.btnSupprimerAeronef.Click += new System.EventHandler(this.btnSupprimerAeronef_Click);
+            // 
             // VueEditeur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 598);
+            this.Controls.Add(this.btnSupprimerAeronef);
+            this.Controls.Add(this.btnModifierAeronef);
+            this.Controls.Add(this.btnSupprimerAeroport);
+            this.Controls.Add(this.btnModifierAeroport);
             this.Controls.Add(this.txbAeroportPosition);
             this.Controls.Add(this.btnPosition);
             this.Controls.Add(this.btnGenererScenario);
@@ -441,6 +494,10 @@ namespace TP2Editeur
         private System.Windows.Forms.Button btnPosition;
         private System.Windows.Forms.TextBox txb;
         private System.Windows.Forms.TextBox txbAeroportPosition;
+        private System.Windows.Forms.Button btnModifierAeroport;
+        private System.Windows.Forms.Button btnSupprimerAeroport;
+        private System.Windows.Forms.Button btnModifierAeronef;
+        private System.Windows.Forms.Button btnSupprimerAeronef;
     }
 }
 

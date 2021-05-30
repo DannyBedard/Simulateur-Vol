@@ -13,7 +13,7 @@ namespace TP2Editeur
         }
         public override string ToString()
         {
-            return Nom + " (Observateur),  Vitesse : " + Vitesse;
+            return Nom + ", (Observateur),  Vitesse : " + Vitesse;
 
         }
     }

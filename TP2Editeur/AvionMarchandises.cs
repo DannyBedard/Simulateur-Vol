@@ -19,7 +19,7 @@ namespace TP2Editeur
         }
         public override string ToString()
         {
-            return Nom + " (Marchandises), Capacité : " + Capacite + ", Vitesse : " + Vitesse + ", Temps embarquement : " + TempsEmbarquement + ", Temps debarquement : " + TempsDebarquement + ", Temps entretient : " + TempsEntretient;
+            return Nom + ", (Marchandises), Capacité : " + Capacite + ", Vitesse : " + Vitesse + ", Temps embarquement : " + TempsEmbarquement + ", Temps debarquement : " + TempsDebarquement + ", Temps entretient : " + TempsEntretient;
         }
     }
 }

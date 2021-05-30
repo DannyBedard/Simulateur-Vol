@@ -15,7 +15,7 @@ namespace TP2Editeur
         public List<Aeronef> Aeronefs { get {return aeronefs; } set { this.aeronefs = value; } }
         private List<Aeronef> aeronefs = new List<Aeronef>();
         override public string ToString() {
-            return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
+            return Nom + "; (" + Position + ") " + "; MinPassagers : " + MinPassagersHeure + "; MaxPassagers : " + MaxPassagersHeure + "; MinMarchandises : " + MinMarchandisesHeure + "; MaxMarchandises : " + MaxMarchandisesHeure;
         }
 
         public void ajouterAeronef(string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
@@ -35,5 +35,11 @@ namespace TP2Editeur
             Aeronef aeronef = FabriqueAeronef.fabriquerAeronef(aeronefType, aeronefNom, vitesse);
             aeronefs.Add(aeronef);
         }
+
+        public void SupprimerAeronef(int index)
+        {
+            aeronefs.RemoveAt(index);
+        }
+
     }
 }
