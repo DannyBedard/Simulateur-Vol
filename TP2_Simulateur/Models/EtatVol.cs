@@ -7,19 +7,19 @@ namespace TP2_Simulateur.Models
 {
     abstract class EtatVol : Etat
     {
-        protected PointCartographique depart;
-        protected PointCartographique destination;
-        protected PointCartographique positionActuel;
-
-        public PointF PositionActuel
+        private Trajectoire trajet;
+        private bool estArrive = false;
+        //private float LongeurTrajet() 
+        //{
+            
+        //}
+        public override void DefinirTrajectoire(Trajectoire p_trajet)
         {
-            get { return new PointF(1000, 1000); }
+            trajet = p_trajet;
         }
-        private float LongeurTrajet() 
+        public override PointF AvoirProchainPoint(double vitesseTemps, double vitesseAeronef)
         {
-            return PointCartographique.DistanceEntre(depart, destination);
+            return trajet.NextPoint(vitesseTemps, vitesseAeronef);
         }
-
-
     }
 }

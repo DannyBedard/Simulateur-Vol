@@ -13,5 +13,7 @@ namespace TP2_Simulateur.Models
         public PointF PositionActuel { get { return point; } }
 
         public virtual void Action(Aeronef aeronef){}
+        public virtual void DefinirTrajectoire(Trajectoire trajet) { return; }
+        public virtual PointF AvoirProchainPoint(double vitesseTemps, double vitesseAeronef) { return Point.Empty; }
     }
 }

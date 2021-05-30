@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace TP2_Simulateur.Models
 {
     public abstract class Aeronef
     {
+
+
         string nom;
         int vitesse;
         protected int etatActuel;
@@ -42,6 +45,15 @@ namespace TP2_Simulateur.Models
             etatActuel++;
             if (etatActuel > cycleEtat.Count)
                 etatActuel = 0;
+        }
+
+        public void DefinirTrajectoire(Trajectoire trajectoire)
+        {
+            //cycleEtat[EtatActuel].DefinirTrajectoire(trajectoire);
+        }
+        public PointF AvoirProchainPoint(double vitesseTemps) 
+        {
+            return cycleEtat[EtatActuel].AvoirProchainPoint(vitesseTemps, Vitesse);
         }
     }
 }

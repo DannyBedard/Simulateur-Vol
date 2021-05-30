@@ -92,8 +92,11 @@ namespace TP2_Simulateur.Models
         }
         public void GererDecollage(Aeronef aeronef, Aeroport depart) 
         {
-            Trajectoire trajectoire = new Trajectoire(depart.PositionCarto.Transposer(TailleImage), aeronef.Destination.Transposer(TailleImage)); // Trouver dans quel classe mettre cette trajectoire.
             aeronefsEnVol.Add(aeronef);
+            depart.RetirerAeronef(aeronef);
+            Trajectoire trajectoire = new Trajectoire(depart.PositionCarto.Transposer(TailleImage), aeronef.Destination.Transposer(TailleImage)); // Trouver dans quel classe mettre cette trajectoire.
+            aeronef.DefinirTrajectoire(trajectoire);
+
             //
         }
         public IEnumerable<PointF> AvoirPointsAeronef()
@@ -130,12 +133,17 @@ namespace TP2_Simulateur.Models
                     }
                     if (aeroportProche != null)
                     {
-                        aeroportProche.AffecterIncendie(incendie);
+                        aeroportProche.AffecterIncendie(incendie, TailleImage);
 
                     }
                 }
             }
             //Secours, observation
+        }
+
+        internal List<string> AvoirInfoClientAeroport(int index)
+        {
+            return Aeroports[index].AvoirClientInfo();
         }
 
         public void Init()

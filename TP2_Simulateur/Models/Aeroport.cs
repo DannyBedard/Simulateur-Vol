@@ -85,7 +85,7 @@ namespace TP2_Simulateur.Models
             //EmbarquementPassager();
         }
 
-        public void AffecterIncendie(Incendie incendie)
+        public void AffecterIncendie(Incendie incendie, SizeF tailleImage)
         {
             foreach (Aeronef aeronef in Aeronefs)
             {
@@ -96,9 +96,29 @@ namespace TP2_Simulateur.Models
                     if (avion.EstRemplit())
                     {
                         DecollageEnCours.Invoke(avion, this);
+                        break;
                     }
                 }
             }
+        }
+
+        public void RetirerAeronef(Aeronef aeronef)
+        {
+            Aeronefs.Remove(aeronef);
+        }
+
+        internal List<string> AvoirClientInfo()
+        {
+            List<string> clientInfo = new List<string>();
+            foreach (Passager passager in passagerEnAttente)
+            {
+                clientInfo.Add(passager.ToString());
+            }
+            foreach (Marchandise marchandise in marchandiseEnAttente)
+            {
+                clientInfo.Add(marchandise.ToString());
+            }
+            return clientInfo;
         }
     }
 }

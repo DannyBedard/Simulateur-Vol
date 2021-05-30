@@ -5,8 +5,11 @@ using System.Text;
 
 namespace TP2_Simulateur.Models
 {
-    class Trajectoire
+    public class Trajectoire
     {
+        public delegate void ArriverEventHandler();
+        public event ArriverEventHandler TempsModifier;
+
         private PointF depart;
         private PointF destination;
         private PointF actuel;
@@ -30,7 +33,7 @@ namespace TP2_Simulateur.Models
         }
 
 
-        public PointF NextPoint(double vitesseTemps) 
+        public PointF NextPoint(double vitesseTemps, double vitesseAeronef) 
         {
             if (t >= 1)
             {
@@ -38,7 +41,7 @@ namespace TP2_Simulateur.Models
             }
             float deltaY = destination.Y - depart.Y;
             float deltaX = destination.X - depart.X;
-            t += 0.005f * (float)vitesseTemps;// 0.005f sera la vitesse d l'aeronef
+            t += (float)(vitesseAeronef/100) * (float)vitesseTemps;
             float x = (1 - t) * (actuel.X) + t * (destination.X);
             float y = (1 - t) * (actuel.Y) + t * (destination.Y);
 

@@ -252,6 +252,7 @@ namespace TP2_Simulateur
             {
                 btnScenario.Dispose();
                 lstAeroports.Visible = true;
+                lstClients.Visible = true;
             }
             else
                 MessageBox.Show("Le fichier est invalide.", "Erreur chargement du fichier", MessageBoxButtons.OK);
@@ -280,6 +281,22 @@ namespace TP2_Simulateur
 
             crayon.Dispose();
             g.Dispose();
+        }
+
+        private void lstAeroports_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lstAeroports.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            lstClients.Items.Clear();
+            
+            List<string> clients = controleur.AvoirClientAeroport(index);
+            foreach (string client in clients)
+            {
+                lstClients.Items.Add(client);
+            }
         }
     }
 }

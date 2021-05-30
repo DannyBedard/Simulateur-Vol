@@ -37,6 +37,7 @@ namespace TP2_Simulateur
             this.sliderVitesse = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.lstAeroports = new System.Windows.Forms.ListBox();
+            this.lstClients = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderVitesse)).BeginInit();
             this.SuspendLayout();
@@ -104,12 +105,24 @@ namespace TP2_Simulateur
             this.lstAeroports.Size = new System.Drawing.Size(264, 94);
             this.lstAeroports.TabIndex = 5;
             this.lstAeroports.Visible = false;
+            this.lstAeroports.SelectedIndexChanged += new System.EventHandler(this.lstAeroports_SelectedIndexChanged);
+            // 
+            // lstClients
+            // 
+            this.lstClients.FormattingEnabled = true;
+            this.lstClients.ItemHeight = 15;
+            this.lstClients.Location = new System.Drawing.Point(343, 26);
+            this.lstClients.Name = "lstClients";
+            this.lstClients.Size = new System.Drawing.Size(263, 94);
+            this.lstClients.TabIndex = 6;
+            this.lstClients.Visible = false;
             // 
             // ViewSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1075, 828);
+            this.Controls.Add(this.lstClients);
             this.Controls.Add(this.lstAeroports);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.sliderVitesse);
@@ -134,6 +147,7 @@ namespace TP2_Simulateur
         private TrackBar sliderVitesse;
         private Label label2;
         private ListBox lstAeroports;
+        private ListBox lstClients;
     }
 }
 

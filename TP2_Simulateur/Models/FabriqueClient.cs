@@ -10,24 +10,27 @@ namespace TP2_Simulateur.Models
         private static readonly object locker = new object();
         public static void GenererClientAeroport(List<Aeroport> aeroports)
         {
-
+             
             int quantite;
-            foreach (Aeroport ap in aeroports)
+            foreach (Aeroport ap1 in aeroports)
             {
+                List<Aeroport> aeroportsCopi = new List<Aeroport>();
+                foreach (Aeroport ap2 in aeroports)
+                {
+                    if (ap2 != ap1)
+                    {
+                        aeroportsCopi.Add(ap2);
+                    }
+                }
+                
                 //Passager
-                quantite = random.Next(ap.MinPassagersHeure, ap.MaxPassagersHeure);
-                for (int i = 0; i < quantite; i++)
-                {
-                    Passager client = new Passager(aeroports[random.Next(0, aeroports.Count)]);
-                    ap.passagerEnAttente.Add(client);
-                }
+                quantite = random.Next(ap1.MinPassagersHeure, ap1.MaxPassagersHeure);
+                Passager client = new Passager(aeroportsCopi[random.Next(0, aeroportsCopi.Count)], quantite);
+                ap1.passagerEnAttente.Add(client);
                 //Marchandise
-                quantite = random.Next(ap.MinPassagersHeure, ap.MaxPassagersHeure);
-                for (int i = 0; i < quantite; i++)
-                {
-                    Marchandise client = new Marchandise(aeroports[random.Next(0, aeroports.Count)]);
-                    ap.marchandiseEnAttente.Add(client);
-                }
+                quantite = random.Next(ap1.MinPassagersHeure, ap1.MaxPassagersHeure);
+                Marchandise marchandise = new Marchandise(aeroportsCopi[random.Next(0, aeroportsCopi.Count)], quantite);
+                ap1.marchandiseEnAttente.Add(marchandise);
             }
         }
 

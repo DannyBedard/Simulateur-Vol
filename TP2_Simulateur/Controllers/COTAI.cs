@@ -144,6 +144,11 @@ namespace TP2_Simulateur
         {
             horloge.Vitesse = vitesse;
         }
+
+        internal List<string> AvoirClientAeroport(int index)
+        {
+            return scenario.AvoirInfoClientAeroport(index);
+        }
     }
 
 

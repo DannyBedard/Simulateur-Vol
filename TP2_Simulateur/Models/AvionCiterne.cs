@@ -30,7 +30,7 @@ namespace TP2_Simulateur.Models
             TempsChargement = tempsChargement;
             TempsLargage = tempsLargage;
             TempsEntretient = tempsEntretient;
-            etatActuel = 0;
+            etatActuel = 1;
             CycleEtat = new List<Etat>()
             {
                 new EtatEmbarquement(),
