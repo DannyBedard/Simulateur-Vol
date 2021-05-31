@@ -52,22 +52,20 @@ namespace TP2_Simulateur
             int y = mouse.Y;
             // TODO: Traduire x,y en lat,long
         }
-        public void DessinerAvion()
+        private void DessinerAvion()
         {
             Graphics g = Graphics.FromImage(image);
             Image avionImg = new Bitmap("Ressources/avion.png");
-            ImageAttributes wrapMode = new ImageAttributes();
             lock (lockObject)
             {
                 foreach (PointF point in AeronefPoints)
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(avionImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, avionImg.Width, avionImg.Height, GraphicsUnit.Pixel, wrapMode);
+                    g.DrawImage(avionImg, new RectangleF(point, new SizeF(40, 40)));
                 }
+                AeronefPoints.Clear();
             }
 
             avionImg.Dispose();
-            wrapMode.Dispose();
             g.Dispose();
         }
 
@@ -88,18 +86,15 @@ namespace TP2_Simulateur
         private void DessinerAeroports() {
             Graphics g = Graphics.FromImage(image);
             Image aeroportImg = new Bitmap("Ressources/aeroport.png");
-            ImageAttributes wrapMode = new ImageAttributes();
             lock (lockObject)
             {
                 foreach (PointF point in airportPoints)
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(aeroportImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, aeroportImg.Width, aeroportImg.Height, GraphicsUnit.Pixel, wrapMode);
+                    g.DrawImage(aeroportImg, new RectangleF(point, new Size(30, 30)));
                 }
             }
 
             aeroportImg.Dispose();
-            wrapMode.Dispose();
             g.Dispose();
 
         }
@@ -122,36 +117,30 @@ namespace TP2_Simulateur
         {
             Graphics g = Graphics.FromImage(image);
             Image feuImg = new Bitmap("Ressources/incendie.png");
-            ImageAttributes wrapMode = new ImageAttributes();
             lock (lockObject) 
             {
                 foreach (PointF point in incendiePoints)
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(feuImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, feuImg.Width, feuImg.Height, GraphicsUnit.Pixel, wrapMode);
+                    g.DrawImage(feuImg, new RectangleF(point, new Size(30, 30)));
                 }
             }
 
             feuImg.Dispose();
-            wrapMode.Dispose();
             g.Dispose();
         }
         private void DessinerSecours() 
         {
             Graphics g = Graphics.FromImage(image);
             Image secoursImg = new Bitmap("Ressources/secours.png");
-            ImageAttributes wrapMode = new ImageAttributes();
             lock(lockObject)
             {
                 foreach (PointF point in secoursPoints)
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(secoursImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, secoursImg.Width, secoursImg.Height, GraphicsUnit.Pixel, wrapMode);
+                    g.DrawImage(secoursImg, new Rectangle(Point.Round(point), new Size(30, 30)));
                 }
             }
 
             secoursImg.Dispose();
-            wrapMode.Dispose();
             g.Dispose();
         }
         private void DrawTrajectories(Bitmap bmap)
@@ -187,18 +176,15 @@ namespace TP2_Simulateur
         {
             Graphics g = Graphics.FromImage(image);
             Image observateurImg = new Bitmap("Ressources/observateurs.png");
-            ImageAttributes wrapMode = new ImageAttributes();
             lock (lockObject)
             {
                 foreach (PointF point in observateurPoints)
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(observateurImg, new Rectangle(Point.Round(point), new Size(30, 30)), 0, 0, observateurImg.Width, observateurImg.Height, GraphicsUnit.Pixel, wrapMode);
+                    g.DrawImage(observateurImg, new Rectangle(Point.Round(point), new Size(30, 30)));
                 }
             }
 
             observateurImg.Dispose();
-            wrapMode.Dispose();
             g.Dispose();
         }
 
@@ -222,6 +208,10 @@ namespace TP2_Simulateur
         public void AjouterPointsTrajectoire(List<PointF[]> pointsTrajectoire) 
         {
             trajectoires = pointsTrajectoire;
+            foreach (PointF[] points in trajectoires)
+            {
+                AjouterPointAeronef(points[1]);
+            }
         }
         public void AjouterPointAeroport(PointF point)
         {
