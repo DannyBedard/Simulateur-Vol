@@ -41,7 +41,7 @@ namespace TP2_Simulateur.Models
             }
             float deltaY = destination.Latitude - depart.Latitude;
             float deltaX = destination.Longitude - depart.Longitude;
-            t += (float)(vitesseAeronef/100) * (float)vitesseTemps;
+            t += (float)(vitesseAeronef/(PointCartographique.DistanceEntre(depart,destination)/10)) * (float)vitesseTemps;
             float x = (1 - t) * (actuel.Longitude) + t * (destination.Longitude);
             float y = (1 - t) * (actuel.Latitude) + t * (destination.Latitude);
 
