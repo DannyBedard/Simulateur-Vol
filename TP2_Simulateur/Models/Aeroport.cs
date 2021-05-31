@@ -95,6 +95,7 @@ namespace TP2_Simulateur.Models
                             aeronef.Destination = marchandise.Destination.PositionCarto;
                             aeronef.Position = this.PositionCarto;
                             aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, marchandise.Destination.PositionCarto));
+                            aeronef.ChangerEtat();
                             RetirerAeronef(aeronef);
                             return aeronef;
                         }
