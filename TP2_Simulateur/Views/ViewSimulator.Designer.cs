@@ -35,10 +35,12 @@ namespace TP2_Simulateur
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnScenario = new System.Windows.Forms.Button();
             this.sliderVitesse = new System.Windows.Forms.TrackBar();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblVitesse = new System.Windows.Forms.Label();
             this.lstAeroports = new System.Windows.Forms.ListBox();
-            this.lstClients = new System.Windows.Forms.ListBox();
+            this.lstClientsAeroport = new System.Windows.Forms.ListBox();
             this.lstAvions = new System.Windows.Forms.ListBox();
+            this.lstClients = new System.Windows.Forms.ListBox();
+            this.lblInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderVitesse)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +50,7 @@ namespace TP2_Simulateur
             this.picMap.BackColor = System.Drawing.Color.Transparent;
             this.picMap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picMap.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.picMap.Location = new System.Drawing.Point(0, 143);
+            this.picMap.Location = new System.Drawing.Point(0, 163);
             this.picMap.Name = "picMap";
             this.picMap.Size = new System.Drawing.Size(1075, 685);
             this.picMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -67,9 +69,9 @@ namespace TP2_Simulateur
             // 
             // btnScenario
             // 
-            this.btnScenario.Location = new System.Drawing.Point(12, 12);
+            this.btnScenario.Location = new System.Drawing.Point(184, 41);
             this.btnScenario.Name = "btnScenario";
-            this.btnScenario.Size = new System.Drawing.Size(229, 40);
+            this.btnScenario.Size = new System.Drawing.Size(663, 79);
             this.btnScenario.TabIndex = 2;
             this.btnScenario.Text = "Télécharger un scénario";
             this.btnScenario.UseVisualStyleBackColor = true;
@@ -78,65 +80,89 @@ namespace TP2_Simulateur
             // sliderVitesse
             // 
             this.sliderVitesse.LargeChange = 1;
-            this.sliderVitesse.Location = new System.Drawing.Point(881, 58);
+            this.sliderVitesse.Location = new System.Drawing.Point(428, 112);
             this.sliderVitesse.Maximum = 3;
             this.sliderVitesse.Minimum = -3;
             this.sliderVitesse.Name = "sliderVitesse";
             this.sliderVitesse.Size = new System.Drawing.Size(195, 45);
             this.sliderVitesse.TabIndex = 3;
             this.sliderVitesse.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.sliderVitesse.Visible = false;
             this.sliderVitesse.ValueChanged += new System.EventHandler(this.sliderVitesse_ValueChanged);
             // 
-            // label2
+            // lblVitesse
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(942, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 21);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Vitesse : ";
+            this.lblVitesse.AutoSize = true;
+            this.lblVitesse.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblVitesse.Location = new System.Drawing.Point(338, 123);
+            this.lblVitesse.Name = "lblVitesse";
+            this.lblVitesse.Size = new System.Drawing.Size(70, 21);
+            this.lblVitesse.TabIndex = 4;
+            this.lblVitesse.Text = "Vitesse : ";
+            this.lblVitesse.Visible = false;
             // 
             // lstAeroports
             // 
             this.lstAeroports.FormattingEnabled = true;
             this.lstAeroports.ItemHeight = 15;
-            this.lstAeroports.Location = new System.Drawing.Point(12, 26);
+            this.lstAeroports.Location = new System.Drawing.Point(12, 12);
             this.lstAeroports.Name = "lstAeroports";
-            this.lstAeroports.Size = new System.Drawing.Size(264, 94);
+            this.lstAeroports.Size = new System.Drawing.Size(253, 94);
             this.lstAeroports.TabIndex = 5;
             this.lstAeroports.Visible = false;
             this.lstAeroports.SelectedIndexChanged += new System.EventHandler(this.lstAeroports_SelectedIndexChanged);
             // 
-            // lstClients
+            // lstClientsAeroport
             // 
-            this.lstClients.FormattingEnabled = true;
-            this.lstClients.ItemHeight = 15;
-            this.lstClients.Location = new System.Drawing.Point(313, 26);
-            this.lstClients.Name = "lstClients";
-            this.lstClients.Size = new System.Drawing.Size(263, 94);
-            this.lstClients.TabIndex = 6;
-            this.lstClients.Visible = false;
+            this.lstClientsAeroport.FormattingEnabled = true;
+            this.lstClientsAeroport.ItemHeight = 15;
+            this.lstClientsAeroport.Location = new System.Drawing.Point(271, 12);
+            this.lstClientsAeroport.Name = "lstClientsAeroport";
+            this.lstClientsAeroport.Size = new System.Drawing.Size(253, 94);
+            this.lstClientsAeroport.TabIndex = 6;
+            this.lstClientsAeroport.Visible = false;
             // 
             // lstAvions
             // 
             this.lstAvions.FormattingEnabled = true;
             this.lstAvions.ItemHeight = 15;
-            this.lstAvions.Location = new System.Drawing.Point(612, 26);
+            this.lstAvions.Location = new System.Drawing.Point(530, 12);
             this.lstAvions.Name = "lstAvions";
-            this.lstAvions.Size = new System.Drawing.Size(263, 94);
+            this.lstAvions.Size = new System.Drawing.Size(253, 94);
             this.lstAvions.TabIndex = 7;
             this.lstAvions.Visible = false;
+            // 
+            // lstClients
+            // 
+            this.lstClients.FormattingEnabled = true;
+            this.lstClients.ItemHeight = 15;
+            this.lstClients.Location = new System.Drawing.Point(789, 12);
+            this.lstClients.Name = "lstClients";
+            this.lstClients.Size = new System.Drawing.Size(253, 94);
+            this.lstClients.TabIndex = 8;
+            this.lstClients.Visible = false;
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(0, 112);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(279, 15);
+            this.lblInfo.TabIndex = 9;
+            this.lblInfo.Text = "*Veuillez cliquer sur un aéroport pour voir les détails";
+            this.lblInfo.Visible = false;
             // 
             // ViewSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1075, 828);
-            this.Controls.Add(this.lstAvions);
+            this.ClientSize = new System.Drawing.Size(1075, 848);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.lstClients);
+            this.Controls.Add(this.lstAvions);
+            this.Controls.Add(this.lstClientsAeroport);
             this.Controls.Add(this.lstAeroports);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblVitesse);
             this.Controls.Add(this.sliderVitesse);
             this.Controls.Add(this.btnScenario);
             this.Controls.Add(this.panel1);
@@ -157,10 +183,12 @@ namespace TP2_Simulateur
         private System.Windows.Forms.Button btnScenario;
         private System.Windows.Forms.OpenFileDialog emplacementScenarioDialog;
         private TrackBar sliderVitesse;
-        private Label label2;
+        private Label lblVitesse;
         private ListBox lstAeroports;
-        private ListBox lstClients;
+        private ListBox lstClientsAeroport;
         private ListBox lstAvions;
+        private ListBox lstClients;
+        private Label lblInfo;
     }
 }
 

@@ -23,5 +23,9 @@ namespace TP2_Simulateur.Models
             secourFinit.Invoke(this);
         }
         public bool EnAttente { get; set; }
+        public override string ToString()
+        {
+            return "Secours à la position " + Position.ToString();
+        }
     }
 }

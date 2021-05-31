@@ -11,5 +11,9 @@ namespace TP2_Simulateur.Models
         {
             base.Position = point;
         }
+        public override string ToString()
+        {
+            return "Observation à la position " + Position.ToString();
+        }
     }
 }

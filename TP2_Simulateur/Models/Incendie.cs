@@ -38,5 +38,10 @@ namespace TP2_Simulateur.Models
                 FeuEtein.Invoke(this);
             }
         }
+
+        public override string ToString()
+        {
+            return "Incendie d'envergure " + envergure + " à la position " + Position.ToString();
+        }
     }
 }

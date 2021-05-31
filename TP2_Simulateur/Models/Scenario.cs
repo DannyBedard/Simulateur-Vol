@@ -249,6 +249,21 @@ namespace TP2_Simulateur.Models
         {
             return Aeroports[index].AvoirAeronefInfo();
         }
+        public List<string> AvoirClient()
+        {
+            List<string> clients = new List<string>();
+
+            foreach (Incendie incendie in incendies)
+                clients.Add(incendie.ToString());
+
+            foreach (Secours secours in secours)
+                clients.Add(secours.ToString());
+
+            foreach (Observateur observation in observateurs)
+                clients.Add(observation.ToString());
+
+            return clients;
+        }
 
         public void Init()
         {

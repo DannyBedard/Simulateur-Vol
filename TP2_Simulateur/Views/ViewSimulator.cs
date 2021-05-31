@@ -275,8 +275,12 @@ namespace TP2_Simulateur
             {
                 btnScenario.Dispose();
                 lstAeroports.Visible = true;
-                lstClients.Visible = true;
+                lstClientsAeroport.Visible = true;
                 lstAvions.Visible = true;
+                lstClients.Visible = true;
+                lblVitesse.Visible = true;
+                sliderVitesse.Visible = true;
+                lblInfo.Visible = true;
             }
             else
                 MessageBox.Show("Le fichier est invalide.", "Erreur chargement du fichier", MessageBoxButtons.OK);
@@ -307,6 +311,13 @@ namespace TP2_Simulateur
             g.Dispose();
         }
 
+        private void AjoutClients()
+        { 
+            List<string> clients = controleur.AvoirClient();
+            foreach (string client in clients)
+                lstClients.Items.Add(client);
+        }
+
         private void lstAeroports_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = lstAeroports.SelectedIndex;
@@ -314,19 +325,21 @@ namespace TP2_Simulateur
             {
                 return;
             }
-            lstClients.Items.Clear();
+            lstClientsAeroport.Items.Clear();
             lstAvions.Items.Clear();
+            lstClients.Items.Clear();
             
             List<string> clients = controleur.AvoirClientAeroport(index);
             foreach (string client in clients)
             {
-                lstClients.Items.Add(client);
+                lstClientsAeroport.Items.Add(client);
             }
             List<string> aeronefs = controleur.AvoirAeronefAeroport(index);
             foreach (string aeronef in aeronefs)
             {
                 lstAvions.Items.Add(aeronef);
             }
+            AjoutClients();
         }
     }
 }

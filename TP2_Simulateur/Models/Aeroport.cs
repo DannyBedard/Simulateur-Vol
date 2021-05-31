@@ -105,7 +105,6 @@ namespace TP2_Simulateur.Models
         {
             Aeronefs.Remove(aeronef);
         }
-
        
         internal List<string> AvoirClientInfo()
         {

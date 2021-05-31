@@ -178,6 +178,11 @@ namespace TP2_Simulateur
         {
             return scenario.AvoirAeronefAeroport(index);
         }
+
+        public List<string> AvoirClient()
+        {
+            return scenario.AvoirClient();
+        }
     }
 
 
