@@ -21,7 +21,7 @@ namespace TP2Editeur
         private void picMap_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs) e;
-            controleur.afficherPositionChoisit(mouse.X, mouse.Y);
+            controleur.AfficherPositionChoisit(mouse.X, mouse.Y);
             this.Close();
         }
 

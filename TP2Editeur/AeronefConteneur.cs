@@ -6,10 +6,12 @@ namespace TP2Editeur
 {
     public abstract class AeronefConteneur : Aeronef
     {
-        public int Capacite { get; set; }
-        public int TempsEntretient { get; set; }
-        public int TempsEmbarquement { get; set; }
-        public int TempsDebarquement { get; set; }
+        int capacite;
+        int tempsEmbarquement;
+        int tempsDebarquement;
+        public int Capacite { get { return capacite; } set { capacite = value; } }
+        public int TempsEmbarquement { get { return tempsEmbarquement; } set { tempsEmbarquement = value; } }
+        public int TempsDebarquement { get { return tempsDebarquement; } set { tempsDebarquement = value; } }
         public override abstract string ToString();
     }
 }

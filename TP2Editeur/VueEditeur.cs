@@ -24,7 +24,7 @@ namespace TP2Editeur
             InitializeComponent();
         }
 
-        public void mettrePosition(string position)
+        public void MettrePosition(string position)
         {
             txbAeroportPosition.Text = position;
         }
@@ -41,10 +41,10 @@ namespace TP2Editeur
                 int maxPassager = int.Parse(txbAeroportMaxPassager.Text);
                 int minMarchandise = int.Parse(txbAeroportMinMarchandise.Text);
                 int maxMarchandise = int.Parse(txbAeroportMaxMarchandises.Text);
-                controleur.ajouterAeroport(apName, apPosition, minPassager, maxPassager, minMarchandise, maxMarchandise);
+                controleur.AjouterAeroport(apName, apPosition, minPassager, maxPassager, minMarchandise, maxMarchandise);
             }
         }
-        public void mettreAJourListeAeroports(List<string> aeroports) {
+        public void MettreAJourListeAeroports(List<string> aeroports) {
             lstAeroports.Items.Clear();
             foreach (string aeroport in aeroports) {
                 lstAeroports.Items.Add(aeroport);
@@ -97,19 +97,19 @@ namespace TP2Editeur
             btnAjouterAeronef.Enabled = true;
             btnModifierAeroport.Enabled = true;
             btnSupprimerAeroport.Enabled = true;
-            mettreAJourListeAeronef(lstAeroports.SelectedIndex);
+            MettreAJourListeAeronef(lstAeroports.SelectedIndex);
             AfficherInfoAeroport(lstAeroports.SelectedIndex);
         } 
-        private void mettreAJourListeAeronef(int indexAeroport) {
+        private void MettreAJourListeAeronef(int indexAeroport) {
             lstAeronefs.Items.Clear();
-            List<string> aeronefsString = controleur.avoirAeronefsDeAeroport(indexAeroport);
+            List<string> aeronefsString = controleur.AvoirAeronefsDeAeroport(indexAeroport);
             foreach (string aeronef in aeronefsString)
             {
                 lstAeronefs.Items.Add(aeronef);
             }
         }
 
-        internal string choisirEmplacement()
+        internal string ChoisirEmplacement()
         {
             emplacementScenarioDialog.ShowDialog();
             return emplacementScenarioDialog.FileName;
@@ -117,7 +117,7 @@ namespace TP2Editeur
 
         private void btnGenererScenario_Click(object sender, EventArgs e)
         {
-            controleur.genererScenario();
+            controleur.GenererScenario();
         }
 
         private void btnAjouterAeronef_Click(object sender, EventArgs e)
@@ -145,26 +145,26 @@ namespace TP2Editeur
                         int tempsEmbarquement = int.Parse(txbAeronefEmbarquement.Text);
                         int capacite = int.Parse(txbCapacite.Text);
                         int tempsDebarquement = int.Parse(txbAeronefDebarquement.Text);
-                        controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
+                        controleur.AjouterAeronef(apIndex, aeronefNom, aeronefType, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
                         break;
                     case "Citerne":
                         int tempsChargement = int.Parse(txbAeronefEmbarquement.Text);
                         int tempsLargage = int.Parse(txbAeronefDebarquement.Text);
-                        controleur.ajouterAeronef(apIndex, aeronefNom, aeronefType, vitesse, tempsChargement, tempsLargage, tempsEntretient);
+                        controleur.AjouterAeronef(apIndex, aeronefNom, aeronefType, vitesse, tempsChargement, tempsLargage, tempsEntretient);
                         break;
                     case "Hélicoptère de secours":
                     case "Observateur":
-                        controleur.ajouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
+                        controleur.AjouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
                         break;
                 }
 
-                mettreAJourListeAeronef(apIndex);
+                MettreAJourListeAeronef(apIndex);
             }
         }
 
         private void btnPosition_Click(object sender, EventArgs e)
         {
-            controleur.afficherCarte();
+            controleur.AfficherCarte();
         }
 
         private void AfficherInfoAeroport(int indexAeroport)
@@ -243,7 +243,6 @@ namespace TP2Editeur
             if ((aeronefType == "Passagers" || aeronefType == "Marchandises" || aeronefType == "Citerne") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _) || !int.TryParse(txbAeronefEntretient.Text, out _) || !int.TryParse(txbAeronefDebarquement.Text, out _) || !int.TryParse(txbAeronefEmbarquement.Text, out _) || !int.TryParse(txbCapacite.Text, out _)))
             {
                 MessageBox.Show("Veuillez remplir correctement les champs");
-                //tempsEntretient = int.Parse(txbAeronefEntretient.Text);
             }
             else if ((aeronefType == "Observateur" || aeronefType == "Hélicoptère de secours") && (txbAeronefNom.Text == "" || !int.TryParse(txbAeronefVitesse.Text, out _)))
                 MessageBox.Show("Veuillez remplir correctement les champs");
@@ -274,7 +273,7 @@ namespace TP2Editeur
                         break;
                 }
 
-                mettreAJourListeAeronef(apIndex);
+                MettreAJourListeAeronef(apIndex);
             }
         }
 

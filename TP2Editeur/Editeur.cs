@@ -17,13 +17,13 @@ namespace TP2Editeur
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Editeur editeur = new Editeur();
-            editeur.afficherVue();
+            editeur.AfficherVue();
         }
 
-        public void afficherPositionChoisit(int x, int y)
+        public void AfficherPositionChoisit(int x, int y)
         {
-            string position = PositionCartographique.stringFromPixel(x,y,vueMap.avoirTailleCarte());
-            vueEditeur.mettrePosition(position);
+            string position = PositionCartographique.StringFromPixel(x,y,vueMap.avoirTailleCarte());
+            vueEditeur.MettrePosition(position);
         }
 
         private Scenario scenario = new Scenario();
@@ -33,12 +33,12 @@ namespace TP2Editeur
             vueEditeur = new VueEditeur(this);
             
         }
-        public void afficherVue()
+        private void AfficherVue()
         {
             Application.Run(vueEditeur);
         }
 
-        public void ajouterAeroport(string apName, string apPosition, int minPassager, int maxPassager, int minMarchandise, int maxMarchandise)
+        public void AjouterAeroport(string apName, string apPosition, int minPassager, int maxPassager, int minMarchandise, int maxMarchandise)
         {
             Aeroport nouveauAeroport = new Aeroport
             {
@@ -73,10 +73,10 @@ namespace TP2Editeur
             {
                 stringAeroports.Add(aeroport.ToString());
             }
-            vueEditeur.mettreAJourListeAeroports(stringAeroports);
+            vueEditeur.MettreAJourListeAeroports(stringAeroports);
         }
 
-        public List<string> avoirAeronefsDeAeroport(int selectedIndex)
+        public List<string> AvoirAeronefsDeAeroport(int selectedIndex)
         {
             List<Aeroport> aeroports = scenario.Aeroports;
             Aeroport aeroport = aeroports[selectedIndex];
@@ -88,21 +88,21 @@ namespace TP2Editeur
             return aeronefs;
         }
 
-        public void genererScenario()
+        public void GenererScenario()
         {
-            string chemin = vueEditeur.choisirEmplacement();
+            string chemin = vueEditeur.ChoisirEmplacement();
             scenario.Serialize(chemin);
         }
 
-        public void ajouterAeronef(int apIndex, string aeronefNom, string aeronefType, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
+        public void AjouterAeronef(int apIndex, string aeronefNom, string aeronefType, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
         }
-        public void ajouterAeronef(int apIndex, string aeronefNom, string aeronefType, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
+        public void AjouterAeronef(int apIndex, string aeronefNom, string aeronefType, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)
         {
             scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, vitesse, tempsChargement, tempsLargage, tempsEntretient);
         }
-        public void ajouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
+        public void AjouterAeronef(int apIndex, string aeronefType, string aeronefNom, int vitesse)
         {
             scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, vitesse);
         }
@@ -125,7 +125,7 @@ namespace TP2Editeur
             scenario.SupprimerAeronef(apIndex, index);
         }
 
-        public void afficherCarte()
+        public void AfficherCarte()
         {
             vueMap = new VueMap(this);
             vueMap.Show();

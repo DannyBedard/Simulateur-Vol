@@ -6,8 +6,13 @@ namespace TP2Editeur
 {
     public abstract class Aeronef
     {
-        public string Nom { get; set; }
-        public int Vitesse { get; set; }
+        string nom;
+        int vitesse;
+        int tempsEntretient;
+
+        public string Nom { get { return nom; } set { nom = value; } }
+        public int Vitesse { get { return vitesse; } set { vitesse = value; } }
+        public int TempsEntretient { get { return tempsEntretient; } set { tempsEntretient = value; } }
         public override abstract string ToString();
     }
 }
