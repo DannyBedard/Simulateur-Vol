@@ -135,6 +135,7 @@ namespace TP2_Simulateur
                 {
                     scenario = (Scenario)xs.Deserialize(rd);
                     scenario.Init();
+                    scenario.EvenementTermine += MettreAJoursPoints;
                     valide = true;
                 }
                 catch { }
@@ -144,6 +145,24 @@ namespace TP2_Simulateur
 
                 return valide;
             }
+        }
+
+        private void MettreAJoursPoints()
+        {
+            view.ViderListes();
+            foreach (PointF point in scenario.AvoirPointsIncendies())
+            {
+                view.AjouterPointIncendie(point);
+            }
+            foreach (PointF point in scenario.AvoirPointsSecours())
+            {
+                view.AjouterPointSecours(point);
+            }
+            foreach (PointF point in scenario.AvoirPointsObservateur())
+            {
+                view.AjouterPointObservateur(point);
+            }
+
         }
 
         public void ModifierVitesseTemps(double vitesse)

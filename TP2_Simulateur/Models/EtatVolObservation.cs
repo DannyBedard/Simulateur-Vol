@@ -6,5 +6,23 @@ namespace TP2_Simulateur.Models
 {
     class EtatVolObservation : EtatVol
     {
+        bool retourEffectue = false;
+        public EtatVolObservation(Aeronef aeronef) : base(aeronef) { }
+        public override void Action(double vitesseHorloge)
+        {
+            base.Action(vitesseHorloge);
+            if (aeronef.Position == aeronef.AvoirTrajectoire().Destination)
+            {
+                if (retourEffectue)
+                {
+                    aeronef.FaireAtterrissage();
+                    aeronef.ChangerEtat();
+                }
+                else
+                    aeronef.RetourPositionOrigine();
+                    
+                retourEffectue = !retourEffectue;
+            }
+        }
     }
 }

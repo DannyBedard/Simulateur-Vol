@@ -6,6 +6,9 @@ namespace TP2_Simulateur.Models
 {
     public class Incendie : Client
     {
+        public delegate void FeuEteintEventHandler(Incendie incendie);
+        public event FeuEteintEventHandler FeuEtein;
+
         int envergure;
         bool besoinAvion;
         public Incendie(PointCartographique point)
@@ -19,12 +22,21 @@ namespace TP2_Simulateur.Models
         public Incendie() { }
         public int Envergure
         {
-            get { return envergure; }
+            get { return envergure;}
         }
         public bool BesoinAvion
         {
             get { return besoinAvion; }
             set { besoinAvion = value; }
+        }
+
+        internal void Eteindre()
+        {
+            envergure--;
+            if (envergure == 0)
+            {
+                FeuEtein.Invoke(this);
+            }
         }
     }
 }

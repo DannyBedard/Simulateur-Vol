@@ -8,22 +8,40 @@ namespace TP2_Simulateur.Models
     public abstract class Aeronef
     {
 
+        public delegate void AtterrissageEventHandler(Aeronef aeronef, PointCartographique aeroportPosition);
+        public event AtterrissageEventHandler Atterrissage;
 
         string nom;
         int vitesse;
         protected int etatActuel;
         protected Client client = new Passager();
-        private bool estDisponnible = false;
         PointCartographique destination;
         PointCartographique position;
         List<Etat> cycleEtat;
         Trajectoire trajet = null;
-
         public List<Etat> CycleEtat
         {
             get { return cycleEtat; }
             set { cycleEtat = value; }
         }
+
+        public void RetourPositionOrigine()
+        {
+            trajet = new Trajectoire(trajet.Destination, trajet.Depart);
+        }
+        public void FaireAtterrissage() 
+        {
+            //Atterrissage.Invoke(this, this.AvoirTrajectoire().Destination);
+        }
+        public virtual void ChangerEtat()
+        {
+            etatActuel++;
+            if (etatActuel >= cycleEtat.Count)
+            {
+                etatActuel = 0;
+            }
+        }
+
         public int EtatActuel{ get { return etatActuel; } }
         public string Nom {
             get { return nom; } 
@@ -43,19 +61,8 @@ namespace TP2_Simulateur.Models
 
         public override abstract string ToString();
 
-        public void Action()
-        {
-            //cycleEtat[etatActuel].Action();
-            SetEtatActuel();
-        }
-        private void SetEtatActuel()
-        {
-            etatActuel++;
-            if (etatActuel > cycleEtat.Count)
-                etatActuel = 0;
-        }
 
-        public void DefinirTrajectoire(Trajectoire trajectoire)
+        public virtual void DefinirTrajectoire(Trajectoire trajectoire)
         {
             trajet = trajectoire;
         }
@@ -77,9 +84,9 @@ namespace TP2_Simulateur.Models
             return false;
         }
 
-        public void Avancer(double vitesseHorloge)
+        public void MettreAJourEtat(double vitesseTemps) 
         {
-            position = trajet.NextPoint(vitesseHorloge, Vitesse);
+            cycleEtat[etatActuel].Action(vitesseTemps);
         }
 
         internal bool EstEnVol()
@@ -88,6 +95,13 @@ namespace TP2_Simulateur.Models
             {
                 return true;
             }
+            return false;
+        }
+
+        public abstract void EmbarquerClient(Client client);
+
+        internal bool ContientClient(Secours secour)
+        {
             return false;
         }
     }

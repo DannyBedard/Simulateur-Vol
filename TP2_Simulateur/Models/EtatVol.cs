@@ -9,13 +9,11 @@ namespace TP2_Simulateur.Models
     {
         private Trajectoire trajet;
         private bool estArrive = false;
-        //private float LongeurTrajet() 
-        //{
-            
-        //}
-        public PointCartographique AvoirProchainPoint(double vitesseTemps, double vitesseAeronef)
+        public EtatVol(Aeronef aeronef) : base(aeronef) { }
+        public override void Action(double vitesseHorloge)
         {
-            return trajet.NextPoint(vitesseTemps, vitesseAeronef);
+            aeronef.Position = base.aeronef.AvoirTrajectoire().NextPoint(vitesseHorloge,aeronef.Vitesse);
+
         }
     }
 }

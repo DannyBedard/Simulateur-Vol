@@ -6,20 +6,34 @@ namespace TP2_Simulateur.Models
 {
     public class HelicoptereSecours : Aeronef
     {
-        public HelicoptereSecours() { }
-        public HelicoptereSecours(string nom, int vitesse)
+        private Secours secourAffectee;
+        public HelicoptereSecours() 
         {
-            base.Nom = nom;
-            base.Vitesse = vitesse;
             client = new Secours();
             etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
-                new EtatDisponnible(),
-                new EtatVolObservation(),
-                new EtatMaintenance()
+                new EtatDisponnible(this),
+                new EtatVolObservation(this),
             };
         }
+        public override void EmbarquerClient(Client secour)
+        {
+            secourAffectee = (Secours) secour;
+            secourAffectee.secourFinit += RetirerSecour;
+            base.DefinirTrajectoire(new Trajectoire(Position, secour.Position));
+            ChangerEtat();
+        }
+        public override void ChangerEtat()
+        {
+            base.ChangerEtat();
+        }
+        private void RetirerSecour(Secours secours)
+        {
+            secourAffectee = null;
+            ChangerEtat();
+        }
+
         public override string ToString()
         {
             return Nom + " (Hélicoptère de secours),  Vitesse : " + Vitesse;

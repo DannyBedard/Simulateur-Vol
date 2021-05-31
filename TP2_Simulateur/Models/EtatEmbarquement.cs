@@ -6,7 +6,19 @@ namespace TP2_Simulateur.Models
 {
     class EtatEmbarquement : Etat
     {
-        //public delegate void EmbarquementEventHandler(string temps);
-        //public event TempsModifierEventHandler TempsModifier;
+        public EtatEmbarquement(Aeronef aeronef) : base(aeronef) { }
+
+        public override void Action(double vitesseHorloge)
+        {
+            if (aeronef is AvionCiterne)
+            {
+                AvionCiterne avion = (AvionCiterne)aeronef;
+                if (tempsEcoule >= avion.TempsChargement)
+                {
+                    avion.ChangerEtat();
+                }
+            }
+            tempsEcoule += vitesseHorloge / 10;
+        }
     }
 }

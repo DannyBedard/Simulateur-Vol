@@ -6,5 +6,12 @@ namespace TP2_Simulateur.Models
 {
     class EtatMaintenance : Etat
     {
+        public EtatMaintenance(Aeronef aeronef) : base(aeronef) { }
+
+        public override void Action(double vitesseHorloge)
+        {
+        }
+        
+        
     }
 }

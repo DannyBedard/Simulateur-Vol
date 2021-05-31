@@ -13,6 +13,9 @@ namespace TP2_Simulateur.Models
     [XmlInclude(typeof(HelicoptereSecours))]
     public class Scenario
     {
+        public delegate void EvenementTermineEventHandler();
+        public event EvenementTermineEventHandler EvenementTermine;
+
         List<Client> incendies = new List<Client>();
         List<Client> observateurs = new List<Client>();
         List<Client> secours = new List<Client>();
@@ -82,8 +85,6 @@ namespace TP2_Simulateur.Models
             foreach (Aeronef aeronef in aeronefsEnVol)
             {
                 
-                if (aeronef.EstEnVol())
-                {
                     PointF[] points = new PointF[2];
                     Trajectoire trajet = aeronef.AvoirTrajectoire();
                     points[0] = trajet.Depart.Transposer(TailleImage);
@@ -101,7 +102,6 @@ namespace TP2_Simulateur.Models
                         color = Color.Gray;
 
                     trajets.Add(new Tuple<PointF[], Color>(points, color));
-                }
             }
             return trajets;
         }
@@ -110,12 +110,7 @@ namespace TP2_Simulateur.Models
         {
             foreach (Aeronef aeronef in aeronefsEnVol)
             {
-                if (aeronef.EstEnVol())
-                {
-                    aeronef.Avancer(vitesseHorloge);
-                }
-                else
-                    aeronef.Action();
+                    aeronef.MettreAJourEtat(vitesseHorloge);
             }
         }
 
@@ -137,16 +132,12 @@ namespace TP2_Simulateur.Models
         {
             aeronefsEnVol.Add(aeronef);
             depart.RetirerAeronef(aeronef);
-            Trajectoire trajectoire = new Trajectoire(depart.PositionCarto, aeronef.Destination); // Trouver dans quel classe mettre cette trajectoire.
-            
-            aeronef.DefinirTrajectoire(trajectoire);
         }
         public List<PointF> AvoirPointsAeronef()
         {
             List<PointF> points = new List<PointF>();
             foreach (Aeronef aeronef in aeronefsEnVol)
             {
-                aeronef.Action();
                 points.Add(aeronef.Position.Transposer(TailleImage));
             }
             return points;
@@ -167,6 +158,7 @@ namespace TP2_Simulateur.Models
                             if (distanceAeroport == -1F)
                             {
                                 distanceAeroport = distanceActuel;
+                                aeroportProche = aeroportActuel;
                             }
                             else if (distanceActuel < distanceAeroport)
                             {
@@ -177,11 +169,75 @@ namespace TP2_Simulateur.Models
                     }
                     if (aeroportProche != null)
                     {
+                        incendie.BesoinAvion = false;
                         aeroportProche.AffecterIncendie(incendie);
-
+                        incendie.FeuEtein += SupprimerFeu;
                     }
                 }
             }
+
+            foreach (Secours secour in secours)
+            {
+                if (secour.EnAttente)
+                {
+                    Aeroport aeroportProche = null;
+                    float distanceAeroport = -1F;
+                    foreach (Aeroport aeroportActuel in Aeroports)
+                    {
+                        if (aeroportActuel.AvionDisponible(secour))
+                        {
+                            float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, secour.Position);
+                            if (distanceAeroport == -1F)
+                            {
+                                distanceAeroport = distanceActuel;
+                                aeroportProche = aeroportActuel;
+                            }
+                            else if (distanceActuel < distanceAeroport)
+                            {
+                                aeroportProche = aeroportActuel;
+                                distanceAeroport = distanceActuel;
+                            }
+                        }
+                    }
+                    if (aeroportProche != null)
+                    {
+                        secour.EnAttente = false;
+                        aeroportProche.AffecterSecour(secour);
+                        secour.secourFinit += SupprimerSecour;
+                    }
+                }
+
+            }
+        }
+        private void GererAtterrissage(Aeronef aeronef, PointCartographique positionAeroport) 
+        {
+            foreach (Aeroport ap in Aeroports)
+            {
+                if (ap.PositionCarto == positionAeroport)
+                {
+                    ap.AjouterAeronef(aeronef);
+                    aeronefsEnVol.Remove(aeronef);
+                }
+            }
+        }
+        private void SupprimerSecour(Secours secour)
+        {
+            
+            foreach (Aeronef aeronef in aeronefsEnVol)
+            {
+                if (aeronef.ContientClient(secour))
+                {
+                    aeronef.Atterrissage += GererAtterrissage;
+                }
+            }
+            secours.Remove(secour);
+            EvenementTermine.Invoke();
+        }
+
+        private void SupprimerFeu(Incendie incendie)
+        {
+            incendies.Remove(incendie);
+            EvenementTermine.Invoke();
         }
 
         public List<string> AvoirInfoClientAeroport(int index)

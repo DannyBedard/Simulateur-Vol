@@ -6,5 +6,6 @@ namespace TP2_Simulateur.Models
 {
     class EtatVolPassager : EtatVol 
     {
+        public EtatVolPassager(Aeronef aeronef) : base(aeronef) { }
     }
 }

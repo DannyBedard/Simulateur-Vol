@@ -84,7 +84,6 @@ namespace TP2_Simulateur
             }
               
             g.Dispose();
-            ;
             trajectoires.Clear();
         }
 
@@ -127,9 +126,10 @@ namespace TP2_Simulateur
                 foreach (PointF point in incendiePoints)
                 {
                     g.DrawImage(feuImg, new RectangleF(point, new Size(30, 30)));
+                    
                 }
             }
-
+            
             feuImg.Dispose();
             g.Dispose();
         }
@@ -148,6 +148,15 @@ namespace TP2_Simulateur
             secoursImg.Dispose();
             g.Dispose();
         }
+
+        internal void ViderListes()
+        {
+            secoursPoints.Clear();
+            incendiePoints.Clear();
+            observateurPoints.Clear();
+            trajectoires.Clear();
+        }
+
         private void DrawTrajectories(Bitmap bmap)
         {
         

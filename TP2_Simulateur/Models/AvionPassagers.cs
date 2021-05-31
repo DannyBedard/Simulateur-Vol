@@ -21,12 +21,17 @@ namespace TP2_Simulateur.Models
             etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
-                new EtatDisponnible(),
-                new EtatEmbarquement(),
-                new EtatVolPassager(),
-                new EtatDebarquement(),
-                new EtatMaintenance()
+                new EtatDisponnible(this),
+                new EtatEmbarquement(this),
+                new EtatVolPassager(this),
+                new EtatDebarquement(this, null),
+                new EtatMaintenance(this)
             };
+        }
+
+        public override void EmbarquerClient(Client client)
+        {
+
         }
 
         public override string ToString()

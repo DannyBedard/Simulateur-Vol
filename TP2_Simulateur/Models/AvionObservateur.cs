@@ -14,11 +14,17 @@ namespace TP2_Simulateur.Models
             etatActuel = 0;
             CycleEtat = new List<Etat>()
             {
-                new EtatDisponnible(),
-                new EtatVolObservation(),
-                new EtatMaintenance()
+                new EtatDisponnible(this),
+                new EtatVolObservation(this),
+                new EtatMaintenance(this)
             };
         }
+
+        public override void EmbarquerClient(Client client)
+        {
+            
+        }
+
         public override string ToString()
         {
             return Nom + " (Observateur),  Vitesse : " + Vitesse;

@@ -7,13 +7,15 @@ namespace TP2_Simulateur.Models
 {
     class EtatVolSecours : EtatVol
     {
-        public void Action(Aeronef aeronef)
+        public EtatVolSecours(Aeronef aeronef) : base(aeronef) { }
+        override public void Action(double vitesseTemps)
         {
-
-        }
-        public PointF PositionActuel
-        {
-            get { return new PointF(1000, 1000); }
+            base.Action(vitesseTemps);
+            if (aeronef.Position == aeronef.AvoirTrajectoire().Destination)
+            {
+                tempsEcoule = 0;
+                aeronef.ChangerEtat();
+            }
         }
     }
 }

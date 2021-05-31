@@ -80,10 +80,7 @@ namespace TP2_Simulateur.Models
         //    }
 
         //}
-        public void mettreAJour() 
-        {
-            //EmbarquementPassager();
-        }
+
 
         public void AffecterIncendie(Client client)
         {
@@ -93,14 +90,14 @@ namespace TP2_Simulateur.Models
                 if (aeronef.BonAvion(client)) 
                 {
                     aeronef.Destination = client.Position;
-                    aeronefChoisit = aeronef;
-                    
+                    aeronefChoisit = aeronef;  
                     break;
                 }
             }
             if (aeronefChoisit != null)
             {
                 aeronefChoisit.Position = this.PositionCarto;
+                aeronefChoisit.EmbarquerClient(client);
                 DecollageEnCours.Invoke(aeronefChoisit, this);
             }
         }
@@ -109,7 +106,7 @@ namespace TP2_Simulateur.Models
             Aeronefs.Remove(aeronef);
         }
 
-
+       
         internal List<string> AvoirClientInfo()
         {
             List<string> clientInfo = new List<string>();
@@ -132,6 +129,31 @@ namespace TP2_Simulateur.Models
                 aeronefInfo.Add(aeronef.ToString());
             }
             return aeronefInfo;
+        }
+
+        internal void AffecterSecour(Client secour)
+        {
+            Aeronef aeronefChoisit = null;
+            foreach (Aeronef aeronef in Aeronefs)
+            {
+                if (aeronef.BonAvion(secour))
+                {
+                    aeronef.Destination = secour.Position;
+                    aeronefChoisit = aeronef;
+                    break;
+                }
+            }
+            if (aeronefChoisit != null)
+            {
+                aeronefChoisit.Position = this.PositionCarto;
+                aeronefChoisit.EmbarquerClient(secour);
+                DecollageEnCours.Invoke(aeronefChoisit, this);
+            }
+        }
+
+        internal void AjouterAeronef(Aeronef aeronef)
+        {
+            Aeronefs.Add(aeronef);
         }
     }
 }

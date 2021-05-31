@@ -8,7 +8,7 @@ namespace TP2_Simulateur.Models
     public class Trajectoire
     {
         public delegate void ArriverEventHandler();
-        public event ArriverEventHandler TempsModifier;
+        public event ArriverEventHandler ArriverADestinnation;
 
         private PointCartographique depart;
         private PointCartographique destination;

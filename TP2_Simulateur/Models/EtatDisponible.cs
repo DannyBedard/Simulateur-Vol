@@ -6,5 +6,11 @@ namespace TP2_Simulateur.Models
 {
     class EtatDisponnible : Etat
     {
+        public EtatDisponnible(Aeronef aeronef) : base(aeronef) { }
+
+        public override void Action(double vitesseHorloge)
+        {
+            return;
+        }
     }
 }
