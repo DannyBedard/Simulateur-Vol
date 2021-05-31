@@ -26,6 +26,11 @@ namespace TP2_Simulateur.Models
                         HelicoptereSecours helico = (HelicoptereSecours)aeronef;
                         helico.Secourir();
                     }
+                    else if (aeronef is AvionObservateur) 
+                    {
+                        AvionObservateur avion = (AvionObservateur)aeronef;
+                        avion.ObservationTermine();
+                    }
                 }
                 retourEffectue = !retourEffectue;
             }

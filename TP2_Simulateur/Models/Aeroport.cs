@@ -191,5 +191,25 @@ namespace TP2_Simulateur.Models
             
             Aeronefs.Add(aeronef);
         }
+
+        internal void AffecterObservateur(Client client)
+        {
+            Aeronef aeronefChoisit = null;
+            foreach (Aeronef aeronef in Aeronefs)
+            {
+                if (aeronef.BonAvion(client) && aeronef.EstDisponnible())
+                {
+                    aeronef.Destination = client.Position;
+                    aeronefChoisit = aeronef;
+                    break;
+                }
+            }
+            if (aeronefChoisit != null)
+            {
+                aeronefChoisit.Position = this.PositionCarto;
+                aeronefChoisit.EmbarquerClient(client);
+                DecollageEnCours.Invoke(aeronefChoisit, this);
+            }
+        }
     }
 }

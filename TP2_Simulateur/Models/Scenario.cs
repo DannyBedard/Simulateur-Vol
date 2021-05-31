@@ -215,6 +215,38 @@ namespace TP2_Simulateur.Models
                 }
 
             }
+            foreach (Observateur observateur in observateurs)
+            {
+                if (observateur.EnAttente)
+                {
+                    Aeroport aeroportProche = null;
+                    float distanceAeroport = -1F;
+                    foreach (Aeroport aeroportActuel in Aeroports)
+                    {
+                        if (aeroportActuel.AvionDisponible(observateur))
+                        {
+                            float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, observateur.Position);
+                            if (distanceAeroport == -1F)
+                            {
+                                distanceAeroport = distanceActuel;
+                                aeroportProche = aeroportActuel;
+                            }
+                            else if (distanceActuel < distanceAeroport)
+                            {
+                                aeroportProche = aeroportActuel;
+                                distanceAeroport = distanceActuel;
+                            }
+                        }
+                    }
+                    if (aeroportProche != null)
+                    {
+                        observateur.EnAttente = false;
+                        aeroportProche.AffecterObservateur(observateur);
+                            observateur.ObservationFinit += SupprimerObservateur;
+                    }
+                }
+
+            }
         }
         private void GererAtterrissage(Aeronef aeronef, PointCartographique positionAeroport) 
         {
@@ -223,9 +255,15 @@ namespace TP2_Simulateur.Models
                 if (ap.PositionCarto == positionAeroport)
                 {
                     ap.AjouterAeronef(aeronef);
+                    aeronef.Atterrissage -= GererAtterrissage;
                     aeronefsEnVol.Remove(aeronef);
                 }
             }
+        }
+        private void SupprimerObservateur(Observateur observateur)
+        {
+            observateurs.Remove(observateur);
+            EvenementTermine.Invoke();
         }
         private void SupprimerSecour(Secours secour)
         {

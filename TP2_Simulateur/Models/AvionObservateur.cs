@@ -6,6 +6,7 @@ namespace TP2_Simulateur.Models
 {
    public class AvionObservateur : Aeronef
     {
+        Observateur observateurAffecte;
         public AvionObservateur() 
         {
             client = new Observateur();
@@ -14,25 +15,19 @@ namespace TP2_Simulateur.Models
             {
                 new EtatDisponnible(this),
                 new EtatVolObservation(this),
-                new EtatMaintenance(this)
-            };
-        }
-        public AvionObservateur(string nom, int vitesse) {
-            base.Nom = nom;
-            base.Vitesse = vitesse;
-            client = new Observateur();
-            etatActuel = 0;
-            CycleEtat = new List<Etat>()
-            {
-                new EtatDisponnible(this),
-                new EtatVolObservation(this),
-                new EtatMaintenance(this)
             };
         }
 
-        public override void EmbarquerClient(Client client)
+        public override void EmbarquerClient(Client observateur)
         {
-            
+            observateurAffecte = (Observateur)observateur;
+            base.DefinirTrajectoire(new Trajectoire(Position, observateur.Position));
+            ChangerEtat();
+        }
+
+        internal void ObservationTermine()
+        {
+            observateurAffecte.Observer();
         }
 
         public override string ToString()

@@ -41,7 +41,7 @@ namespace TP2_Simulateur
         public void ShowMainMenu() {
             view = new ViewSimulator(this);
             Bitmap map = new Bitmap("Ressources/carte.jpg");
-            view.LoadMap(map); // Charge la map sur la vue
+            view.LoadMap(map);
             Application.Run(view);
         }
         
@@ -150,7 +150,7 @@ namespace TP2_Simulateur
 
         private void MettreAJoursPoints()
         {
-            view.ViderListes();
+            view.ViderListesDePoint();
             foreach (PointF point in scenario.AvoirPointsIncendies())
             {
                 view.AjouterPointIncendie(point);
@@ -163,7 +163,7 @@ namespace TP2_Simulateur
             {
                 view.AjouterPointObservateur(point);
             }
-
+            view.ViderClientListView();
         }
 
         public void ModifierVitesseTemps(double vitesse)

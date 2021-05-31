@@ -149,7 +149,7 @@ namespace TP2_Simulateur
             g.Dispose();
         }
 
-        internal void ViderListes()
+        internal void ViderListesDePoint()
         {
             secoursPoints.Clear();
             incendiePoints.Clear();
@@ -160,6 +160,20 @@ namespace TP2_Simulateur
         private void DrawTrajectories(Bitmap bmap)
         {
         
+        }
+
+        public void ViderClientListView()
+        {
+            try
+            {
+                Invoke((MethodInvoker)delegate ()
+                {
+                    lstClients.Items.Clear();
+                    AjoutClients();
+                });
+            }
+            catch { }
+  
         }
 
         public void UpdateSim(double vitesse)

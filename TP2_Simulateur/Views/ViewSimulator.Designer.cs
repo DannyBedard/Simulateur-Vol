@@ -104,6 +104,7 @@ namespace TP2_Simulateur
             // lstAeroports
             // 
             this.lstAeroports.FormattingEnabled = true;
+            this.lstAeroports.HorizontalScrollbar = true;
             this.lstAeroports.ItemHeight = 15;
             this.lstAeroports.Location = new System.Drawing.Point(12, 12);
             this.lstAeroports.Name = "lstAeroports";
@@ -115,6 +116,7 @@ namespace TP2_Simulateur
             // lstClientsAeroport
             // 
             this.lstClientsAeroport.FormattingEnabled = true;
+            this.lstClientsAeroport.HorizontalScrollbar = true;
             this.lstClientsAeroport.ItemHeight = 15;
             this.lstClientsAeroport.Location = new System.Drawing.Point(271, 12);
             this.lstClientsAeroport.Name = "lstClientsAeroport";
@@ -125,6 +127,7 @@ namespace TP2_Simulateur
             // lstAvions
             // 
             this.lstAvions.FormattingEnabled = true;
+            this.lstAvions.HorizontalScrollbar = true;
             this.lstAvions.ItemHeight = 15;
             this.lstAvions.Location = new System.Drawing.Point(530, 12);
             this.lstAvions.Name = "lstAvions";
@@ -135,6 +138,7 @@ namespace TP2_Simulateur
             // lstClients
             // 
             this.lstClients.FormattingEnabled = true;
+            this.lstClients.HorizontalScrollbar = true;
             this.lstClients.ItemHeight = 15;
             this.lstClients.Location = new System.Drawing.Point(789, 12);
             this.lstClients.Name = "lstClients";
