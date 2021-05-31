@@ -64,8 +64,8 @@ namespace TP2_Simulateur
                 if (running)
                 {
                     scenario.MettreAJour(horloge.Vitesse);
-                    List<PointF[]> pointTrajets = scenario.AvoirPointsAeronefEnVol();
-                    view.AjouterPointsTrajectoire(pointTrajets);
+                    List<Tuple<PointF[], Color>> trajets = scenario.AvoirTrajetsAeronefEnVol();
+                    view.AjouterPointsTrajectoire(trajets);
                     view.UpdateSim(horloge.Vitesse);
                 }
             }

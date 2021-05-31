@@ -76,9 +76,9 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
-        internal List<PointF[]> AvoirPointsAeronefEnVol()
+        internal List<Tuple<PointF[], Color>> AvoirTrajetsAeronefEnVol()
         {
-            List<PointF[]> pointsTrajet = new List<PointF[]>();
+            List<Tuple<PointF[], Color>> trajets = new List<Tuple<PointF[], Color>>();
             foreach (Aeronef aeronef in aeronefsEnVol)
             {
                 
@@ -88,10 +88,22 @@ namespace TP2_Simulateur.Models
                     Trajectoire trajet = aeronef.AvoirTrajectoire();
                     points[0] = trajet.Depart.Transposer(TailleImage);
                     points[1] = aeronef.Position.Transposer(TailleImage);
-                    pointsTrajet.Add(points);
+                    Color color = Color.Transparent;
+                    if (aeronef is AvionCiterne)
+                        color = Color.Yellow;
+                    else if (aeronef is AvionPassagers)
+                        color = Color.Green;
+                    else if (aeronef is AvionMarchandises)
+                        color = Color.Blue;
+                    else if (aeronef is HelicoptereSecours)
+                        color = Color.Red;
+                    else if (aeronef is AvionObservateur)
+                        color = Color.Gray;
+
+                    trajets.Add(new Tuple<PointF[], Color>(points, color));
                 }
             }
-            return pointsTrajet;
+            return trajets;
         }
 
         public void MettreAJour(double vitesseHorloge)

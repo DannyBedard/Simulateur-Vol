@@ -22,7 +22,7 @@ namespace TP2_Simulateur
         
         private List<PointF> airportPoints = new List<PointF>();
         private List<PointF> AeronefPoints = new List<PointF>();
-        private List<PointF[]> trajectoires = new List<PointF[]>();
+        private List<Tuple<PointF[], Color>> trajectoires = new List<Tuple<PointF[], Color>>();
         private List<PointF> secoursPoints = new List<PointF>();
         private List<PointF> incendiePoints = new List<PointF>();
         private List<PointF> observateurPoints = new List<PointF>();
@@ -72,14 +72,19 @@ namespace TP2_Simulateur
         private void DessinerTrajectoires()
         {
             Graphics g = Graphics.FromImage(image);
-            Pen pLigne = new Pen(Color.Red, 5);
-            foreach (PointF[] points in trajectoires)
+            
+            foreach (Tuple<PointF[], Color> trajet in trajectoires)
             {
-                g.DrawLine(pLigne, points[0], points[1]);
+                
+                PointF depart = trajet.Item1[0];
+                PointF actuel = trajet.Item1[1];
+                Pen pLigne = new Pen(trajet.Item2, 5);
+                g.DrawLine(pLigne, depart, actuel);
+                pLigne.Dispose();
             }
               
             g.Dispose();
-            pLigne.Dispose();
+            ;
             trajectoires.Clear();
         }
 
@@ -206,12 +211,13 @@ namespace TP2_Simulateur
         //    g.Dispose();
         //    pLigne.Dispose();
         //}
-        public void AjouterPointsTrajectoire(List<PointF[]> pointsTrajectoire) 
+        public void AjouterPointsTrajectoire(List<Tuple<PointF[], Color>> p_trajectoires) 
         {
-            trajectoires = pointsTrajectoire;
-            foreach (PointF[] points in trajectoires)
+            
+            foreach (Tuple<PointF[], Color> trajectoire in p_trajectoires)
             {
-                AjouterPointAeronef(points[1]);
+                this.trajectoires = p_trajectoires;
+                AjouterPointAeronef(trajectoire.Item1[1]);
             }
         }
         public void AjouterPointAeroport(PointF point)
