@@ -18,6 +18,14 @@ namespace TP2_Simulateur.Models
                     avion.ChangerEtat();
                 }
             }
+            else
+            {
+                AeronefConteneur avion = (AeronefConteneur)aeronef;
+                if (tempsEcoule >= avion.TempsEmbarquement)
+                {
+                    avion.ChangerEtat();
+                }
+            }
             tempsEcoule += vitesseHorloge / 10;
         }
     }

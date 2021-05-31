@@ -64,7 +64,7 @@ namespace TP2_Simulateur.Models
             {
                 foreach (Aeronef aeronef in Aeronefs)
                 {
-                    if (aeronef.BonAvion(passager))
+                    if (aeronef.BonAvion(passager) && aeronef.EstDisponnible())
                     {
                         if (passager.Quantite >= aeronef.Capacite)
                         {
@@ -72,6 +72,7 @@ namespace TP2_Simulateur.Models
                             aeronef.Destination = passager.Destination.PositionCarto;
                             aeronef.Position = this.PositionCarto;
                             aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, passager.Destination.PositionCarto));
+                            aeronef.ChangerEtat();
                             RetirerAeronef(aeronef);
                             return aeronef;
                         }
