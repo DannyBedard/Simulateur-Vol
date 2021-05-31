@@ -76,7 +76,7 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
-        internal List<Tuple<PointF[], Color>> AvoirTrajetsAeronefEnVol()
+        public List<Tuple<PointF[], Color>> AvoirTrajetsAeronefEnVol()
         {
             List<Tuple<PointF[], Color>> trajets = new List<Tuple<PointF[], Color>>();
             foreach (Aeronef aeronef in aeronefsEnVol)
@@ -158,13 +158,17 @@ namespace TP2_Simulateur.Models
                 if (incendie.BesoinAvion)
                 {
                     Aeroport aeroportProche = null;
-                    float distanceAeroport = 0;
+                    float distanceAeroport = -1F;
                     foreach (Aeroport aeroportActuel in Aeroports)
                     {
                         if (aeroportActuel.AvionDisponible(incendie))
                         {
                             float distanceActuel = PointCartographique.DistanceEntre(aeroportActuel.PositionCarto, incendie.Position);
-                            if (distanceActuel > distanceAeroport)
+                            if (distanceAeroport == -1F)
+                            {
+                                distanceAeroport = distanceActuel;
+                            }
+                            else if (distanceActuel < distanceAeroport)
                             {
                                 aeroportProche = aeroportActuel;
                                 distanceAeroport = distanceActuel;
@@ -180,7 +184,7 @@ namespace TP2_Simulateur.Models
             }
         }
 
-        internal List<string> AvoirInfoClientAeroport(int index)
+        public List<string> AvoirInfoClientAeroport(int index)
         {
             return Aeroports[index].AvoirClientInfo();
         }

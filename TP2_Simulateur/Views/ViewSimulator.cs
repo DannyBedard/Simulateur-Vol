@@ -95,7 +95,7 @@ namespace TP2_Simulateur
             {
                 foreach (PointF point in airportPoints)
                 {
-                    g.DrawImage(aeroportImg, new RectangleF(point, new Size(30, 30)));
+                    g.DrawImage(aeroportImg, new RectangleF(new PointF(point.X - 15, point.Y - 15), new Size(30, 30)));
                 }
             }
 
@@ -195,7 +195,6 @@ namespace TP2_Simulateur
 
         internal void ChargerAeroportsNom(List<string> aeroportsNom)
         {
-            aeroportsNom.Sort();
             foreach (string apString in aeroportsNom)
             {
                 lstAeroports.Items.Add(apString);
