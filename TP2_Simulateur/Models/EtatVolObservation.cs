@@ -18,9 +18,15 @@ namespace TP2_Simulateur.Models
                     aeronef.FaireAtterrissage();
                     aeronef.ChangerEtat();
                 }
-                else
+                else 
+                {
                     aeronef.RetourPositionOrigine();
-                    
+                    if (aeronef is HelicoptereSecours)
+                    {
+                        HelicoptereSecours helico = (HelicoptereSecours)aeronef;
+                        helico.Secourir();
+                    }
+                }
                 retourEffectue = !retourEffectue;
             }
         }

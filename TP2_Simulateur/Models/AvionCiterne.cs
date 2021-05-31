@@ -58,7 +58,6 @@ namespace TP2_Simulateur.Models
         public override void EmbarquerClient(Client client)
         {
             incendieAffectee = (Incendie)client;
-            incendieAffectee.FeuEtein += RetirerFeu;
             base.DefinirTrajectoire(new Trajectoire(Position, client.Position));
             ChangerEtat();
         }

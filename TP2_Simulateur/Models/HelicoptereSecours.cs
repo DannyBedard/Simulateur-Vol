@@ -20,7 +20,6 @@ namespace TP2_Simulateur.Models
         public override void EmbarquerClient(Client secour)
         {
             secourAffectee = (Secours) secour;
-            secourAffectee.secourFinit += RetirerSecour;
             base.DefinirTrajectoire(new Trajectoire(Position, secour.Position));
             ChangerEtat();
         }
@@ -28,16 +27,20 @@ namespace TP2_Simulateur.Models
         {
             base.ChangerEtat();
         }
-        private void RetirerSecour(Secours secours)
-        {
-            secourAffectee = null;
-            ChangerEtat();
-        }
 
         public override string ToString()
         {
             return Nom + " (Hélicoptère de secours),  Vitesse : " + Vitesse;
 
+        }
+        public override bool ContientClient(Client client)
+        {
+            return secourAffectee == client;
+        }
+
+        internal void Secourir()
+        {
+            secourAffectee.Secourir();
         }
     }
 }
