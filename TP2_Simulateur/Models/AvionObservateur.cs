@@ -6,7 +6,17 @@ namespace TP2_Simulateur.Models
 {
    public class AvionObservateur : Aeronef
     {
-        public AvionObservateur() { }
+        public AvionObservateur() 
+        {
+            client = new Observateur();
+            etatActuel = 0;
+            CycleEtat = new List<Etat>()
+            {
+                new EtatDisponnible(this),
+                new EtatVolObservation(this),
+                new EtatMaintenance(this)
+            };
+        }
         public AvionObservateur(string nom, int vitesse) {
             base.Nom = nom;
             base.Vitesse = vitesse;

@@ -116,6 +116,19 @@ namespace TP2_Simulateur.Models
 
             GererEvenement();
         }
+        public void DepartAvionConteneur()
+        {
+            foreach (Aeroport aeroport in Aeroports)
+            {
+                Aeronef aeronef = aeroport.EmbarquementPassager();
+                if (aeronef != null)
+                    GererDecollage(aeronef, aeroport);
+                aeronef = aeroport.EmbarquementMarchandise();
+                if (aeronef != null)
+                    GererDecollage(aeronef, aeroport);
+            }
+
+        }
 
         public void GenererClient()
         {

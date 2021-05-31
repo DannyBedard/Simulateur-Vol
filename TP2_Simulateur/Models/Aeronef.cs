@@ -13,6 +13,7 @@ namespace TP2_Simulateur.Models
 
         string nom;
         int vitesse;
+        protected int capacite;
         protected int etatActuel;
         protected Client client = new Passager();
         PointCartographique destination;
@@ -27,7 +28,11 @@ namespace TP2_Simulateur.Models
             get { return cycleEtat; }
             set { cycleEtat = value; }
         }
-
+        public int Capacite
+        {
+            get { return capacite; }
+            set { capacite = value; }
+        }
         public void RetourPositionOrigine()
         {
             trajet = new Trajectoire(trajet.Destination, trajet.Depart);
