@@ -91,6 +91,8 @@ namespace TP2_Simulateur.Models
                         if (marchandise.Tonne >= aeronef.Capacite)
                         {
                             marchandise.Tonne -= aeronef.Capacite;
+                            aeronef.Destination = marchandise.Destination.PositionCarto;
+                            aeronef.Position = this.PositionCarto;
                             aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, marchandise.Destination.PositionCarto));
                             RetirerAeronef(aeronef);
                             return aeronef;
