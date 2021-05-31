@@ -35,7 +35,7 @@ namespace TP2_Simulateur.Models
             {
                 new EtatDisponnible(this),
                 new EtatEmbarquement(this),
-                new EtatVolPassager(this),
+                new EtatVolSecours(this),
                 new EtatDebarquement(this, null),
                 new EtatMaintenance(this)
             };

@@ -6,9 +6,10 @@ namespace TP2Editeur
 {
     public class AvionCiterne : Aeronef
     {
-        public int TempsChargement { get; set; }
-        public int TempsLargage { get; set; }
-        public int TempsEntretient { get; set; }
+        int tempsChargement;
+        int tempsLargage;
+        public int TempsChargement { get { return tempsChargement; } set { tempsChargement = value; } }
+        public int TempsLargage { get { return tempsLargage; } set { tempsLargage = value; } }
 
         public AvionCiterne() { }
         public AvionCiterne(string aeronefNom, int vitesse, int tempsChargement, int tempsLargage, int tempsEntretient)

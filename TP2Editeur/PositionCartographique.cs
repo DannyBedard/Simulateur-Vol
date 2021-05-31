@@ -24,7 +24,7 @@ namespace TP2Editeur
             this.longitude = longitude;
             this.latitude = latitude;
         }
-        public static string stringFromLatLong(float lat, float lng) 
+        public static string StringFromLatLong(float lat, float lng) 
         {
             string[] latParts = lat.ToString().Split(',');
             string[] lngParts = lng.ToString().Split(',');
@@ -48,16 +48,16 @@ namespace TP2Editeur
 
             return coord;
         }
-        public static string stringFromPixel(int x, int y, SizeF tailleCarte) {
+        public static string StringFromPixel(int x, int y, SizeF tailleCarte) {
             
             float lat = (y / (tailleCarte.Height / 180) - 90) / -1;
             float lng = x / (tailleCarte.Width / 360) - 180;
 
-            return PositionCartographique.stringFromLatLong(lat,lng);
+            return PositionCartographique.StringFromLatLong(lat,lng);
         }
         public override string ToString()
         {
-            return PositionCartographique.stringFromLatLong(this.latitude, this.longitude);
+            return PositionCartographique.StringFromLatLong(this.latitude, this.longitude);
         }
     }
 }
