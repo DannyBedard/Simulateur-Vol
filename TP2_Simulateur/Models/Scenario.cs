@@ -113,6 +113,8 @@ namespace TP2_Simulateur.Models
             {
                 aeronef.MettreAJourEtat(vitesseHorloge);
             }
+
+            GererEvenement();
         }
 
         public void GenererClient()
@@ -122,7 +124,7 @@ namespace TP2_Simulateur.Models
             FabriqueClient.GenererObservateurs(observateurs);
             FabriqueClient.GenererClientAeroport(Aeroports);
 
-            GererEvenement();
+            
 
         }
         public void GereAeronefArrive() 
