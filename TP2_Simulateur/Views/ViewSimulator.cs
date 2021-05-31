@@ -190,6 +190,7 @@ namespace TP2_Simulateur
 
         internal void ChargerAeroportsNom(List<string> aeroportsNom)
         {
+            aeroportsNom.Sort();
             foreach (string apString in aeroportsNom)
             {
                 lstAeroports.Items.Add(apString);
