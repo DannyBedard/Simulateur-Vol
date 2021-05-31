@@ -91,6 +91,7 @@ namespace TP2_Simulateur
         private void GenererClient() 
         {
             scenario.GenererClient();
+            scenario.DepartAvionConteneur();
             foreach (PointF point in scenario.AvoirPointsIncendies())
             {
                 view.AjouterPointIncendie(point);

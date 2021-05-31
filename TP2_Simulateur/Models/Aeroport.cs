@@ -58,29 +58,48 @@ namespace TP2_Simulateur.Models
             
         }
 
-        //private void EmbarquementPassager() 
-        //{
-        //    foreach (Passager passager in passagerEnAttente)
-        //    {
-        //        foreach (Aeronef aeronef in Aeronefs)
-        //        {
-        //            if (aeronef.EstEnAttenteDePassager())
-        //            {
-        //                if (aeronef.Destination == passager.Destination.PositionCarto)
-        //                {
-
-        //                }
-        //                else if (aeronef.Destination == null)
-        //                {
-                            
-        //                }
-        //            }
-        //        }
-
-        //    }
-
-        //}
-
+        public Aeronef EmbarquementPassager() 
+        {
+            foreach (Passager passager in passagerEnAttente)
+            {
+                foreach (Aeronef aeronef in Aeronefs)
+                {
+                    if (aeronef.BonAvion(passager))
+                    {
+                        if (passager.Quantite >= aeronef.Capacite)
+                        {
+                            passager.Quantite -= aeronef.Capacite;
+                            aeronef.Destination = passager.Destination.PositionCarto;
+                            aeronef.Position = this.PositionCarto;
+                            aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, passager.Destination.PositionCarto));
+                            RetirerAeronef(aeronef);
+                            return aeronef;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        public Aeronef EmbarquementMarchandise()
+        {
+            foreach (Marchandise marchandise in marchandiseEnAttente)
+            {
+                foreach (Aeronef aeronef in Aeronefs)
+                {
+                    if (aeronef.BonAvion(marchandise))
+                    {
+                        if (marchandise.Tonne >= aeronef.Capacite)
+                        {
+                            marchandise.Tonne -= aeronef.Capacite;
+                            aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, marchandise.Destination.PositionCarto));
+                            RetirerAeronef(aeronef);
+                            return aeronef;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public void AffecterIncendie(Client client)
         {

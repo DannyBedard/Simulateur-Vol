@@ -8,7 +8,19 @@ namespace TP2_Simulateur.Models
     {
 
         Client client;
-        public AvionPassagers() { }
+        public AvionPassagers() 
+        {
+            client = new Passager();
+            etatActuel = 0;
+            CycleEtat = new List<Etat>()
+            {
+                new EtatDisponnible(this),
+                new EtatEmbarquement(this),
+                new EtatVolPassager(this),
+                new EtatDebarquement(this, null),
+                new EtatMaintenance(this)
+            };
+        }
         public AvionPassagers(string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             base.Nom = aeronefNom;
@@ -33,7 +45,6 @@ namespace TP2_Simulateur.Models
         {
 
         }
-
         public override string ToString()
         {
             return Nom + " (Passagers), Capacité : " + Capacite + ", Vitesse : " + Vitesse + ", Temps embarquement : " + TempsEmbarquement + ", Temps debarquement : " + TempsDebarquement + ", Temps entretient : " + TempsEntretient;
