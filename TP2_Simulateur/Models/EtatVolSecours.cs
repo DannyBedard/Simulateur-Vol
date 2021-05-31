@@ -15,6 +15,10 @@ namespace TP2_Simulateur.Models
             {
                 tempsEcoule = 0;
                 aeronef.ChangerEtat();
+                if (aeronef.PretPourAtterrissage())
+                {
+                    aeronef.FaireAtterrissage();
+                }
             }
         }
     }

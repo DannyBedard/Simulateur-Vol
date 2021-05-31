@@ -108,9 +108,10 @@ namespace TP2_Simulateur.Models
 
         public void MettreAJour(double vitesseHorloge)
         {
-            foreach (Aeronef aeronef in aeronefsEnVol)
+            List<Aeronef> aeronefsEnVolCopi = new List<Aeronef>(aeronefsEnVol);
+            foreach (Aeronef aeronef in aeronefsEnVolCopi)
             {
-                    aeronef.MettreAJourEtat(vitesseHorloge);
+                aeronef.MettreAJourEtat(vitesseHorloge);
             }
         }
 
@@ -215,8 +216,8 @@ namespace TP2_Simulateur.Models
             {
                 if (ap.PositionCarto == positionAeroport)
                 {
-                    ap.AjouterAeronef(aeronef);
-                    aeronefsEnVol.Remove(aeronef);
+                        ap.AjouterAeronef(aeronef);
+                        aeronefsEnVol.Remove(aeronef);
                 }
             }
         }
@@ -238,6 +239,13 @@ namespace TP2_Simulateur.Models
         {
             incendies.Remove(incendie);
             EvenementTermine.Invoke();
+            foreach (Aeronef aeronef in aeronefsEnVol)
+            {
+                if (aeronef.ContientClient(incendie))
+                {
+                    aeronef.Atterrissage += GererAtterrissage;
+                }
+            }
         }
 
         public List<string> AvoirInfoClientAeroport(int index)

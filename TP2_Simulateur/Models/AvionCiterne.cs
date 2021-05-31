@@ -35,11 +35,16 @@ namespace TP2_Simulateur.Models
         public override void ChangerEtat()
         {
             base.ChangerEtat();
-            if (CycleEtat[etatActuel] is EtatDisponnible && incendieAffectee != null)
+            if (CycleEtat[etatActuel] is EtatDisponnible && incendieAffectee.Envergure != 0)
             {
                 RetourPositionOrigine();
                 etatActuel++;
             }
+            
+        }
+        public override void RetirerClient()
+        {
+            incendieAffectee = null;
         }
         private void EteindreFeu() 
         {
@@ -48,7 +53,7 @@ namespace TP2_Simulateur.Models
         }
         private void RetirerFeu(Incendie incendie) 
         {
-            incendieAffectee = null;
+            
         }
         public override void EmbarquerClient(Client client)
         {
@@ -56,6 +61,18 @@ namespace TP2_Simulateur.Models
             incendieAffectee.FeuEtein += RetirerFeu;
             base.DefinirTrajectoire(new Trajectoire(Position, client.Position));
             ChangerEtat();
+        }
+        public override bool ContientClient(Client client)
+        {
+            return client == incendieAffectee;
+        }
+        public override bool PretPourAtterrissage()
+        {
+            if (incendieAffectee.Envergure == 0 && (this.Position == AvoirTrajectoire().Destination))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

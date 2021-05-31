@@ -17,6 +17,9 @@ namespace TP2_Simulateur.Models
         protected Client client = new Passager();
         PointCartographique destination;
         PointCartographique position;
+
+        virtual public bool PretPourAtterrissage() { return false; }
+
         List<Etat> cycleEtat;
         Trajectoire trajet = null;
         public List<Etat> CycleEtat
@@ -31,8 +34,19 @@ namespace TP2_Simulateur.Models
         }
         public void FaireAtterrissage() 
         {
-            //Atterrissage.Invoke(this, this.AvoirTrajectoire().Destination);
+            try
+            {
+                RetirerClient();
+                Atterrissage.Invoke(this, this.AvoirTrajectoire().Destination);
+            }
+            catch { };
         }
+
+        virtual public void RetirerClient()
+        {
+            return;
+        }
+
         public virtual void ChangerEtat()
         {
             etatActuel++;
@@ -100,7 +114,7 @@ namespace TP2_Simulateur.Models
 
         public abstract void EmbarquerClient(Client client);
 
-        internal bool ContientClient(Secours secour)
+        virtual public bool ContientClient(Client client)
         {
             return false;
         }
