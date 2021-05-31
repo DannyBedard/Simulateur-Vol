@@ -18,6 +18,11 @@ namespace TP2_Simulateur.Models
         {
             get { return destination; }
         }
+        public int Quantite
+        {
+            get { return quantite; }
+            set { quantite = value; }
+        }
         public override string ToString()
         {
             return quantite.ToString() + " passagers en destination de " + destination.Nom;

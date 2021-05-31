@@ -123,5 +123,15 @@ namespace TP2_Simulateur.Models
             }
             return clientInfo;
         }
+
+        public List<string> AvoirAeronefInfo()
+        {
+            List<string> aeronefInfo = new List<string>();
+            foreach (Aeronef aeronef in Aeronefs)
+            {
+                aeronefInfo.Add(aeronef.ToString());
+            }
+            return aeronefInfo;
+        }
     }
 }

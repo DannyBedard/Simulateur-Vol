@@ -173,6 +173,11 @@ namespace TP2_Simulateur.Models
             return Aeroports[index].AvoirClientInfo();
         }
 
+        public List<string> AvoirAeronefAeroport(int index)
+        {
+            return Aeroports[index].AvoirAeronefInfo();
+        }
+
         public void Init()
         {
             foreach (Aeroport aeroport in Aeroports)

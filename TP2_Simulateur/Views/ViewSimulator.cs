@@ -271,6 +271,7 @@ namespace TP2_Simulateur
                 btnScenario.Dispose();
                 lstAeroports.Visible = true;
                 lstClients.Visible = true;
+                lstAvions.Visible = true;
             }
             else
                 MessageBox.Show("Le fichier est invalide.", "Erreur chargement du fichier", MessageBoxButtons.OK);
@@ -309,11 +310,17 @@ namespace TP2_Simulateur
                 return;
             }
             lstClients.Items.Clear();
+            lstAvions.Items.Clear();
             
             List<string> clients = controleur.AvoirClientAeroport(index);
             foreach (string client in clients)
             {
                 lstClients.Items.Add(client);
+            }
+            List<string> aeronefs = controleur.AvoirAeronefAeroport(index);
+            foreach (string aeronef in aeronefs)
+            {
+                lstAvions.Items.Add(aeronef);
             }
         }
     }

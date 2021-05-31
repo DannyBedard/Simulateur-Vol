@@ -38,6 +38,7 @@ namespace TP2_Simulateur
             this.label2 = new System.Windows.Forms.Label();
             this.lstAeroports = new System.Windows.Forms.ListBox();
             this.lstClients = new System.Windows.Forms.ListBox();
+            this.lstAvions = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderVitesse)).BeginInit();
             this.SuspendLayout();
@@ -90,7 +91,7 @@ namespace TP2_Simulateur
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(805, 68);
+            this.label2.Location = new System.Drawing.Point(942, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 21);
             this.label2.TabIndex = 4;
@@ -111,17 +112,28 @@ namespace TP2_Simulateur
             // 
             this.lstClients.FormattingEnabled = true;
             this.lstClients.ItemHeight = 15;
-            this.lstClients.Location = new System.Drawing.Point(343, 26);
+            this.lstClients.Location = new System.Drawing.Point(313, 26);
             this.lstClients.Name = "lstClients";
             this.lstClients.Size = new System.Drawing.Size(263, 94);
             this.lstClients.TabIndex = 6;
             this.lstClients.Visible = false;
+            // 
+            // lstAvions
+            // 
+            this.lstAvions.FormattingEnabled = true;
+            this.lstAvions.ItemHeight = 15;
+            this.lstAvions.Location = new System.Drawing.Point(612, 26);
+            this.lstAvions.Name = "lstAvions";
+            this.lstAvions.Size = new System.Drawing.Size(263, 94);
+            this.lstAvions.TabIndex = 7;
+            this.lstAvions.Visible = false;
             // 
             // ViewSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1075, 828);
+            this.Controls.Add(this.lstAvions);
             this.Controls.Add(this.lstClients);
             this.Controls.Add(this.lstAeroports);
             this.Controls.Add(this.label2);
@@ -148,6 +160,7 @@ namespace TP2_Simulateur
         private Label label2;
         private ListBox lstAeroports;
         private ListBox lstClients;
+        private ListBox lstAvions;
     }
 }
 

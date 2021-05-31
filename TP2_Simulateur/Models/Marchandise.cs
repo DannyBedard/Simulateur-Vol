@@ -18,6 +18,11 @@ namespace TP2_Simulateur.Models
         {
             get { return destination; }
         }
+        public double Tonne
+        {
+            get { return tonne; }
+            set { tonne = value; }
+        }
         public override string ToString()
         {
             return tonne.ToString() + " tonnes de marchandise en destination de " + destination.Nom;

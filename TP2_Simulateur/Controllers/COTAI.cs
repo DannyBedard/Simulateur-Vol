@@ -113,7 +113,6 @@ namespace TP2_Simulateur
 
             view.AfficherTemps("00:00:00");
 
-
             foreach (PointF point in scenario.AvoirPointsAeroport())
             {
                 view.AjouterPointAeroport(point);
@@ -155,6 +154,10 @@ namespace TP2_Simulateur
         internal List<string> AvoirClientAeroport(int index)
         {
             return scenario.AvoirInfoClientAeroport(index);
+        }
+        public List<string> AvoirAeronefAeroport(int index)
+        {
+            return scenario.AvoirAeronefAeroport(index);
         }
     }
 
