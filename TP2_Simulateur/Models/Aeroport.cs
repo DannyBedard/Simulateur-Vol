@@ -73,7 +73,7 @@ namespace TP2_Simulateur.Models
                             aeronef.Position = this.PositionCarto;
                             aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, passager.Destination.PositionCarto));
                             aeronef.ChangerEtat();
-                            RetirerAeronef(aeronef);
+                            DecollageEnCours.Invoke(aeronef, this);
                             return aeronef;
                         }
                     }
@@ -87,7 +87,7 @@ namespace TP2_Simulateur.Models
             {
                 foreach (Aeronef aeronef in Aeronefs)
                 {
-                    if (aeronef.BonAvion(marchandise))
+                    if (aeronef.BonAvion(marchandise) && aeronef.EstDisponnible())
                     {
                         if (marchandise.Tonne >= aeronef.Capacite)
                         {
@@ -96,7 +96,7 @@ namespace TP2_Simulateur.Models
                             aeronef.Position = this.PositionCarto;
                             aeronef.DefinirTrajectoire(new Trajectoire(this.PositionCarto, marchandise.Destination.PositionCarto));
                             aeronef.ChangerEtat();
-                            RetirerAeronef(aeronef);
+                            DecollageEnCours.Invoke(aeronef, this);
                             return aeronef;
                         }
                     }
@@ -124,7 +124,20 @@ namespace TP2_Simulateur.Models
                 DecollageEnCours.Invoke(aeronefChoisit, this);
             }
         }
-        internal void RetirerAeronef(Aeronef aeronef)
+
+        internal void MettreAJour(double vitesseHorloge)
+        {
+            EmbarquementPassager();
+            EmbarquementMarchandise();
+            List<Aeronef> aeronefsCopi = new List<Aeronef>(Aeronefs);
+            foreach (Aeronef aeronef in aeronefsCopi)
+            {
+                aeronef.MettreAJourEtat(vitesseHorloge);
+            }
+            
+        }
+
+        public void RetirerAeronef(Aeronef aeronef)
         {
             Aeronefs.Remove(aeronef);
         }
@@ -175,6 +188,7 @@ namespace TP2_Simulateur.Models
 
         internal void AjouterAeronef(Aeronef aeronef)
         {
+            
             Aeronefs.Add(aeronef);
         }
     }

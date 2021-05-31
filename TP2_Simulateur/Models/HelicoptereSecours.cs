@@ -42,5 +42,9 @@ namespace TP2_Simulateur.Models
         {
             secourAffectee.Secourir();
         }
+        public override bool BonAvion(Client p_client)
+        {
+            return p_client is Secours;
+        }
     }
 }

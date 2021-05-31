@@ -19,7 +19,7 @@ namespace TP2_Simulateur.Models
         List<Client> incendies = new List<Client>();
         List<Client> observateurs = new List<Client>();
         List<Client> secours = new List<Client>();
-
+        private bool enMiseAJour = false;
         public List<Aeroport> Aeroports;
         public List<Aeronef> aeronefsEnVol = new List<Aeronef>();
         public SizeF TailleImage { get; set; }
@@ -113,20 +113,14 @@ namespace TP2_Simulateur.Models
             {
                 aeronef.MettreAJourEtat(vitesseHorloge);
             }
-
+            foreach (Aeroport ap in Aeroports)
+            {
+                ap.MettreAJour(vitesseHorloge);
+            }
             GererEvenement();
         }
         public void DepartAvionConteneur()
         {
-            foreach (Aeroport aeroport in Aeroports)
-            {
-                Aeronef aeronef = aeroport.EmbarquementPassager();
-                if (aeronef != null)
-                    GererDecollage(aeronef, aeroport);
-                aeronef = aeroport.EmbarquementMarchandise();
-                if (aeronef != null)
-                    GererDecollage(aeronef, aeroport);
-            }
 
         }
 
@@ -140,13 +134,10 @@ namespace TP2_Simulateur.Models
             
 
         }
-        public void GereAeronefArrive() 
-        {
-            //Gerer les aeronefs qui sont arrivés
-        }
         public void GererDecollage(Aeronef aeronef, Aeroport depart) 
         {
             aeronefsEnVol.Add(aeronef);
+            aeronef.Atterrissage += GererAtterrissage;
             depart.RetirerAeronef(aeronef);
         }
         public List<PointF> AvoirPointsAeronef()
@@ -231,21 +222,13 @@ namespace TP2_Simulateur.Models
             {
                 if (ap.PositionCarto == positionAeroport)
                 {
-                        ap.AjouterAeronef(aeronef);
-                        aeronefsEnVol.Remove(aeronef);
+                    ap.AjouterAeronef(aeronef);
+                    aeronefsEnVol.Remove(aeronef);
                 }
             }
         }
         private void SupprimerSecour(Secours secour)
         {
-            
-            foreach (Aeronef aeronef in aeronefsEnVol)
-            {
-                if (aeronef.ContientClient(secour))
-                {
-                    aeronef.Atterrissage += GererAtterrissage;
-                }
-            }
             secours.Remove(secour);
             EvenementTermine.Invoke();
         }
@@ -254,13 +237,6 @@ namespace TP2_Simulateur.Models
         {
             incendies.Remove(incendie);
             EvenementTermine.Invoke();
-            foreach (Aeronef aeronef in aeronefsEnVol)
-            {
-                if (aeronef.ContientClient(incendie))
-                {
-                    aeronef.Atterrissage += GererAtterrissage;
-                }
-            }
         }
 
         public List<string> AvoirInfoClientAeroport(int index)

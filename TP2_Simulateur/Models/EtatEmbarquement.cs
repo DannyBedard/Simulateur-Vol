@@ -15,6 +15,7 @@ namespace TP2_Simulateur.Models
                 AvionCiterne avion = (AvionCiterne)aeronef;
                 if (tempsEcoule >= avion.TempsChargement)
                 {
+                    tempsEcoule = 0;
                     avion.ChangerEtat();
                 }
             }
@@ -23,6 +24,7 @@ namespace TP2_Simulateur.Models
                 AeronefConteneur avion = (AeronefConteneur)aeronef;
                 if (tempsEcoule >= avion.TempsEmbarquement)
                 {
+                    tempsEcoule = 0;
                     avion.ChangerEtat();
                 }
             }

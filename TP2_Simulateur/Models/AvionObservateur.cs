@@ -40,6 +40,9 @@ namespace TP2_Simulateur.Models
             return Nom + " (Observateur),  Vitesse : " + Vitesse;
 
         }
-
+        public override bool BonAvion(Client p_client)
+        {
+            return p_client is Observateur;
+        }
     }
 }

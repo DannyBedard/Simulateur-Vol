@@ -50,5 +50,14 @@ namespace TP2_Simulateur.Models
             return Nom + " (Passagers), Capacité : " + Capacite + ", Vitesse : " + Vitesse + ", Temps embarquement : " + TempsEmbarquement + ", Temps debarquement : " + TempsDebarquement + ", Temps entretient : " + TempsEntretient;
         }
 
+        public override void Vider()
+        {
+            client = null;
+            DefinirTrajectoire(null);
+        }
+        public override bool BonAvion(Client p_client)
+        {
+            return p_client is Passager;
+        }
     }
 }

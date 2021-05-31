@@ -10,6 +10,13 @@ namespace TP2_Simulateur.Models
 
         public override void Action(double vitesseHorloge)
         {
+            AeronefConteneur avion = (AeronefConteneur)aeronef;
+                if (tempsEcoule >= avion.TempsEntretient)
+                {
+                    tempsEcoule = 0;
+                    avion.ChangerEtat();
+                }
+            tempsEcoule += vitesseHorloge / 10;
         }
         
         

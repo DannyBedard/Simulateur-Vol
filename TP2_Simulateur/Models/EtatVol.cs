@@ -13,7 +13,6 @@ namespace TP2_Simulateur.Models
         public override void Action(double vitesseHorloge)
         {
             aeronef.Position = base.aeronef.AvoirTrajectoire().NextPoint(vitesseHorloge,aeronef.Vitesse);
-
         }
     }
 }

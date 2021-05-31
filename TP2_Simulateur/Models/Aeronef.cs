@@ -15,7 +15,7 @@ namespace TP2_Simulateur.Models
         int vitesse;
         protected int capacite;
         protected int etatActuel;
-        protected Client client = new Passager();
+        protected Client client;
         PointCartographique destination;
         PointCartographique position;
 
@@ -89,10 +89,7 @@ namespace TP2_Simulateur.Models
         {
             return trajet;
         }
-        public bool BonAvion(Client p_client) 
-        {
-            return client.GetType() == p_client.GetType();
-        }
+        public abstract bool BonAvion(Client p_client);
 
         public bool EstDisponnible()
         {

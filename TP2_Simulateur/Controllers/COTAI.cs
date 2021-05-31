@@ -51,6 +51,7 @@ namespace TP2_Simulateur
             long now = timer.ElapsedMilliseconds;
             long lastFrame = timer.ElapsedMilliseconds;
             GenererClient();
+            //horloge.Vitesse = 50;
             while (running) 
             {
                 now = timer.ElapsedMilliseconds;
@@ -91,7 +92,6 @@ namespace TP2_Simulateur
         private void GenererClient() 
         {
             scenario.GenererClient();
-            scenario.DepartAvionConteneur();
             foreach (PointF point in scenario.AvoirPointsIncendies())
             {
                 view.AjouterPointIncendie(point);

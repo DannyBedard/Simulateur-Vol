@@ -44,16 +44,12 @@ namespace TP2_Simulateur.Models
         }
         public override void RetirerClient()
         {
-            incendieAffectee = null;
+            
         }
         private void EteindreFeu() 
         {
             incendieAffectee.Eteindre();
 
-        }
-        private void RetirerFeu(Incendie incendie) 
-        {
-            
         }
         public override void EmbarquerClient(Client client)
         {
@@ -72,6 +68,17 @@ namespace TP2_Simulateur.Models
                 return true;
             }
             return false;
+        }
+
+        public override void Vider()
+        {
+            DefinirTrajectoire(null);
+            incendieAffectee = null;
+        }
+
+        public override bool BonAvion(Client p_client)
+        {
+            return p_client is Incendie;
         }
     }
 }
