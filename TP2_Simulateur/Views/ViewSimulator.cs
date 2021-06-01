@@ -19,22 +19,51 @@ namespace TP2_Simulateur
     {
         private static readonly object lockObject = new object();
         COTAI controleur;
-        
+        /// <summary>
+        /// Liste des points Aeroports
+        /// </summary>
         private List<PointF> airportPoints = new List<PointF>();
+        /// <summary>
+        /// Liste des points aeronef
+        /// </summary>
         private List<PointF> AeronefPoints = new List<PointF>();
+        /// <summary>
+        /// Liste des trajectoires et leur couleur
+        /// </summary>
         private List<Tuple<PointF[], Color>> trajectoires = new List<Tuple<PointF[], Color>>();
+        /// <summary>
+        /// Liste des points de secours
+        /// </summary>
         private List<PointF> secoursPoints = new List<PointF>();
+        /// <summary>
+        /// Liste des points d'incendie
+        /// </summary>
         private List<PointF> incendiePoints = new List<PointF>();
+        /// <summary>
+        /// Liste des points d'observation
+        /// </summary>
         private List<PointF> observateurPoints = new List<PointF>();
+        /// <summary>
+        /// Temps inital
+        /// </summary>
         private string temps = "00:00:00";
+        /// <summary>
+        /// Image sur laquelle dessiner
+        /// </summary>
         private Bitmap image;
+        /// <summary>
+        /// Taille de l'image
+        /// </summary>
         private SizeF tailleImage;
         public ViewSimulator(COTAI controleur)
         {
             this.controleur = controleur;
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Charge la carte du monde à afficher 
+        /// </summary>
+        /// <param name="p_map">Carte du monde</param>
         internal void LoadMap(Bitmap p_map)
         {
 
@@ -42,16 +71,18 @@ namespace TP2_Simulateur
             tailleImage = picMap.BackgroundImage.Size;
             image = new Bitmap((int)tailleImage.Width, (int)tailleImage.Height);
         }
-        public void AfficherTemps(string p_temps) {
+        /// <summary>
+        /// Définit le temps à afficher
+        /// </summary>
+        /// <param name="p_temps">Temps à afficher</param>
+        public void AfficherTemps(string p_temps)
+        {
             temps = p_temps;
         }
-        private void picMap_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs mouse = (MouseEventArgs)e;
-            int x = mouse.X;
-            int y = mouse.Y;
-            // TODO: Traduire x,y en lat,long
-        }
+
+        /// <summary>
+        /// Dessine les avions aux points dans la liste AeronefPoints
+        /// </summary>
         private void DessinerAvion()
         {
             Graphics g = Graphics.FromImage(image);
@@ -68,26 +99,31 @@ namespace TP2_Simulateur
             avionImg.Dispose();
             g.Dispose();
         }
-
+        /// <summary>
+        /// Dessine les trajectoires contenues dans la liste trajectoires
+        /// </summary>
         private void DessinerTrajectoires()
         {
             Graphics g = Graphics.FromImage(image);
-            
+
             foreach (Tuple<PointF[], Color> trajet in trajectoires)
             {
-                
+
                 PointF depart = trajet.Item1[0];
                 PointF actuel = trajet.Item1[1];
                 Pen pLigne = new Pen(trajet.Item2, 5);
                 g.DrawLine(pLigne, depart, actuel);
                 pLigne.Dispose();
             }
-              
+
             g.Dispose();
             trajectoires.Clear();
         }
-
-        private void DessinerAeroports() {
+        /// <summary>
+        /// Dessine un aéroport aux points dans la liste airportPoints
+        /// </summary>
+        private void DessinerAeroports()
+        {
             Graphics g = Graphics.FromImage(image);
             Image aeroportImg = new Bitmap("Ressources/aeroport.png");
             lock (lockObject)
@@ -102,6 +138,9 @@ namespace TP2_Simulateur
             g.Dispose();
 
         }
+        /// <summary>
+        /// Dessine le temps sur la vue
+        /// </summary>
         private void DessinerTemps()
         {
             RectangleF rectf = new RectangleF(image.Width - 600, image.Height - 100, 535, 90);
@@ -116,28 +155,33 @@ namespace TP2_Simulateur
             g.Dispose();
             sf.Dispose();
         }
-
+        /// <summary>
+        /// Dessine les incendies aux points dans la liste incendiePoints
+        /// </summary>
         private void DessinerIncendies()
         {
             Graphics g = Graphics.FromImage(image);
             Image feuImg = new Bitmap("Ressources/incendie.png");
-            lock (lockObject) 
+            lock (lockObject)
             {
                 foreach (PointF point in incendiePoints)
                 {
                     g.DrawImage(feuImg, new RectangleF(point, new Size(30, 30)));
-                    
+
                 }
             }
-            
+
             feuImg.Dispose();
             g.Dispose();
         }
-        private void DessinerSecours() 
+        /// <summary>
+        /// Dessine les secours aux points dans la liste secoursPoints
+        /// </summary>
+        private void DessinerSecours()
         {
             Graphics g = Graphics.FromImage(image);
             Image secoursImg = new Bitmap("Ressources/secours.png");
-            lock(lockObject)
+            lock (lockObject)
             {
                 foreach (PointF point in secoursPoints)
                 {
@@ -148,7 +192,9 @@ namespace TP2_Simulateur
             secoursImg.Dispose();
             g.Dispose();
         }
-
+        /// <summary>
+        /// Vide les listes de points
+        /// </summary>
         internal void ViderListesDePoint()
         {
             secoursPoints.Clear();
@@ -156,12 +202,9 @@ namespace TP2_Simulateur
             observateurPoints.Clear();
             trajectoires.Clear();
         }
-
-        private void DrawTrajectories(Bitmap bmap)
-        {
-        
-        }
-
+        /// <summary>
+        /// Vide la liste view des clients (incendies/feux/secours)
+        /// </summary>
         public void ViderClientListView()
         {
             try
@@ -173,9 +216,12 @@ namespace TP2_Simulateur
                 });
             }
             catch { }
-  
-        }
 
+        }
+        /// <summary>
+        /// Met à jour l'affichage
+        /// </summary>
+        /// <param name="vitesse"></param>
         public void UpdateSim(double vitesse)
         {
             DessinerTemps();
@@ -199,7 +245,9 @@ namespace TP2_Simulateur
             }
             catch { }
         }
-
+        /// <summary>
+        /// Dessine les lieux d'observation aux point dans la liste observateurPoints
+        /// </summary>
         private void DessinerObservateurs()
         {
             Graphics g = Graphics.FromImage(image);
@@ -215,7 +263,10 @@ namespace TP2_Simulateur
             observateurImg.Dispose();
             g.Dispose();
         }
-
+        /// <summary>
+        /// Charge les noms des aéroports
+        /// </summary>
+        /// <param name="aeroportsNom">Liste des nom</param>
         internal void ChargerAeroportsNom(List<string> aeroportsNom)
         {
             foreach (string apString in aeroportsNom)
@@ -223,41 +274,65 @@ namespace TP2_Simulateur
                 lstAeroports.Items.Add(apString);
             }
         }
-        public void AjouterPointsTrajectoire(List<Tuple<PointF[], Color>> p_trajectoires) 
+
+        /// <summary>
+        /// Ajoute les trajectoires à la liste des trajectoires
+        /// </summary>
+        /// <param name="p_trajectoires">Nouvelle liste de trajectoires</param>
+        public void AjouterPointsTrajectoire(List<Tuple<PointF[], Color>> p_trajectoires)
         {
-            
+
             foreach (Tuple<PointF[], Color> trajectoire in p_trajectoires)
             {
                 this.trajectoires = p_trajectoires;
                 AjouterPointAeronef(trajectoire.Item1[1]);
             }
-        }  
+        }
+        /// <summary>
+        /// Ajoute un point dans la liste aeroportPoints
+        /// </summary>
+        /// <param name="point"></param>
         public void AjouterPointAeroport(PointF point)
         {
             airportPoints.Add(point);
         }
+        /// <summary>
+        /// Ajoute un point de secours dans la liste secoursPoints
+        /// </summary>
+        /// <param name="point"></param>
         public void AjouterPointSecours(PointF point)
         {
-            lock (lockObject) 
+            lock (lockObject)
             {
                 secoursPoints.Add(point);
             }
         }
+        /// <summary>
+        /// Ajoute un point d'incendie dans la liste incendiePoints
+        /// </summary>
+        /// <param name="point"></param>
         public void AjouterPointIncendie(PointF point)
         {
-            lock (lockObject) 
+            lock (lockObject)
             {
                 incendiePoints.Add(point);
             }
         }
+        /// <summary>
+        /// Ajoute un point d'observbation dans la liste observateurPoints
+        /// </summary>
+        /// <param name="point"></param>
         public void AjouterPointObservateur(PointF point)
         {
-            lock (lockObject) 
+            lock (lockObject)
             {
                 observateurPoints.Add(point);
             }
         }
-
+        /// <summary>
+        /// Ajoute un point d'aeronef dans la liste AeronefPoints
+        /// </summary>
+        /// <param name="point"></param>
         public void AjouterPointAeronef(PointF point)
         {
             lock (lockObject)
@@ -265,11 +340,19 @@ namespace TP2_Simulateur
                 AeronefPoints.Add(point);
             }
         }
-
-        public SizeF GetImageSize() {
-            return tailleImage; 
+        /// <summary>
+        /// Retourne la taille de la carte
+        /// </summary>
+        /// <returns></returns>
+        public SizeF GetImageSize()
+        {
+            return tailleImage;
         }
-
+        /// <summary>
+        /// Ouvre la fenêtre permettant d'importer un scénario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnScenario_Click(object sender, EventArgs e)
         {
             emplacementScenarioDialog = new OpenFileDialog();
@@ -289,39 +372,33 @@ namespace TP2_Simulateur
             else
                 MessageBox.Show("Le fichier est invalide.", "Erreur chargement du fichier", MessageBoxButtons.OK);
         }
-
+        /// <summary>
+        /// Change la vitesse de l'horloge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sliderVitesse_ValueChanged(object sender, EventArgs e)
         {
             double valeur = sliderVitesse.Value + 1;
 
-            double vitesse = valeur < 0 ? 1 / -(valeur-1) : valeur + 1;
+            double vitesse = valeur < 0 ? 1 / -(valeur - 1) : valeur + 1;
             controleur.ModifierVitesseTemps(vitesse);
         }
 
-        private void ViewSimulator_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-        public void DrawClient()
-        {
-            Graphics g = Graphics.FromImage(image);
-            Pen crayon = new Pen(Color.Purple, 20);
-            foreach (PointF point in secoursPoints)
-            {
-                g.DrawEllipse(crayon, new Rectangle(Point.Round(point), new Size(2, 2))); 
-            }
-
-            crayon.Dispose();
-            g.Dispose();
-        }
-
+        /// <summary>
+        /// Récupère les informations sur les clients (feux/incendies/secours)
+        /// </summary>
         private void AjoutClients()
-        { 
+        {
             List<string> clients = controleur.AvoirClient();
             foreach (string client in clients)
                 lstClients.Items.Add(client);
         }
-
+        /// <summary>
+        /// Récupère les informations sur l'aéroport sélectionnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstAeroports_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = lstAeroports.SelectedIndex;
@@ -332,7 +409,7 @@ namespace TP2_Simulateur
             lstClientsAeroport.Items.Clear();
             lstAvions.Items.Clear();
             lstClients.Items.Clear();
-            
+
             List<string> clients = controleur.AvoirClientAeroport(index);
             foreach (string client in clients)
             {

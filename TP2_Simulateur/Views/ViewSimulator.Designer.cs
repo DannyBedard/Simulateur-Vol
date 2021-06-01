@@ -56,7 +56,6 @@ namespace TP2_Simulateur
             this.picMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picMap.TabIndex = 0;
             this.picMap.TabStop = false;
-            this.picMap.Click += new System.EventHandler(this.picMap_Click);
             // 
             // panel1
             // 
@@ -173,7 +172,6 @@ namespace TP2_Simulateur
             this.Controls.Add(this.picMap);
             this.Name = "ViewSimulator";
             this.Text = "Simulateur";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewSimulator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderVitesse)).EndInit();
             this.ResumeLayout(false);

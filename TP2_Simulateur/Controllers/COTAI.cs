@@ -119,22 +119,22 @@ namespace TP2_Simulateur
         {
             xs = new XmlSerializer(typeof(Scenario));
             bool valide = false;
-            using (StreamReader rd = new StreamReader(fichier))
+            
+            try
             {
-                try
-                {
-                    scenario = (Scenario)xs.Deserialize(rd);
-                    scenario.Init();
-                    scenario.EvenementTermine += MettreAJoursPoints;
-                    valide = true;
-                }
-                catch { }
-
-                if (valide)
-                    Init();
-
-                return valide;
+                StreamReader rd = new StreamReader(fichier);
+                scenario = (Scenario)xs.Deserialize(rd);
+                scenario.Init();
+                scenario.EvenementTermine += MettreAJoursPoints;
+                valide = true;
             }
+            catch { }
+
+            if (valide)
+                Init();
+
+            return valide;
+            
         }
 
         private void MettreAJoursPoints()
