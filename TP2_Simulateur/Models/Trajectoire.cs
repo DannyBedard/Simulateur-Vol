@@ -40,7 +40,7 @@ namespace TP2_Simulateur.Models
         /// </summary>
         public PointCartographique Actuel { get { return actuel; } }
         /// <summary>
-        /// Aucune idée, variable nécéssaire pour le calcule du prochain PointCartographique
+        /// Aucune idée, variable nécéssaire pour le calcul du prochain PointCartographique
         /// </summary>
         private float t = 0F;
         /// <summary>
@@ -54,7 +54,7 @@ namespace TP2_Simulateur.Models
             destination = p_destination;
         }
         /// <summary>
-        /// Calcule le prochain point cartographique selon la vitesse du temps et de l'aeronef
+        /// Calcul le prochain point cartographique selon la vitesse du temps et de l'aeronef
         /// </summary>
         /// <param name="vitesseTemps">Vitesse du temps</param>
         /// <param name="vitesseAeronef">Vitesse de l'aeronef</param>
