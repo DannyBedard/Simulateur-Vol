@@ -6,6 +6,9 @@ namespace TP2_Simulateur.Models
 {
     class EtatDebarquement : Etat
     {
+        /// <summary>
+        /// Exécuté quand l'état se termine
+        /// </summary>
         public delegate void DebarquementTermineEventHandler();
         public event DebarquementTermineEventHandler DebarquementTermine;
 
@@ -13,9 +16,9 @@ namespace TP2_Simulateur.Models
         {
             DebarquementTermine += methode;
         }
+
         public override void Action(double vitesseHorloge)
         {
-           
             if (aeronef is AvionCiterne)
             {
                 AvionCiterne avion = (AvionCiterne)aeronef;

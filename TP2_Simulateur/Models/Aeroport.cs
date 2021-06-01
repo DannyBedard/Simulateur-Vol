@@ -48,7 +48,7 @@ namespace TP2_Simulateur.Models
 
         /// <summary>
         ///Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
-        //Vérifie également si l'aéronef est dans l'état "disponible"
+        ///Vérifie également si l'aéronef est dans l'état "disponible"
         /// </summary>
         /// <param name="client">Client dans le besoin</param>
         /// <returns>Retourne true si répond aux critères</returns>
