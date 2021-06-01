@@ -15,7 +15,7 @@ namespace TP2Editeur
         {
             this.controleur = controleur;
             InitializeComponent();
-            picMap.Image = new Bitmap("carte.jpg");
+            picMap.Image = new Bitmap("Ressources/carte.jpg");
         }
 
         private void picMap_Click(object sender, EventArgs e)
