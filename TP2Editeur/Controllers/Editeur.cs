@@ -38,6 +38,7 @@ namespace TP2Editeur
             Application.Run(vueEditeur);
         }
 
+        //Façade pour ajouter/Modifier/Supprimer un aéroport
         public void AjouterAeroport(string apName, string apPosition, int minPassager, int maxPassager, int minMarchandise, int maxMarchandise)
         {
             Aeroport nouveauAeroport = new Aeroport
@@ -65,6 +66,7 @@ namespace TP2Editeur
             MiseAjourAeroport();
         }
 
+        //Change la vue lors d'un changement dans la liste d'aéroport
         private void MiseAjourAeroport()
         {
             List<Aeroport> aeroports = scenario.Aeroports;
@@ -76,6 +78,7 @@ namespace TP2Editeur
             vueEditeur.MettreAJourListeAeroports(stringAeroports);
         }
 
+        //Façade pour avoir le format string des aéronef pour la vue
         public List<string> AvoirAeronefsDeAeroport(int selectedIndex)
         {
             List<Aeroport> aeroports = scenario.Aeroports;
@@ -87,13 +90,14 @@ namespace TP2Editeur
             }
             return aeronefs;
         }
-
+        //Va cherche la méthode de sérialisation dans le scénario
         public void GenererScenario()
         {
             string chemin = vueEditeur.ChoisirEmplacement();
             scenario.Serialize(chemin);
         }
 
+        //Façade pour ajouter/Modifier/Supprimer un aéronef
         public void AjouterAeronef(int apIndex, string aeronefNom, string aeronefType, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             scenario.AjouterAeronef(apIndex, aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);

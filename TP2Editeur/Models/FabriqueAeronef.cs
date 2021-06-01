@@ -6,6 +6,7 @@ namespace TP2Editeur
 {
     static class FabriqueAeronef
     {
+        //Fabrique l'aéronef qui correspond aux paramètre données
         public static Aeronef FabriquerAeronef(string type, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             switch (type)

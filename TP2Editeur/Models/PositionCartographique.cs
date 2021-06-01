@@ -9,21 +9,14 @@ namespace TP2Editeur
     {
         private float longitude;
         private float latitude;
-        public string Position 
-        {
-            get
-            {
-                return this.ToString();
-            }
-        }
-        public PositionCartographique() { 
-            
-        }
+        public string Position {get{return this.ToString();}}
+        public PositionCartographique() {  }
         public PositionCartographique(float latitude, float longitude)
         {
             this.longitude = longitude;
             this.latitude = latitude;
         }
+        //Donne une position Cartographique véritable, lisible pour l'humain depuis les degrés reçus
         public static string StringFromLatLong(float lat, float lng) 
         {
             string[] latParts = lat.ToString().Split(',');
@@ -48,6 +41,7 @@ namespace TP2Editeur
 
             return coord;
         }
+        //Divise les pixel en degrés, retourne une PositionCartographique
         public static string StringFromPixel(int x, int y, SizeF tailleCarte) {
             
             float lat = (y / (tailleCarte.Height / 180) - 90) / -1;

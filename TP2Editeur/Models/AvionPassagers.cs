@@ -17,7 +17,6 @@ namespace TP2Editeur
             base.TempsEntretient = tempsEntretient;
             base.TempsEmbarquement = tempsEmbarquement;
             base.TempsDebarquement = tempsDebarquement;
-            
         }
 
         public override string ToString()

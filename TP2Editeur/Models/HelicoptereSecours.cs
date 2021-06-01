@@ -15,7 +15,6 @@ namespace TP2Editeur
         public override string ToString()
         {
             return Nom + ", (Hélicoptère de secours),  Vitesse : " + Vitesse;
-
         }
     }
 }

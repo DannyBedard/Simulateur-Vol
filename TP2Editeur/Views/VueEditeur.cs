@@ -29,6 +29,7 @@ namespace TP2Editeur
             txbAeroportPosition.Text = position;
         }
 
+        //Confirme si les champs sont remplit, puis appel une méthode du controleur
         private void btnAjouterAeroport_Click(object sender, EventArgs e)
         {
             if (txbAeroportNom.Text == "" || !int.TryParse(txbAeroportMinPassager.Text, out _) || !int.TryParse(txbAeroportMaxPassager.Text, out _) || !int.TryParse(txbAeroportMinMarchandise.Text, out _) || !int.TryParse(txbAeroportMaxMarchandises.Text, out _)) {
@@ -44,6 +45,7 @@ namespace TP2Editeur
                 controleur.AjouterAeroport(apName, apPosition, minPassager, maxPassager, minMarchandise, maxMarchandise);
             }
         }
+        //Vide et reremplit la list des aéroport
         public void MettreAJourListeAeroports(List<string> aeroports) {
             lstAeroports.Items.Clear();
             foreach (string aeroport in aeroports) {
@@ -99,7 +101,8 @@ namespace TP2Editeur
             btnSupprimerAeroport.Enabled = true;
             MettreAJourListeAeronef(lstAeroports.SelectedIndex);
             AfficherInfoAeroport(lstAeroports.SelectedIndex);
-        } 
+        }
+        //Vide et reremplit la list des aéronefs
         private void MettreAJourListeAeronef(int indexAeroport) {
             lstAeronefs.Items.Clear();
             List<string> aeronefsString = controleur.AvoirAeronefsDeAeroport(indexAeroport);
@@ -109,6 +112,7 @@ namespace TP2Editeur
             }
         }
 
+        //Ouvre une fenêtre de l'explorateur de fichiers de l'utilisateur
         internal string ChoisirEmplacement()
         {
             emplacementScenarioDialog.ShowDialog();
@@ -120,6 +124,7 @@ namespace TP2Editeur
             controleur.GenererScenario();
         }
 
+        //Confirme si les champs sont remplit, puis appel une méthode du controleur
         private void btnAjouterAeronef_Click(object sender, EventArgs e)
         {
             string aeronefType = cmbAeronefType.Text;
@@ -166,7 +171,7 @@ namespace TP2Editeur
         {
             controleur.AfficherCarte();
         }
-
+        //Sépare la string en tableau pour remplir les texbox d'info sur l'aéroport
         private void AfficherInfoAeroport(int indexAeroport)
         {
             string aeroport = lstAeroports.Items[indexAeroport].ToString();
@@ -180,6 +185,7 @@ namespace TP2Editeur
             txbAeroportMaxMarchandises.Text = elementAeroport[5].Split(" ")[3];
         }
 
+        //Sépare la string en tableau pour remplir les texbox d'info sur l'aéronef
         private void AfficherInfoAeronef(int indexAeronef)
         {
             string aeronef = lstAeronefs.Items[indexAeronef].ToString();
@@ -210,6 +216,7 @@ namespace TP2Editeur
             }
         }
 
+        //Confirme si les champs sont remplit, puis appel une méthode du controleur
         private void btnModifierAeroport_Click(object sender, EventArgs e)
         {
             if (txbAeroportNom.Text == "" || !int.TryParse(txbAeroportMinPassager.Text, out _) || !int.TryParse(txbAeroportMaxPassager.Text, out _) || !int.TryParse(txbAeroportMinMarchandise.Text, out _) || !int.TryParse(txbAeroportMaxMarchandises.Text, out _))
@@ -236,6 +243,7 @@ namespace TP2Editeur
                 controleur.SupprimerAeroport(lstAeroports.SelectedIndex);
         }
 
+        //Confirme si les champs sont remplit, puis appel une méthode du controleur
         private void btnModifierAeronef_Click(object sender, EventArgs e)
         {
             string aeronefType = cmbAeronefType.Text;

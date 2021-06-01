@@ -24,6 +24,7 @@ namespace TP2Editeur
             return Nom + "; (" + Position + ") " + "; MinPassagers : " + MinPassagersHeure + "; MaxPassagers : " + MaxPassagersHeure + "; MinMarchandises : " + MinMarchandisesHeure + "; MaxMarchandises : " + MaxMarchandisesHeure;
         }
 
+        //Créer un aéronef selon la signature des paramètres et l'ajoute à l'aéroport
         public void ajouterAeronef(string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             Aeronef aeronef = FabriqueAeronef.FabriquerAeronef(aeronefType, aeronefNom, capacite, vitesse, tempsEmbarquement, tempsDebarquement, tempsEntretient);
@@ -42,6 +43,7 @@ namespace TP2Editeur
             aeronefs.Add(aeronef);
         }
 
+        //Supprime l'aéronef à l'index donné
         public void SupprimerAeronef(int index)
         {
             aeronefs.RemoveAt(index);

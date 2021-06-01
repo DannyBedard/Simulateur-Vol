@@ -16,9 +16,12 @@ namespace TP2Editeur
         private List<Aeroport> lstAeroports = new List<Aeroport>();
         private PositionCartographique position;
         public List<Aeroport> Aeroports { get { return lstAeroports; } set {lstAeroports = value; } }
+        
+        //Ajoute l'aéroport à la liste actuelle
         public void AjouterAeroport(Aeroport aeroport) {
             Aeroports.Add(aeroport);
         }
+        ////Modifie l'aéronef selon les paramètres reçu à l'index donnée
         public void ModifierAeroport(string apName, string apPosition, int minPassager, int maxPassager, int minMarchandise, int maxMarchandise, int index)
         {
             lstAeroports[index].Nom = apName;
@@ -28,10 +31,13 @@ namespace TP2Editeur
             lstAeroports[index].MinMarchandisesHeure = minMarchandise;
             lstAeroports[index].MaxMarchandisesHeure = maxMarchandise;
         }
+        //Supprime l'aéronef selon l'index donnée
         public void SupprimerAeroport(int index)
         {
             lstAeroports.RemoveAt(index);
         }
+
+        //Créer un scénario XML
         public void Serialize(string chemin) {
             if (chemin == "")
                 return;
@@ -53,6 +59,8 @@ namespace TP2Editeur
         /// <param name="tempsEntretient">Temps d'entretient</param>
         /// <param name="vitesse">Vitesse</param>
         /// <param name="capacite">Capacité</param>
+        
+        //Ajoute un aéronef qui correspond aux paramètres
         public void AjouterAeronef(int apIndex, string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient)
         {
             Aeroport aeroport = Aeroports[apIndex];
@@ -70,7 +78,7 @@ namespace TP2Editeur
             Aeroport aeroport = Aeroports[apIndex];
             aeroport.ajouterAeronef(aeronefType, aeronefNom, vitesse);
         }
-
+        //Ajoute un nouvel aéronef qui correspond aux modifications, supprime l'ancien
         public void ModifierAeronef(int apIndex, string aeronefType, string aeronefNom, int capacite, int vitesse, int tempsEmbarquement, int tempsDebarquement, int tempsEntretient, int index)
         {
             Aeroport aeroport = Aeroports[apIndex];
@@ -92,6 +100,7 @@ namespace TP2Editeur
             aeroport.SupprimerAeronef(index);
         }
 
+        //Supprime l'aéronef selon l'index donnée
         public void SupprimerAeronef(int apIndex, int index)
         {
             Aeroport aeroport = Aeroports[apIndex];
