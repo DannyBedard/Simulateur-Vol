@@ -60,7 +60,6 @@ namespace TP2_Simulateur.Models
                 etatActuel = 0;
             }
         }
-
         public int EtatActuel{ get { return etatActuel; } }
         public string Nom {
             get { return nom; } 

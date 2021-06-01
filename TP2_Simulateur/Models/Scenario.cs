@@ -19,7 +19,6 @@ namespace TP2_Simulateur.Models
         List<Client> incendies = new List<Client>();
         List<Client> observateurs = new List<Client>();
         List<Client> secours = new List<Client>();
-        private bool enMiseAJour = false;
         public List<Aeroport> Aeroports;
         public List<Aeronef> aeronefsEnVol = new List<Aeronef>();
         public SizeF TailleImage { get; set; }
@@ -119,10 +118,6 @@ namespace TP2_Simulateur.Models
             }
             GererEvenement();
         }
-        public void DepartAvionConteneur()
-        {
-
-        }
 
         public void GenererClient()
         {
@@ -130,9 +125,6 @@ namespace TP2_Simulateur.Models
             FabriqueClient.GenererSecours(secours);
             FabriqueClient.GenererObservateurs(observateurs);
             FabriqueClient.GenererClientAeroport(Aeroports);
-
-            
-
         }
         public void GererDecollage(Aeronef aeronef, Aeroport depart) 
         {
@@ -140,15 +132,7 @@ namespace TP2_Simulateur.Models
             aeronef.Atterrissage += GererAtterrissage;
             depart.RetirerAeronef(aeronef);
         }
-        public List<PointF> AvoirPointsAeronef()
-        {
-            List<PointF> points = new List<PointF>();
-            foreach (Aeronef aeronef in aeronefsEnVol)
-            {
-                points.Add(aeronef.Position.Transposer(TailleImage));
-            }
-            return points;
-        }
+
         public void GererEvenement()
         {
             foreach (Incendie incendie in incendies)

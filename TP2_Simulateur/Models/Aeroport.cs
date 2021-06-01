@@ -166,14 +166,14 @@ namespace TP2_Simulateur.Models
             return aeronefInfo;
         }
 
-        internal void AffecterSecour(Client secour)
+        internal void AffecterSecour(Client secours)
         {
             Aeronef aeronefChoisit = null;
             foreach (Aeronef aeronef in Aeronefs)
             {
-                if (aeronef.BonAvion(secour))
+                if (aeronef.BonAvion(secours))
                 {
-                    aeronef.Destination = secour.Position;
+                    aeronef.Destination = secours.Position;
                     aeronefChoisit = aeronef;
                     break;
                 }
@@ -181,7 +181,7 @@ namespace TP2_Simulateur.Models
             if (aeronefChoisit != null)
             {
                 aeronefChoisit.Position = this.PositionCarto;
-                aeronefChoisit.EmbarquerClient(secour);
+                aeronefChoisit.EmbarquerClient(secours);
                 DecollageEnCours.Invoke(aeronefChoisit, this);
             }
         }

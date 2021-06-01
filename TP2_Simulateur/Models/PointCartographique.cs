@@ -65,24 +65,10 @@ namespace TP2_Simulateur.Models
             return PointCartographique.StringFromLatLong(latitude, longitude);
         }
         public PointF Transposer(SizeF tailleImage) {
-           // double mapWidth = tailleImage.Width; // largeur
-           // double mapHeight = tailleImage.Height; // hauteur
-           // double scaleMapX = mapWidth / 360.0; // Degrés par pixel (X)
-           // double scaleMapY = mapHeight / (Math.PI * 2); // Degrés par pixel (Y)
-            //double centerX = mapWidth / 2 - 1; // Centre de la map (X)
-            //double centerY = mapHeight / 2 - 1;// Centre de la map (Y)
-            // X
-            //double x = centerX + longitude * scaleMapX;
-            // degrees -> radians
-            //double latRad = degreesToRadians(latitude);
-            // Y
-
 
             float y = (float) Math.Round(((-1 * latitude) + 90) * (tailleImage.Height / 180));
             float x= (float) Math.Round((longitude + 180) * (tailleImage.Width / 360));
 
-            //double siny = bound(Math.Sin(degreesToRadians(latitude)), -0.9999, 0.9999);
-            //double y = centerY + 0.65 * Math.Log((1 + siny) / (1 - siny)) * -scaleMapY;
             return new PointF(x, y);
         }
         public static PointCartographique Random() {
@@ -92,8 +78,6 @@ namespace TP2_Simulateur.Models
                 float lng = (float)random.NextDouble() * (180 - -180) + -180;
                 return new PointCartographique(lat, lng);
             }
-
-            
         }
         public static string StringFromLatLong(float lat, float lng)
         {

@@ -223,16 +223,6 @@ namespace TP2_Simulateur
                 lstAeroports.Items.Add(apString);
             }
         }
-
-        //private void DessinerLigne(PointF depart, PointF actuel)
-        //{
-        //    Graphics g = Graphics.FromImage(image);
-        //    Pen pLigne = new Pen(Color.Red, 5);
-
-        //    g.DrawLine(pLigne, depart, actuel); ;
-        //    g.Dispose();
-        //    pLigne.Dispose();
-        //}
         public void AjouterPointsTrajectoire(List<Tuple<PointF[], Color>> p_trajectoires) 
         {
             
@@ -241,7 +231,7 @@ namespace TP2_Simulateur
                 this.trajectoires = p_trajectoires;
                 AjouterPointAeronef(trajectoire.Item1[1]);
             }
-        }
+        }  
         public void AjouterPointAeroport(PointF point)
         {
             airportPoints.Add(point);
