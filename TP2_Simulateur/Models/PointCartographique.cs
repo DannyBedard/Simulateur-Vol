@@ -8,10 +8,22 @@ namespace TP2_Simulateur.Models
 {
     public class PointCartographique
     {
+        /// <summary>
+        /// Génère des nombres aléatoires
+        /// </summary>
         private static readonly Random random = new Random();
         private static readonly object locker = new object();
+        /// <summary>
+        /// Latitude cartographique
+        /// </summary>
         private float latitude;
+        /// <summary>
+        /// Longitude cartographique
+        /// </summary>
         private float longitude;
+        /// <summary>
+        /// Latitude cartographique
+        /// </summary>
         public float Latitude 
         {
             get 
@@ -23,6 +35,9 @@ namespace TP2_Simulateur.Models
                 latitude = value;
             }
         }
+        /// <summary>
+        /// Longitude cartographique
+        /// </summary>
         public float Longitude
         {
             get
@@ -34,6 +49,10 @@ namespace TP2_Simulateur.Models
                 longitude = value;
             }
         }
+        /// <summary>
+        /// Retourne un point cartographique selon les coordonnées en paramètre 
+        /// </summary>
+        /// <param name="coord">Coordonnées</param>
         public PointCartographique(string coord) {
             MatchCollection match = Regex.Matches(coord, @"\d+° \d+' (N|S|E|O)");
             string latitudeString = match[0].Value;
@@ -42,6 +61,11 @@ namespace TP2_Simulateur.Models
             latitude = CoordVersFloat(latitudeString);
             longitude = CoordVersFloat(longitudeString);
         }
+        /// <summary>
+        /// Retourne un point cartographique à partir de la latitude et longitude recu
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lng"></param>
         public PointCartographique(float lat, float lng) {
             latitude = lat;
             longitude = lng;
@@ -50,6 +74,11 @@ namespace TP2_Simulateur.Models
         {
 
         }
+        /// <summary>
+        /// Retourne une coordonnée convertie en nombre
+        /// </summary>
+        /// <param name="coord"></param>
+        /// <returns></returns>
         private float CoordVersFloat(string coord) {
             float resultat = 0;
             MatchCollection coordParts = Regex.Matches(coord, @"\d+");
@@ -61,9 +90,17 @@ namespace TP2_Simulateur.Models
                 resultat = resultat * -1;
             return resultat;
         }
+        /// <summary>
+        /// Retourne les coordonnées sous forme d'une chaîne de caratères
+        /// </summary>
+        /// <returns></returns>
        override public string ToString() {
             return PointCartographique.StringFromLatLong(latitude, longitude);
         }
+        /// <summary>
+        /// Retourne un point indiquant la possition à l'écran du point cartographique
+        /// </summary>
+        /// <returns></returns>
         public PointF Transposer(SizeF tailleImage) {
 
             float y = (float) Math.Round(((-1 * latitude) + 90) * (tailleImage.Height / 180));
@@ -71,6 +108,10 @@ namespace TP2_Simulateur.Models
 
             return new PointF(x, y);
         }
+        /// <summary>
+        /// Génère une position cartographique aléatoire
+        /// </summary>
+        /// <returns></returns>
         public static PointCartographique Random() {
             lock (locker) 
             {
@@ -79,6 +120,12 @@ namespace TP2_Simulateur.Models
                 return new PointCartographique(lat, lng);
             }
         }
+        /// <summary>
+        /// Retourne les coordonnées sous forme d'une chaîne de caratères
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lng"></param>
+        /// <returns></returns>
         public static string StringFromLatLong(float lat, float lng)
         {
             string[] latParts = lat.ToString().Split(',');
@@ -103,10 +150,21 @@ namespace TP2_Simulateur.Models
 
             return coord;
         }
+        /// <summary>
+        /// Transforme une valeur en radian
+        /// </summary>
+        /// <param name="valeur"></param>
+        /// <returns></returns>
         private static float VersRadian(float valeur) 
         {
             return (float)(valeur / (180 / Math.PI));
         }
+        /// <summary>
+        /// Retourne la distance, en kilomètre, entre deux points cartographiques
+        /// </summary>
+        /// <param name="p1">Premier point</param>
+        /// <param name="p2">Second point</param>
+        /// <returns></returns>
         public static float DistanceEntre(PointCartographique p1, PointCartographique p2)
         {
             float lat1 = PointCartographique.VersRadian(p1.latitude);
