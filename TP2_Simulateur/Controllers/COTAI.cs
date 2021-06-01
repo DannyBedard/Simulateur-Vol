@@ -28,15 +28,33 @@ namespace TP2_Simulateur
             COTAI controller = new COTAI();
             controller.ShowMainMenu();
         }
-
+        /// <summary>
+        /// XmlSerializer pour le chargement de scénario xml
+        /// </summary>
         public XmlSerializer xs;
+        /// <summary>
+        /// Vue du simulateur
+        /// </summary>
         public ViewSimulator view;
+        /// <summary>
+        /// Scénario chargé
+        /// </summary>
         public Scenario scenario;
-        private List<Aeroport> airports = new List<Aeroport>();
+        /// <summary>
+        /// Thread mettant a jour le scénario et la vue
+        /// </summary>
         private Thread simulatorThread;
+        /// <summary>
+        /// timer utilisé pour limiter l'exécution du thread par seconde
+        /// </summary>
         private Stopwatch timer = new Stopwatch();
+        /// <summary>
+        /// Horloge pour la vitesse du scénario
+        /// </summary>
         private Horloge horloge;
-
+        /// <summary>
+        /// Indique si le programme est en cours d'exécution
+        /// </summary>
         private static bool running = false;
         public void ShowMainMenu() {
             view = new ViewSimulator(this);
@@ -44,7 +62,9 @@ namespace TP2_Simulateur
             view.LoadMap(map);
             Application.Run(view);
         }
-        
+        /// <summary>
+        /// Met à jour le scénario et la vue 30 fois par secondes
+        /// </summary>
         private void UpdateSimView() {
 
             timer.Start();
@@ -72,12 +92,18 @@ namespace TP2_Simulateur
             }
             timer.Stop();
         }
+        /// <summary>
+        /// Envoi le temps à la vue
+        /// </summary>
+        /// <param name="temps"></param>
         private void MettreAJourTemps(string temps)
         {
             view.AfficherTemps(temps);
         }
 
-        // Cette méthode est appelée par un event à chaque fois qu'une heure passe (voir methode init et classe Horloge)
+        /// <summary>
+        /// Dit au scénario de generer des clients et invoit les informations à la vue
+        /// </summary>
         private void GenererClient() 
         {
             scenario.GenererClient();
@@ -94,6 +120,9 @@ namespace TP2_Simulateur
                 view.AjouterPointObservateur(point);
             }
         }
+        /// <summary>
+        /// Exécutée au début du programme
+        /// </summary>
         private void Init() {
             scenario.TailleImage = view.GetImageSize();
             
@@ -115,6 +144,11 @@ namespace TP2_Simulateur
             simulatorThread.Start();
             horloge.Start();
         }
+        /// <summary>
+        /// Importe et lance le scénario
+        /// </summary>
+        /// <param name="fichier">Emplacement du fichier</param>
+        /// <returns></returns>
         public bool TelechargerScenario(string fichier)
         {
             xs = new XmlSerializer(typeof(Scenario));
@@ -136,7 +170,9 @@ namespace TP2_Simulateur
             return valide;
             
         }
-
+        /// <summary>
+        /// Envoi à la vue les nouvelles informations à afficher
+        /// </summary>
         private void MettreAJoursPoints()
         {
             view.ViderListesDePoint();
@@ -154,21 +190,36 @@ namespace TP2_Simulateur
             }
             view.ViderClientListView();
         }
-
+        /// <summary>
+        /// Modifie la vitesse de l'horloge
+        /// </summary>
+        /// <param name="vitesse"></param>
         public void ModifierVitesseTemps(double vitesse)
         {
             horloge.Vitesse = vitesse;
         }
-
+        /// <summary>
+        /// Retourne une liste contenant les informations des clients d'un aéroport
+        /// </summary>
+        /// <param name="index">Index de l'aéroport</param>
+        /// <returns></returns>
         internal List<string> AvoirClientAeroport(int index)
         {
             return scenario.AvoirInfoClientAeroport(index);
         }
+        /// <summary>
+        /// Retourne une liste contenant les informations des aeronefs d'un aéroport
+        /// </summary>
+        /// <param name="index">Index de l'aéroport</param>
+        /// <returns></returns>
         public List<string> AvoirAeronefAeroport(int index)
         {
             return scenario.AvoirAeronefAeroport(index);
         }
-
+        /// <summary>
+        /// Retourne une liste contenant les informations des clients (incendies,feux,secours)
+        /// </summary>
+        /// <returns></returns>
         public List<string> AvoirClient()
         {
             return scenario.AvoirClient();
