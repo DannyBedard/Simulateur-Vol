@@ -45,6 +45,13 @@ namespace TP2_Simulateur.Models
         {
             return Nom + " (" + Position + ") " + "MinPassagers : " + MinPassagersHeure + ", MaxPassagers : " + MaxPassagersHeure + ", MinMarchandises : " + MinMarchandisesHeure + ", MaxMarchandises : " + MaxMarchandisesHeure;
         }
+
+        /// <summary>
+        ///Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
+        //Vérifie également si l'aéronef est dans l'état "disponible"
+        /// </summary>
+        /// <param name="client">Client dans le besoin</param>
+        /// <returns>Retourne true si répond aux critères</returns>
         public bool AvionDisponible(Client client) 
         {
             foreach (Aeronef aeronef in Aeronefs)
@@ -58,6 +65,13 @@ namespace TP2_Simulateur.Models
             
         }
 
+
+        /// <summary>
+        /// Parcours tous les passager en attentes ainsi que tous les aéronefs de l'aéroport
+        /// Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
+        /// s'il y a assez de passager pour remplir l'avion, on procède à l'embarquement, changes la valeur de certaines données membres dont le trajet et on décolle
+        /// </summary>
+        /// <returns>null si il n'y pas assez de passager ou l'aéronef qui vient de décoller</returns>
         public Aeronef EmbarquementPassager() 
         {
             foreach (Passager passager in passagerEnAttente)
@@ -81,6 +95,12 @@ namespace TP2_Simulateur.Models
             }
             return null;
         }
+        /// <summary>
+        /// Parcours tous les marchandises en attentes ainsi que tous les aéronefs de l'aéroport
+        /// Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
+        /// s'il y a assez de marchandises pour remplir l'avion, on procède à l'embarquement, changes la valeur de certaines données membres dont le trajet et on décolle
+        /// </summary>
+        /// <returns>null si il n'y pas assez de marchandises ou l'aéronef qui vient de décoller</returns>
         public Aeronef EmbarquementMarchandise()
         {
             foreach (Marchandise marchandise in marchandiseEnAttente)
@@ -105,6 +125,11 @@ namespace TP2_Simulateur.Models
             return null;
         }
 
+        /// <summary>
+        /// Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
+        /// Si une affectation est possible, on procède au décollage
+        /// </summary>
+        /// <param name="client">Incendies dans le besoin</param>
         public void AffecterIncendie(Client client)
         {
             Aeronef aeronefChoisit = null;
@@ -124,7 +149,10 @@ namespace TP2_Simulateur.Models
                 DecollageEnCours.Invoke(aeronefChoisit, this);
             }
         }
-
+        /// <summary>
+        /// Vérifie si des embarquements sont possibles et mets à jours les états
+        /// </summary>
+        /// <param name="vitesseHorloge">Vitesse actuel du programme</param>
         internal void MettreAJour(double vitesseHorloge)
         {
             EmbarquementPassager();
@@ -136,12 +164,19 @@ namespace TP2_Simulateur.Models
             }
             
         }
-
+        /// <summary>
+        /// Méthode Externe permettant de retirer un aéronefs
+        /// </summary>
+        /// <param name="aeronef"> aéronef à retirer</param>
         public void RetirerAeronef(Aeronef aeronef)
         {
             Aeronefs.Remove(aeronef);
         }
        
+        /// <summary>
+        /// Parcours tous les clients
+        /// </summary>
+        /// <returns>Une liste de string de tous les clients en attentes dans l'aéroport</returns>
         internal List<string> AvoirClientInfo()
         {
             List<string> clientInfo = new List<string>();
@@ -156,6 +191,10 @@ namespace TP2_Simulateur.Models
             return clientInfo;
         }
 
+        /// <summary>
+        /// Parcours tous les aéronefs
+        /// </summary>
+        /// <returns>Une liste de string de tous les aéronefs de l'aéroport</returns>
         public List<string> AvoirAeronefInfo()
         {
             List<string> aeronefInfo = new List<string>();
@@ -166,6 +205,11 @@ namespace TP2_Simulateur.Models
             return aeronefInfo;
         }
 
+        /// <summary>
+        /// Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
+        /// Si une affectation est possible, on procède au décollage
+        /// </summary>
+        /// <param name="client">Secours dans le besoin</param>
         internal void AffecterSecour(Client secours)
         {
             Aeronef aeronefChoisit = null;
@@ -186,12 +230,20 @@ namespace TP2_Simulateur.Models
             }
         }
 
+        /// <summary>
+        /// Méthode Externe permettant d'ajouter un aéronefs
+        /// </summary>
+        /// <param name="aeronef"> aéronef à ajouter</param>
         internal void AjouterAeronef(Aeronef aeronef)
         {
-            
             Aeronefs.Add(aeronef);
         }
 
+        /// <summary>
+        /// Appel la méthode de l'aéronef qui compare le client que sert l'aéronef et le client en paramètre
+        /// Si une affectation est possible, on procède au décollage
+        /// </summary>
+        /// <param name="client">Observateur dans le besoin</param>
         internal void AffecterObservateur(Client client)
         {
             Aeronef aeronefChoisit = null;
