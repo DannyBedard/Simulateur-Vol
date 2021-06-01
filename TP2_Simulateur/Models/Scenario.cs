@@ -29,6 +29,7 @@ namespace TP2_Simulateur.Models
         public Scenario() 
         {
         }
+        //Retourne une liste de PointF utilisable pour la vue de tous les Aéroport
         public List<PointF> AvoirPointsAeroport()
         {
             List<PointF> points = new List<PointF>();
@@ -38,6 +39,7 @@ namespace TP2_Simulateur.Models
             }
             return points;
         }
+        //Retourne une liste de PointF utilisable pour la vue de tous les clients Incendie
         public List<PointF> AvoirPointsIncendies()
         {
             List<PointF> points = new List<PointF>();
@@ -48,6 +50,7 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
+        //Retourne une liste de PointF utilisable pour la vue de tous les clients Secours
         public IEnumerable<PointF> AvoirPointsSecours()
         {
             List<PointF> points = new List<PointF>();
@@ -58,6 +61,7 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
+        //Retourne une liste de PointF utilisable pour la vue de tous les clients Observateur
         public IEnumerable<PointF> AvoirPointsObservateur()
         {
             List<PointF> points = new List<PointF>();
@@ -68,6 +72,7 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
+        //Retourne une liste de string utilisable pour la vue de tous les Aéroports
         public List<string> AvoirToutAeroportsNom()
         {
             List<string> points = new List<string>();
@@ -78,6 +83,8 @@ namespace TP2_Simulateur.Models
             return points;
         }
 
+        //Retourne un tableau de PointF qui correspond aux trajet calculé de l'aéronef
+        //Et une couleur selon le type d'aéronef qui vole pour la couleur de la ligne
         public List<Tuple<PointF[], Color>> AvoirTrajetsAeronefEnVol()
         {
             List<Tuple<PointF[], Color>> trajets = new List<Tuple<PointF[], Color>>();
@@ -105,6 +112,7 @@ namespace TP2_Simulateur.Models
             return trajets;
         }
 
+        //Appel les méthodes de changement d'états des aéronefs, Vérifie si des passagers/marchandises peuvent entrer dans un avion et assigne les avions disponibles aux clients proches
         public void MettreAJour(double vitesseHorloge)
         {
             List<Aeronef> aeronefsEnVolCopi = new List<Aeronef>(aeronefsEnVol);
@@ -119,6 +127,7 @@ namespace TP2_Simulateur.Models
             GererEvenement();
         }
 
+        //Appel la fabrique de client
         public void GenererClient()
         {
             FabriqueClient.GenererIncendies(incendies);
@@ -126,6 +135,7 @@ namespace TP2_Simulateur.Models
             FabriqueClient.GenererObservateurs(observateurs);
             FabriqueClient.GenererClientAeroport(Aeroports);
         }
+        //Appel l'évènement de l'atterissage, Ajoute l'aéronef à la liste en vol et la retire de son aéroport
         public void GererDecollage(Aeronef aeronef, Aeroport depart) 
         {
             aeronefsEnVol.Add(aeronef);
@@ -133,6 +143,8 @@ namespace TP2_Simulateur.Models
             depart.RetirerAeronef(aeronef);
         }
 
+        //Assigne l'aéronefs disponibles le plus près au client dans le besoin
+        //Parcours tous les aéronefs de tous les aéroports et si disponible, compare la distance puis appel l'évènement
         public void GererEvenement()
         {
             foreach (Incendie incendie in incendies)
@@ -232,6 +244,8 @@ namespace TP2_Simulateur.Models
 
             }
         }
+        //Si la position cartographique de l'avion en vol est celui de son aéroport d'arrivé, on gère l'évenement
+        //Ajoute à l'aéroport et supprime des aéronef en vol
         private void GererAtterrissage(Aeronef aeronef, PointCartographique positionAeroport) 
         {
             foreach (Aeroport ap in Aeroports)
@@ -244,6 +258,8 @@ namespace TP2_Simulateur.Models
                 }
             }
         }
+        //3 prochaines méthodes :
+        //Supprime le client et appel appel la fin de l'évènement
         private void SupprimerObservateur(Observateur observateur)
         {
             observateurs.Remove(observateur);
@@ -261,6 +277,9 @@ namespace TP2_Simulateur.Models
             EvenementTermine.Invoke();
         }
 
+        //3 prochaines méthodes : 
+        //Va chercher des listes de string pour remplir les listviews de la vue
+        //Les clients et aéronefs de l'aéroport sélectionné et les clients sur la carte
         public List<string> AvoirInfoClientAeroport(int index)
         {
             return Aeroports[index].AvoirClientInfo();
