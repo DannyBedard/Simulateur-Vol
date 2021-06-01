@@ -33,10 +33,16 @@ namespace TP2_Simulateur.Models
             get { return capacite; }
             set { capacite = value; }
         }
+        /// <summary>
+        /// Une fois arrivé, inverse la destination et l'arrivé pour revenir
+        /// </summary>
         public void RetourPositionOrigine()
         {
             trajet = new Trajectoire(trajet.Destination, trajet.Depart);
         }
+        /// <summary>
+        /// Appel l'event d'atterissage
+        /// </summary>
         public void FaireAtterrissage() 
         {
             try
@@ -51,7 +57,9 @@ namespace TP2_Simulateur.Models
         {
             return;
         }
-
+        /// <summary>
+        /// Cycle des états, incrémente puis rendu au point, revient au premier
+        /// </summary>
         public virtual void ChangerEtat()
         {
             etatActuel++;
@@ -79,7 +87,10 @@ namespace TP2_Simulateur.Models
 
         public override abstract string ToString();
 
-
+        /// <summary>
+        /// Méthode externe permettant d'ajouter un trajet
+        /// </summary>
+        /// <param name="trajectoire">Trajet à affecter</param>
         public virtual void DefinirTrajectoire(Trajectoire trajectoire)
         {
             trajet = trajectoire;
@@ -90,6 +101,10 @@ namespace TP2_Simulateur.Models
         }
         public abstract bool BonAvion(Client p_client);
 
+        /// <summary>
+        /// Vérifie l'état actuel 
+        /// </summary>
+        /// <returns>true si disponible, sinon false</returns>
         public bool EstDisponnible()
         {
             if (cycleEtat[etatActuel] is EtatDisponnible)
@@ -99,11 +114,19 @@ namespace TP2_Simulateur.Models
             return false;
         }
 
+        /// <summary>
+        /// Appel l'action de l'état actuel
+        /// </summary>
+        /// <param name="vitesseTemps">Vitesse actuel du programme</param>
         public void MettreAJourEtat(double vitesseTemps) 
         {
             cycleEtat[etatActuel].Action(vitesseTemps);
         }
 
+        /// <summary>
+        /// Vérifie l'état actuel 
+        /// </summary>
+        /// <returns>true si En vol, sinon false</returns>
         internal bool EstEnVol()
         {
             if (cycleEtat[etatActuel] is EtatVol)
