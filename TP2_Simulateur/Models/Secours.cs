@@ -18,6 +18,7 @@ namespace TP2_Simulateur.Models
             base.Position = point;
             EnAttente = true;
         }
+        //Appel l'évenènement
         public void Secourir() 
         {
             secourFinit.Invoke(this);

@@ -8,6 +8,10 @@ namespace TP2_Simulateur.Models
     {
         private static readonly Random random = new Random();
         private static readonly object locker = new object();
+        
+        //Génère un nombre aux hasard de clients avec destination aléatoire qui sont dans un aéroport (Passager/Marchandise) 
+        //selon les spécifications de celui-ci (MinPassagerHeure etc...)
+        //Si un client a déjà la même destination, on incrémente sa quantite au lieu de créer un nouveau client
         public static void GenererClientAeroport(List<Aeroport> aeroports)
         {
             bool existant = false;
@@ -57,6 +61,8 @@ namespace TP2_Simulateur.Models
             }
         }
 
+        //Génères les clients à un endroit aléatoire sur la carte selon la quantité aléatoire exigé par le TP.
+        //Ils sont ensuite ajouté à la liste du scénario (en paramètre)
         public static void GenererIncendies(List<Client> incendies)
         {
             Client client;

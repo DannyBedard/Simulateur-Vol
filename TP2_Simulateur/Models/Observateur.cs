@@ -17,6 +17,7 @@ namespace TP2_Simulateur.Models
         }
 
         public bool EnAttente { get; internal set; }
+        //Appel l'évènement
         public void Observer() 
         {
             ObservationFinit.Invoke(this);

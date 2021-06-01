@@ -30,6 +30,7 @@ namespace TP2_Simulateur.Models
             set { besoinAvion = value; }
         }
 
+        //Se fait appeler à chaque Largage d'avion citerne, appel l'évennement
         internal void Eteindre()
         {
             envergure--;
