@@ -77,10 +77,17 @@ namespace TP2_Simulateur.Models
             timer.Interval = 1000;
             timer.Elapsed += MettreAJourTemps;
         }
+        /// <summary>
+        /// Formatte les variables du temps du programme
+        /// </summary>
+        /// <returns>Temps lisible pour l'humain</returns>
         private string TempsString() 
         {
             return Heure.ToString("00") + ":" + Minute.ToString("00") + ":" + Seconde.ToString("00");
         }
+        /// <summary>
+        /// Commence la chaine de changement de temps avec l'event
+        /// </summary>
         private void MettreAJourTemps(object sender, ElapsedEventArgs e)
         {
             Seconde += tickSeconde;
@@ -89,9 +96,6 @@ namespace TP2_Simulateur.Models
         public void Start() 
         {
             timer.Start();
-        }
-        public void Stop() {
-        
         }
     }
 }
